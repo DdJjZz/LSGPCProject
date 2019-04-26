@@ -2,9 +2,162 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <title>磷石膏物流云图</title>
+    <link href="./resource/css/bootstrap.min.css" rel="stylesheet">
+    <link href="resource/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="css/map.css" rel="stylesheet"/>
+    <script type="text/javascript" src="resource/js/jquery.min.js"></script>
+    <script type="text/javascript" src="resource/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/echarts.min.js"></script>
+    <script type="text/javascript" src="js/theams/macarons.js"></script>
+    <script type="text/javascript" src="js/theams/shine.js"></script>
+    <script type="text/javascript" src="js/theams/infographic.js"></script>
+    <script type="text/javascript" src="js/hcu_util.js"></script>
+    <!--<script type="text/javascript" src="resource/js/bootstrap-datetimepicker.zh-CN.js"></script>-->
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=2.0&ak=vRknRFA2azlPzOpzSCNBdQXGRQEGxloc"></script>
 </head>
-<body>
+<body style="min-width: 576px;min-height: 324px">
+<div id="allmap"></div>
+<div style="width: 24%;height:60px;" class="border-anim">
+    <div class="border-anim-content" style="font-size: 40px;text-align: center;width: 100%;">磷 石 膏 物 流 云 图</div>
+</div>
+<div id="block_1" style="width: 24%;float: left;height:60px" class="border-anim">
+    <!--<div class="border-anim-content" style="text-align: center;">-->
+        <!--<div style="float: left;font-size: 28px;height: 100%;width: 80px;" class="text-left">福州地区-->
+        <!--</div>-->
+        <!--<div style="float: left;font-size: 26px;height: 50%;width: calc(27% - 16px);color: #F17C02">新增量-->
+        <!--</div>-->
+        <!--<div style="float: left;font-size: 26px;height: 50%;width: calc(37% - 16px);color: #F17C02">123456789-->
+        <!--</div>-->
+        <!--<div style="float: left;font-size: 26px;height: 50%;width: calc(20% - 16px);">10%-->
+        <!--</div>-->
+        <!--<div style="float: left;font-size: 26px;height: 50%;width: calc(10% - 16px)">-->
+            <!--<i class="fa fa-arrow-up" style="color: #F74500"></i>-->
+        <!--</div>-->
+        <!--<div style="float: left;font-size: 26px;height: 50%;width: calc(27% - 16px);color: #F17C02">消耗量-->
+        <!--</div>-->
+        <!--<div style="float: left;font-size: 26px;height: 50%;width: calc(37% - 16px);color: #F17C02">123456789-->
+        <!--</div>-->
+        <!--<div style="float: left;font-size: 26px;height: 50%;width: calc(20% - 16px);">10%-->
+        <!--</div>-->
+        <!--<div style="float: left;font-size: 26px;height: 50%;width: calc(10% - 16px)">-->
+            <!--<i class="fa fa-arrow-down" style="color: #087433"></i>-->
+        <!--</div>-->
+    <!--</div>-->
+</div>
 
+<div id="block_2" style="width: 24%;text-align: center;float: left;height:60px;" class="border-anim">
+    <!--<div class="border-anim-content" style="text-align: center;">-->
+        <!--<div style="float: left;font-size: 28px;height: 100%;width: 80px;" class="text-left">开阳地区-->
+        <!--</div>-->
+        <!--<div style="float: left;font-size: 26px;height: 50%;width: calc(27% - 16px);color: #F17C02">新增量-->
+        <!--</div>-->
+        <!--<div style="float: left;font-size: 26px;height: 50%;width: calc(37% - 16px);color: #F17C02">123456789-->
+        <!--</div>-->
+        <!--<div style="float: left;font-size: 26px;height: 50%;width: calc(20% - 16px);">10%-->
+        <!--</div>-->
+        <!--<div style="float: left;font-size: 26px;height: 50%;width: calc(10% - 16px)">-->
+            <!--<i class="fa fa-arrow-up" style="color: #F74500"></i>-->
+        <!--</div>-->
+        <!--<div style="float: left;font-size: 26px;height: 50%;width: calc(27% - 16px);color: #F17C02">消耗量-->
+        <!--</div>-->
+        <!--<div style="float: left;font-size: 26px;height: 50%;width: calc(37% - 16px);color: #F17C02">123456789-->
+        <!--</div>-->
+        <!--<div style="float: left;font-size: 26px;height: 50%;width: calc(20% - 16px);">10%-->
+        <!--</div>-->
+        <!--<div style="float: left;font-size: 26px;height: 50%;width: calc(10% - 16px)">-->
+            <!--<i class="fa fa-arrow-down" style="color: #087433"></i>-->
+        <!--</div>-->
+    <!--</div>-->
+</div>
+<div id="block_3" style="width: 24%;text-align: center;float: left;height:60px;" class="border-anim">
+    <!--<div class="border-anim-content" style="text-align: center;">-->
+        <!--<div style="float: left;font-size: 28px;height: 100%;width: 80px;" class="text-left">瓮安地区-->
+        <!--</div>-->
+        <!--<div style="float: left;font-size: 26px;height: 50%;width: calc(27% - 16px);color: #F17C02">新增量-->
+        <!--</div>-->
+        <!--<div style="float: left;font-size: 26px;height: 50%;width: calc(37% - 16px);color: #F17C02">123456789-->
+        <!--</div>-->
+        <!--<div style="float: left;font-size: 26px;height: 50%;width: calc(20% - 16px);">10%-->
+        <!--</div>-->
+        <!--<div style="float: left;font-size: 26px;height: 50%;width: calc(10% - 16px)">-->
+            <!--<i class="fa fa-arrow-up" style="color: #F74500"></i>-->
+        <!--</div>-->
+        <!--<div style="float: left;font-size: 26px;height: 50%;width: calc(27% - 16px);color: #F17C02">消耗量-->
+        <!--</div>-->
+        <!--<div style="float: left;font-size: 26px;height: 50%;width: calc(37% - 16px);color: #F17C02">123456789-->
+        <!--</div>-->
+        <!--<div style="float: left;font-size: 26px;height: 50%;width: calc(20% - 16px);">10%-->
+        <!--</div>-->
+        <!--<div style="float: left;font-size: 26px;height: 50%;width: calc(10% - 16px)">-->
+            <!--<i class="fa fa-arrow-down" style="color: #087433"></i>-->
+        <!--</div>-->
+    <!--</div>-->
+</div>
+
+<div id="block_4" style="width: 24%;float: left;height:180px;" class="border-anim">
+    <div class="border-anim-content" style="width: 100%;height: 100%" id="TableForTask">
+        <table class="table" style="color: white;cursor: pointer">
+            <thead>
+            <tr>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div id="block_5" style="width: 24%;text-align: center;float: left;" class="border-anim">
+    <div class="border-anim-content" style="width: 100%;height: 100%;color: white;margin: auto" id="PieForPhosAll">
+    </div>
+</div>
+
+<div id="block_6" style="width:calc(25% - 2px);text-align: center;bottom: 0px;height:180px"
+     class="border-anim">
+    <div class="border-anim-content" style="font-size: 40px;text-align: center;" id="HistogramForYear">
+    </div>
+</div>
+
+<div id="block_7" style="width:calc(25% - 2px);text-align: center;bottom: 0px;height:180px"
+     class="border-anim">
+    <div class="border-anim-content" style="font-size: 40px;text-align: center;" id="MixedChartForMounth">
+    </div>
+</div>
+
+<div id="block_8" style="width:calc(26% - 2px);text-align: center;bottom: 0px;height:180px"
+     class="border-anim">
+    <div class="border-anim-content" style="font-size: 40px;text-align: center;" id="TransverseBarChart">
+    </div>
+</div>
+
+<div id="block_9" style="width:20%;text-align: center;right:0px;height:180px;position: absolute;color: white">
+    <div style="font-size: 30px;text-align: center;" id="PageNowTime">2019-04-15 16:19:30
+    </div>
+    <div style="font-size: 30px;text-align: center;" id="DriverNumber">今日运输车次：1100
+    </div>
+</div>
+
+<div class="modal fade" id="UserAlarm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="UserAlertModalLabel">警告</h4>
+            </div>
+            <div class="modal-body" id="UserAlertModalContent">
+                <strong>警告！</strong>您尚未选择一个用户项。
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
+<script type="text/javascript" src="js/map.js"></script>
