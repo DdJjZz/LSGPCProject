@@ -12,11 +12,13 @@
     <link href="resource/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
     <!--<link href="resource/css/jquery.dataTables.min.css" rel="stylesheet">-->
     <link href="resource/DataTables/datatables.min.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet"/>
     <script type="text/javascript" src="resource/js/jquery.min.js"></script>
     <script type="text/javascript" src="resource/DataTables/datatables.min.js"></script>
     <script type="text/javascript" src="resource/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="laydate/laydate.js"></script>
     <script type="text/javascript" src="js/echarts.min.js"></script>
+    <!--<script src="https://cdn.bootcss.com/distpicker/2.0.3/distpicker.js"></script>-->
     <script type="text/javascript" src="js/theams/macarons.js"></script>
     <script type="text/javascript" src="js/theams/shine.js"></script>
     <script type="text/javascript" src="js/theams/infographic.js"></script>
@@ -45,7 +47,7 @@
                     </li>
                 </ul>
             </div>
-            <div id="CompanyBar"  style="display: none">
+            <div id="CompanyBar" style="display: none">
                 <ul class="nav navbar-nav" style="font-size: 20px;padding-left: 15%">
                     <li class="active" id="CompanyRoute" style="cursor: pointer">
                         <a>路径查看</a>
@@ -1147,7 +1149,6 @@
                                 <th>Name</th>
                                 <th>Position</th>
                                 <th>Office</th>
-
                             </tr>
                             </thead>
                             <tbody>
@@ -1160,7 +1161,6 @@
                                 <td>Garrett Winters</td>
                                 <td>Accountant</td>
                                 <td>Tokyo</td>
-
                             </tr>
                             <tr>
                                 <td>Ashton Cox</td>
@@ -1463,9 +1463,10 @@
                 <div style="float: left;width: 22.5%;padding: 10px 10px 10px 10px">
                     <div class="input-group">
                         <span class="input-group-addon">选择状态</span>
-                        <input id="searchStatus" type="text" class="form-control dropdown-toggle"
-                               data-toggle="dropdown" readonly value="全部" data-status="all">
-                        <ul id="StatusList" class="dropdown-menu dropdown-menu-right" style="width: calc(100% - 80px);cursor: pointer">
+                        <input id="searchStatus" type="text" class="form-control dropdown-toggle" data-toggle="dropdown"
+                               readonly value="全部" data-status="all">
+                        <ul id="StatusList" class="dropdown-menu dropdown-menu-right"
+                            style="width: calc(100% - 80px);cursor: pointer">
                             <li><a data-status="all">全部</a></li>
                             <li><a data-status="1">待接受</a></li>
                             <li><a data-status="2">进行中</a></li>
@@ -1490,19 +1491,1333 @@
                     <button class="btn btn-primary btn-block" id="SearchWayBillTable">搜索</button>
                 </div>
             </div>
+            <div style="width: 60%" class="col-md-12 column">
+                <table id="CompanyWayTable" class="display" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Office</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Tiger Nixon</td>
+                        <td>System Architect</td>
+                        <td>Edinburgh</td>
+                    </tr>
+                    <tr>
+                        <td>Garrett Winters</td>
+                        <td>Accountant</td>
+                        <td>Tokyo</td>
+
+                    </tr>
+                    <tr>
+                        <td>Ashton Cox</td>
+                        <td>Junior Technical Author</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Cedric Kelly</td>
+                        <td>Senior Javascript Developer</td>
+                        <td>Edinburgh</td>
+                    </tr>
+                    <tr>
+                        <td>Airi Satou</td>
+                        <td>Accountant</td>
+                        <td>Tokyo</td>
+                    </tr>
+                    <tr>
+                        <td>Brielle Williamson</td>
+                        <td>Integration Specialist</td>
+                        <td>New York</td>
+                    </tr>
+                    <tr>
+                        <td>Herrod Chandler</td>
+                        <td>Sales Assistant</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Rhona Davidson</td>
+                        <td>Integration Specialist</td>
+                        <td>Tokyo</td>
+                    </tr>
+                    <tr>
+                        <td>Colleen Hurst</td>
+                        <td>Javascript Developer</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Sonya Frost</td>
+                        <td>Software Engineer</td>
+                        <td>Edinburgh</td>
+                    </tr>
+                    <tr>
+                        <td>Jena Gaines</td>
+                        <td>Office Manager</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Quinn Flynn</td>
+                        <td>Support Lead</td>
+                        <td>Edinburgh</td>
+                    </tr>
+                    <tr>
+                        <td>Charde Marshall</td>
+                        <td>Regional Director</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Haley Kennedy</td>
+                        <td>Senior Marketing Designer</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Tatyana Fitzpatrick</td>
+                        <td>Regional Director</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Michael Silva</td>
+                        <td>Marketing Designer</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Paul Byrd</td>
+                        <td>Chief Financial Officer (CFO)</td>
+                        <td>New York</td>
+                    </tr>
+                    <tr>
+                        <td>Gloria Little</td>
+                        <td>Systems Administrator</td>
+                        <td>New York</td>
+                    </tr>
+                    <tr>
+                        <td>Bradley Greer</td>
+                        <td>Software Engineer</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Dai Rios</td>
+                        <td>Personnel Lead</td>
+                        <td>Edinburgh</td>
+                    </tr>
+                    <tr>
+                        <td>Jenette Caldwell</td>
+                        <td>Development Lead</td>
+                        <td>New York</td>
+                    </tr>
+                    <tr>
+                        <td>Yuri Berry</td>
+                        <td>Chief Marketing Officer (CMO)</td>
+                        <td>New York</td>
+                    </tr>
+                    <tr>
+                        <td>Caesar Vance</td>
+                        <td>Pre-Sales Support</td>
+                        <td>New York</td>
+                    </tr>
+                    <tr>
+                        <td>Doris Wilder</td>
+                        <td>Sales Assistant</td>
+                        <td>Sidney</td>
+                    </tr>
+                    <tr>
+                        <td>Angelica Ramos</td>
+                        <td>Chief Executive Officer (CEO)</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Gavin Joyce</td>
+                        <td>Developer</td>
+                        <td>Edinburgh</td>
+                    </tr>
+                    <tr>
+                        <td>Jennifer Chang</td>
+                        <td>Regional Director</td>
+                        <td>Singapore</td>
+                    </tr>
+                    <tr>
+                        <td>Brenden Wagner</td>
+                        <td>Software Engineer</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Fiona Green</td>
+                        <td>Chief Operating Officer (COO)</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Shou Itou</td>
+                        <td>Regional Marketing</td>
+                        <td>Tokyo</td>
+                    </tr>
+                    <tr>
+                        <td>Michelle House</td>
+                        <td>Integration Specialist</td>
+                        <td>Sidney</td>
+                    </tr>
+                    <tr>
+                        <td>Suki Burks</td>
+                        <td>Developer</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Prescott Bartlett</td>
+                        <td>Technical Author</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Gavin Cortez</td>
+                        <td>Team Leader</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Martena Mccray</td>
+                        <td>Post-Sales support</td>
+                        <td>Edinburgh</td>
+                    </tr>
+                    <tr>
+                        <td>Unity Butler</td>
+                        <td>Marketing Designer</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Howard Hatfield</td>
+                        <td>Office Manager</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Hope Fuentes</td>
+                        <td>Secretary</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Vivian Harrell</td>
+                        <td>Financial Controller</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Timothy Mooney</td>
+                        <td>Office Manager</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Jackson Bradshaw</td>
+                        <td>Director</td>
+                        <td>New York</td>
+                    </tr>
+                    <tr>
+                        <td>Olivia Liang</td>
+                        <td>Support Engineer</td>
+                        <td>Singapore</td>
+                    </tr>
+                    <tr>
+                        <td>Bruno Nash</td>
+                        <td>Software Engineer</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Sakura Yamamoto</td>
+                        <td>Support Engineer</td>
+                        <td>Tokyo</td>
+                    </tr>
+                    <tr>
+                        <td>Thor Walton</td>
+                        <td>Developer</td>
+                        <td>New York</td>
+                    </tr>
+                    <tr>
+                        <td>Finn Camacho</td>
+                        <td>Support Engineer</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Serge Baldwin</td>
+                        <td>Data Coordinator</td>
+                        <td>Singapore</td>
+                    </tr>
+                    <tr>
+                        <td>Zenaida Frank</td>
+                        <td>Software Engineer</td>
+                        <td>New York</td>
+                    </tr>
+                    <tr>
+                        <td>Zorita Serrano</td>
+                        <td>Software Engineer</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Jennifer Acosta</td>
+                        <td>Junior Javascript Developer</td>
+                        <td>Edinburgh</td>
+                    </tr>
+                    <tr>
+                        <td>Cara Stevens</td>
+                        <td>Sales Assistant</td>
+                        <td>New York</td>
+                    </tr>
+                    <tr>
+                        <td>Hermione Butler</td>
+                        <td>Regional Director</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Lael Greer</td>
+                        <td>Systems Administrator</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Jonas Alexander</td>
+                        <td>Developer</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Shad Decker</td>
+                        <td>Regional Director</td>
+                        <td>Edinburgh</td>
+                    </tr>
+                    <tr>
+                        <td>Michael Bruce</td>
+                        <td>Javascript Developer</td>
+                        <td>Singapore</td>
+                    </tr>
+                    <tr>
+                        <td>Donna Snider</td>
+                        <td>Customer Support</td>
+                        <td>New York</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div style="height: 30%;width: 40%;float: left;border-left: 1px solid black;">
+                <div class="col-md-12 column">
+                    <div class="panel panel-info" style="box-shadow: 4px 4px 4px 4px rgba(0,0,0,0.4)"
+                         id="WayBillTaskDetail">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">请选择任务</h3>
+                        </div>
+                        <ul class="list-group">
+                            <li class="list-group-item">请选择任务</li>
+                            <li class="list-group-item">请选择任务</li>
+                            <li class="list-group-item">请选择任务</li>
+                            <li class="list-group-item">请选择任务</li>
+                            <li class="list-group-item">请选择任务</li>
+                            <li class="list-group-item">请选择任务</li>
+                            <li class="list-group-item">请选择任务</li>
+                            <li class="list-group-item">请选择任务</li>
+                            <li class="list-group-item">请选择任务</li>
+                        </ul>
+                    </div>
+                    <div style="float: left;width: 100%;padding-bottom: 10px">
+                        <div class="input-group">
+                            <span class="input-group-addon">选择视频</span>
+                            <input type="text" class="form-control dropdown-toggle" id="WayBillVideoName"
+                                   data-toggle="dropdown" placeholder="无视频" readonly>
+                            <ul class="dropdown-menu dropdown-menu-right" style="width: calc(100% - 80px)"
+                                id="WayBillList">
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="width: 100%">
+                        <div class="col-md-12 column">
+                            <video id="WayBillVideo" src="" width="100%" controls="controls">
+                                您的浏览器暂不支持本页面的视频播放
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="CompanyDispatch1" style="display: none">
-            <div>这里是公司的运单派单</div>
+            <div class="col-md-12 column" style="padding-top: 10px">
+                <div>
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#panel-driver" data-toggle="tab">司机指派</a>
+                        </li>
+                        <li>
+                            <a href="#panel-map" data-toggle="tab">地图指派</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="panel-driver">
+                            <div style="width: 100%;height: 5%">
+                                <div style="float: right;width: 10%;padding: 10px 10px 10px 10px">
+                                    <button class="btn btn-primary btn-block" id="SearchFreeDriver">搜索</button>
+                                </div>
+                                <div style="float: right;width: 22.5%;padding: 10px 10px 10px 10px;">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">司机名输入</span>
+                                        <input id="FreeDriverName" type="text" class="form-control"
+                                               placeholder="请输入司机姓名">
+                                    </div>
+                                </div>
+                            </div>
+                            <table id="FreeDriverTable" class="display" cellspacing="0" width="100%">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Position</th>
+                                    <th>Office</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Tiger Nixon</td>
+                                    <td>System Architect</td>
+                                    <td>Edinburgh</td>
+                                </tr>
+                                <tr>
+                                    <td>Garrett Winters</td>
+                                    <td>Accountant</td>
+                                    <td>Tokyo</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Ashton Cox</td>
+                                    <td>Junior Technical Author</td>
+                                    <td>San Francisco</td>
+                                </tr>
+                                <tr>
+                                    <td>Cedric Kelly</td>
+                                    <td>Senior Javascript Developer</td>
+                                    <td>Edinburgh</td>
+                                </tr>
+                                <tr>
+                                    <td>Airi Satou</td>
+                                    <td>Accountant</td>
+                                    <td>Tokyo</td>
+                                </tr>
+                                <tr>
+                                    <td>Brielle Williamson</td>
+                                    <td>Integration Specialist</td>
+                                    <td>New York</td>
+                                </tr>
+                                <tr>
+                                    <td>Herrod Chandler</td>
+                                    <td>Sales Assistant</td>
+                                    <td>San Francisco</td>
+                                </tr>
+                                <tr>
+                                    <td>Rhona Davidson</td>
+                                    <td>Integration Specialist</td>
+                                    <td>Tokyo</td>
+                                </tr>
+                                <tr>
+                                    <td>Colleen Hurst</td>
+                                    <td>Javascript Developer</td>
+                                    <td>San Francisco</td>
+                                </tr>
+                                <tr>
+                                    <td>Sonya Frost</td>
+                                    <td>Software Engineer</td>
+                                    <td>Edinburgh</td>
+                                </tr>
+                                <tr>
+                                    <td>Jena Gaines</td>
+                                    <td>Office Manager</td>
+                                    <td>London</td>
+                                </tr>
+                                <tr>
+                                    <td>Quinn Flynn</td>
+                                    <td>Support Lead</td>
+                                    <td>Edinburgh</td>
+                                </tr>
+                                <tr>
+                                    <td>Charde Marshall</td>
+                                    <td>Regional Director</td>
+                                    <td>San Francisco</td>
+                                </tr>
+                                <tr>
+                                    <td>Haley Kennedy</td>
+                                    <td>Senior Marketing Designer</td>
+                                    <td>London</td>
+                                </tr>
+                                <tr>
+                                    <td>Tatyana Fitzpatrick</td>
+                                    <td>Regional Director</td>
+                                    <td>London</td>
+                                </tr>
+                                <tr>
+                                    <td>Michael Silva</td>
+                                    <td>Marketing Designer</td>
+                                    <td>London</td>
+                                </tr>
+                                <tr>
+                                    <td>Paul Byrd</td>
+                                    <td>Chief Financial Officer (CFO)</td>
+                                    <td>New York</td>
+                                </tr>
+                                <tr>
+                                    <td>Gloria Little</td>
+                                    <td>Systems Administrator</td>
+                                    <td>New York</td>
+                                </tr>
+                                <tr>
+                                    <td>Bradley Greer</td>
+                                    <td>Software Engineer</td>
+                                    <td>London</td>
+                                </tr>
+                                <tr>
+                                    <td>Dai Rios</td>
+                                    <td>Personnel Lead</td>
+                                    <td>Edinburgh</td>
+                                </tr>
+                                <tr>
+                                    <td>Jenette Caldwell</td>
+                                    <td>Development Lead</td>
+                                    <td>New York</td>
+                                </tr>
+                                <tr>
+                                    <td>Yuri Berry</td>
+                                    <td>Chief Marketing Officer (CMO)</td>
+                                    <td>New York</td>
+                                </tr>
+                                <tr>
+                                    <td>Caesar Vance</td>
+                                    <td>Pre-Sales Support</td>
+                                    <td>New York</td>
+                                </tr>
+                                <tr>
+                                    <td>Doris Wilder</td>
+                                    <td>Sales Assistant</td>
+                                    <td>Sidney</td>
+                                </tr>
+                                <tr>
+                                    <td>Angelica Ramos</td>
+                                    <td>Chief Executive Officer (CEO)</td>
+                                    <td>London</td>
+                                </tr>
+                                <tr>
+                                    <td>Gavin Joyce</td>
+                                    <td>Developer</td>
+                                    <td>Edinburgh</td>
+                                </tr>
+                                <tr>
+                                    <td>Jennifer Chang</td>
+                                    <td>Regional Director</td>
+                                    <td>Singapore</td>
+                                </tr>
+                                <tr>
+                                    <td>Brenden Wagner</td>
+                                    <td>Software Engineer</td>
+                                    <td>San Francisco</td>
+                                </tr>
+                                <tr>
+                                    <td>Fiona Green</td>
+                                    <td>Chief Operating Officer (COO)</td>
+                                    <td>San Francisco</td>
+                                </tr>
+                                <tr>
+                                    <td>Shou Itou</td>
+                                    <td>Regional Marketing</td>
+                                    <td>Tokyo</td>
+                                </tr>
+                                <tr>
+                                    <td>Michelle House</td>
+                                    <td>Integration Specialist</td>
+                                    <td>Sidney</td>
+                                </tr>
+                                <tr>
+                                    <td>Suki Burks</td>
+                                    <td>Developer</td>
+                                    <td>London</td>
+                                </tr>
+                                <tr>
+                                    <td>Prescott Bartlett</td>
+                                    <td>Technical Author</td>
+                                    <td>London</td>
+                                </tr>
+                                <tr>
+                                    <td>Gavin Cortez</td>
+                                    <td>Team Leader</td>
+                                    <td>San Francisco</td>
+                                </tr>
+                                <tr>
+                                    <td>Martena Mccray</td>
+                                    <td>Post-Sales support</td>
+                                    <td>Edinburgh</td>
+                                </tr>
+                                <tr>
+                                    <td>Unity Butler</td>
+                                    <td>Marketing Designer</td>
+                                    <td>San Francisco</td>
+                                </tr>
+                                <tr>
+                                    <td>Howard Hatfield</td>
+                                    <td>Office Manager</td>
+                                    <td>San Francisco</td>
+                                </tr>
+                                <tr>
+                                    <td>Hope Fuentes</td>
+                                    <td>Secretary</td>
+                                    <td>San Francisco</td>
+                                </tr>
+                                <tr>
+                                    <td>Vivian Harrell</td>
+                                    <td>Financial Controller</td>
+                                    <td>San Francisco</td>
+                                </tr>
+                                <tr>
+                                    <td>Timothy Mooney</td>
+                                    <td>Office Manager</td>
+                                    <td>London</td>
+                                </tr>
+                                <tr>
+                                    <td>Jackson Bradshaw</td>
+                                    <td>Director</td>
+                                    <td>New York</td>
+                                </tr>
+                                <tr>
+                                    <td>Olivia Liang</td>
+                                    <td>Support Engineer</td>
+                                    <td>Singapore</td>
+                                </tr>
+                                <tr>
+                                    <td>Bruno Nash</td>
+                                    <td>Software Engineer</td>
+                                    <td>London</td>
+                                </tr>
+                                <tr>
+                                    <td>Sakura Yamamoto</td>
+                                    <td>Support Engineer</td>
+                                    <td>Tokyo</td>
+                                </tr>
+                                <tr>
+                                    <td>Thor Walton</td>
+                                    <td>Developer</td>
+                                    <td>New York</td>
+                                </tr>
+                                <tr>
+                                    <td>Finn Camacho</td>
+                                    <td>Support Engineer</td>
+                                    <td>San Francisco</td>
+                                </tr>
+                                <tr>
+                                    <td>Serge Baldwin</td>
+                                    <td>Data Coordinator</td>
+                                    <td>Singapore</td>
+                                </tr>
+                                <tr>
+                                    <td>Zenaida Frank</td>
+                                    <td>Software Engineer</td>
+                                    <td>New York</td>
+                                </tr>
+                                <tr>
+                                    <td>Zorita Serrano</td>
+                                    <td>Software Engineer</td>
+                                    <td>San Francisco</td>
+                                </tr>
+                                <tr>
+                                    <td>Jennifer Acosta</td>
+                                    <td>Junior Javascript Developer</td>
+                                    <td>Edinburgh</td>
+                                </tr>
+                                <tr>
+                                    <td>Cara Stevens</td>
+                                    <td>Sales Assistant</td>
+                                    <td>New York</td>
+                                </tr>
+                                <tr>
+                                    <td>Hermione Butler</td>
+                                    <td>Regional Director</td>
+                                    <td>London</td>
+                                </tr>
+                                <tr>
+                                    <td>Lael Greer</td>
+                                    <td>Systems Administrator</td>
+                                    <td>London</td>
+                                </tr>
+                                <tr>
+                                    <td>Jonas Alexander</td>
+                                    <td>Developer</td>
+                                    <td>San Francisco</td>
+                                </tr>
+                                <tr>
+                                    <td>Shad Decker</td>
+                                    <td>Regional Director</td>
+                                    <td>Edinburgh</td>
+                                </tr>
+                                <tr>
+                                    <td>Michael Bruce</td>
+                                    <td>Javascript Developer</td>
+                                    <td>Singapore</td>
+                                </tr>
+                                <tr>
+                                    <td>Donna Snider</td>
+                                    <td>Customer Support</td>
+                                    <td>New York</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div id="DriverDetail">
+                                <div style="float: left;width: 33%;height: 310px;padding-right: 20px">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">
+                                                请选择司机
+                                            </h3>
+                                        </div>
+                                        <ul class="list-group">
+                                            <li class="list-group-item">请选择司机</li>
+                                            <li class="list-group-item">请选择司机</li>
+                                            <li class="list-group-item">请选择司机</li>
+                                            <li class="list-group-item">请选择司机</li>
+                                            <li class="list-group-item">请选择司机</li>
+                                            <li class="list-group-item">请选择司机</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div style="float: left;width: 33%;height: 310px;padding-right: 20px">
+                                    <ul class="list-group">
+                                        <li class="list-group-item">请选择司机</li>
+                                        <li class="list-group-item">请选择司机</li>
+                                        <li class="list-group-item">请选择司机</li>
+                                        <li class="list-group-item">请选择司机</li>
+                                        <li class="list-group-item">请选择司机</li>
+                                        <li class="list-group-item">请选择司机</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div style="float: left;width: 34%;height: 310px;padding-right: 20px">
+                                <div id="myCarousel" class="carousel slide"></div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="panel-map">
+                            <div id="distribute_map"
+                                 style="width: 77%;height: 100%;float: left;border: #c8c8c8 5px solid"></div>
+                            <div style="width: 1%;height: 100%;float: left"></div>
+                            <div style="font-size:15px;padding-left:10px;width: 22%;height: 100%;float: left;border-left: 1px solid #CBCBCB;">
+                                <div id="driver_detail"></div>
+                                <div id="myCarouse2" class="carousel slide"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="CompanyDriver1" style="display: none">
-            <div>这里是公司的司机管理</div>
+            <div class="col-md-12 column" style="padding-top: 10px">
+                <table id="AllDriverTable" class="display" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Office</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Tiger Nixon</td>
+                        <td>System Architect</td>
+                        <td>Edinburgh</td>
+                    </tr>
+                    <tr>
+                        <td>Garrett Winters</td>
+                        <td>Accountant</td>
+                        <td>Tokyo</td>
+                    </tr>
+                    <tr>
+                        <td>Ashton Cox</td>
+                        <td>Junior Technical Author</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Cedric Kelly</td>
+                        <td>Senior Javascript Developer</td>
+                        <td>Edinburgh</td>
+                    </tr>
+                    <tr>
+                        <td>Airi Satou</td>
+                        <td>Accountant</td>
+                        <td>Tokyo</td>
+                    </tr>
+                    <tr>
+                        <td>Brielle Williamson</td>
+                        <td>Integration Specialist</td>
+                        <td>New York</td>
+                    </tr>
+                    <tr>
+                        <td>Herrod Chandler</td>
+                        <td>Sales Assistant</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Rhona Davidson</td>
+                        <td>Integration Specialist</td>
+                        <td>Tokyo</td>
+                    </tr>
+                    <tr>
+                        <td>Colleen Hurst</td>
+                        <td>Javascript Developer</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Sonya Frost</td>
+                        <td>Software Engineer</td>
+                        <td>Edinburgh</td>
+                    </tr>
+                    <tr>
+                        <td>Jena Gaines</td>
+                        <td>Office Manager</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Quinn Flynn</td>
+                        <td>Support Lead</td>
+                        <td>Edinburgh</td>
+                    </tr>
+                    <tr>
+                        <td>Charde Marshall</td>
+                        <td>Regional Director</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Haley Kennedy</td>
+                        <td>Senior Marketing Designer</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Tatyana Fitzpatrick</td>
+                        <td>Regional Director</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Michael Silva</td>
+                        <td>Marketing Designer</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Paul Byrd</td>
+                        <td>Chief Financial Officer (CFO)</td>
+                        <td>New York</td>
+                    </tr>
+                    <tr>
+                        <td>Gloria Little</td>
+                        <td>Systems Administrator</td>
+                        <td>New York</td>
+                    </tr>
+                    <tr>
+                        <td>Bradley Greer</td>
+                        <td>Software Engineer</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Dai Rios</td>
+                        <td>Personnel Lead</td>
+                        <td>Edinburgh</td>
+                    </tr>
+                    <tr>
+                        <td>Jenette Caldwell</td>
+                        <td>Development Lead</td>
+                        <td>New York</td>
+                    </tr>
+                    <tr>
+                        <td>Yuri Berry</td>
+                        <td>Chief Marketing Officer (CMO)</td>
+                        <td>New York</td>
+                    </tr>
+                    <tr>
+                        <td>Caesar Vance</td>
+                        <td>Pre-Sales Support</td>
+                        <td>New York</td>
+                    </tr>
+                    <tr>
+                        <td>Doris Wilder</td>
+                        <td>Sales Assistant</td>
+                        <td>Sidney</td>
+                    </tr>
+                    <tr>
+                        <td>Angelica Ramos</td>
+                        <td>Chief Executive Officer (CEO)</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Gavin Joyce</td>
+                        <td>Developer</td>
+                        <td>Edinburgh</td>
+                    </tr>
+                    <tr>
+                        <td>Jennifer Chang</td>
+                        <td>Regional Director</td>
+                        <td>Singapore</td>
+                    </tr>
+                    <tr>
+                        <td>Brenden Wagner</td>
+                        <td>Software Engineer</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Fiona Green</td>
+                        <td>Chief Operating Officer (COO)</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Shou Itou</td>
+                        <td>Regional Marketing</td>
+                        <td>Tokyo</td>
+                    </tr>
+                    <tr>
+                        <td>Michelle House</td>
+                        <td>Integration Specialist</td>
+                        <td>Sidney</td>
+                    </tr>
+                    <tr>
+                        <td>Suki Burks</td>
+                        <td>Developer</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Prescott Bartlett</td>
+                        <td>Technical Author</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Gavin Cortez</td>
+                        <td>Team Leader</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Martena Mccray</td>
+                        <td>Post-Sales support</td>
+                        <td>Edinburgh</td>
+                    </tr>
+                    <tr>
+                        <td>Unity Butler</td>
+                        <td>Marketing Designer</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Howard Hatfield</td>
+                        <td>Office Manager</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Hope Fuentes</td>
+                        <td>Secretary</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Vivian Harrell</td>
+                        <td>Financial Controller</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Timothy Mooney</td>
+                        <td>Office Manager</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Jackson Bradshaw</td>
+                        <td>Director</td>
+                        <td>New York</td>
+                    </tr>
+                    <tr>
+                        <td>Olivia Liang</td>
+                        <td>Support Engineer</td>
+                        <td>Singapore</td>
+                    </tr>
+                    <tr>
+                        <td>Bruno Nash</td>
+                        <td>Software Engineer</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Sakura Yamamoto</td>
+                        <td>Support Engineer</td>
+                        <td>Tokyo</td>
+                    </tr>
+                    <tr>
+                        <td>Thor Walton</td>
+                        <td>Developer</td>
+                        <td>New York</td>
+                    </tr>
+                    <tr>
+                        <td>Finn Camacho</td>
+                        <td>Support Engineer</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Serge Baldwin</td>
+                        <td>Data Coordinator</td>
+                        <td>Singapore</td>
+                    </tr>
+                    <tr>
+                        <td>Zenaida Frank</td>
+                        <td>Software Engineer</td>
+                        <td>New York</td>
+                    </tr>
+                    <tr>
+                        <td>Zorita Serrano</td>
+                        <td>Software Engineer</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Jennifer Acosta</td>
+                        <td>Junior Javascript Developer</td>
+                        <td>Edinburgh</td>
+                    </tr>
+                    <tr>
+                        <td>Cara Stevens</td>
+                        <td>Sales Assistant</td>
+                        <td>New York</td>
+                    </tr>
+                    <tr>
+                        <td>Hermione Butler</td>
+                        <td>Regional Director</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Lael Greer</td>
+                        <td>Systems Administrator</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Jonas Alexander</td>
+                        <td>Developer</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Shad Decker</td>
+                        <td>Regional Director</td>
+                        <td>Edinburgh</td>
+                    </tr>
+                    <tr>
+                        <td>Michael Bruce</td>
+                        <td>Javascript Developer</td>
+                        <td>Singapore</td>
+                    </tr>
+                    <tr>
+                        <td>Donna Snider</td>
+                        <td>Customer Support</td>
+                        <td>New York</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div id="AllDriverDetail" >
+                </div>
+                <div id="myCarouse3" class="carousel slide" style="width: 30%;float: left;padding-left: 10px">
+                </div>
+            </div>
         </div>
         <div id="CompanyUser1" style="display: none">
-            <div>这是公司的用户管理</div>
+            <div class="col-md-12 column" style="padding-top: 10px">
+                <div style="width: 100%;height: 5%">
+                    <div style="float: right;width: 10%;padding: 10px 0 10px 10px">
+                        <button class="btn btn-primary btn-block" id="AddManageBtn">人员添加</button>
+                    </div>
+                    <div style="float: right;width: 10%;padding: 10px 0 10px 10px">
+                        <button class="btn btn-primary btn-block" id="SearchManageBtn">搜索</button>
+                    </div>
+                    <div style="float: right;width: 22.5%;padding: 10px 10px 10px 10px;">
+                        <div class="input-group">
+                            <span class="input-group-addon">管理人员</span>
+                            <input id="ManageName" type="text" class="form-control" placeholder="请输入管理人员姓名">
+                        </div>
+                    </div>
+                </div>
+                <table id="CompanyManegeTable" class="display" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Office</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Tiger Nixon</td>
+                        <td>System Architect</td>
+                        <td>Edinburgh</td>
+                    </tr>
+                    <tr>
+                        <td>Garrett Winters</td>
+                        <td>Accountant</td>
+                        <td>Tokyo</td>
+                    </tr>
+                    <tr>
+                        <td>Ashton Cox</td>
+                        <td>Junior Technical Author</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Cedric Kelly</td>
+                        <td>Senior Javascript Developer</td>
+                        <td>Edinburgh</td>
+                    </tr>
+                    <tr>
+                        <td>Airi Satou</td>
+                        <td>Accountant</td>
+                        <td>Tokyo</td>
+                    </tr>
+                    <tr>
+                        <td>Brielle Williamson</td>
+                        <td>Integration Specialist</td>
+                        <td>New York</td>
+                    </tr>
+                    <tr>
+                        <td>Herrod Chandler</td>
+                        <td>Sales Assistant</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Rhona Davidson</td>
+                        <td>Integration Specialist</td>
+                        <td>Tokyo</td>
+                    </tr>
+                    <tr>
+                        <td>Colleen Hurst</td>
+                        <td>Javascript Developer</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Sonya Frost</td>
+                        <td>Software Engineer</td>
+                        <td>Edinburgh</td>
+                    </tr>
+                    <tr>
+                        <td>Jena Gaines</td>
+                        <td>Office Manager</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Quinn Flynn</td>
+                        <td>Support Lead</td>
+                        <td>Edinburgh</td>
+                    </tr>
+                    <tr>
+                        <td>Charde Marshall</td>
+                        <td>Regional Director</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Haley Kennedy</td>
+                        <td>Senior Marketing Designer</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Tatyana Fitzpatrick</td>
+                        <td>Regional Director</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Michael Silva</td>
+                        <td>Marketing Designer</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Paul Byrd</td>
+                        <td>Chief Financial Officer (CFO)</td>
+                        <td>New York</td>
+                    </tr>
+                    <tr>
+                        <td>Gloria Little</td>
+                        <td>Systems Administrator</td>
+                        <td>New York</td>
+                    </tr>
+                    <tr>
+                        <td>Bradley Greer</td>
+                        <td>Software Engineer</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Dai Rios</td>
+                        <td>Personnel Lead</td>
+                        <td>Edinburgh</td>
+                    </tr>
+                    <tr>
+                        <td>Jenette Caldwell</td>
+                        <td>Development Lead</td>
+                        <td>New York</td>
+                    </tr>
+                    <tr>
+                        <td>Yuri Berry</td>
+                        <td>Chief Marketing Officer (CMO)</td>
+                        <td>New York</td>
+                    </tr>
+                    <tr>
+                        <td>Caesar Vance</td>
+                        <td>Pre-Sales Support</td>
+                        <td>New York</td>
+                    </tr>
+                    <tr>
+                        <td>Doris Wilder</td>
+                        <td>Sales Assistant</td>
+                        <td>Sidney</td>
+                    </tr>
+                    <tr>
+                        <td>Angelica Ramos</td>
+                        <td>Chief Executive Officer (CEO)</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Gavin Joyce</td>
+                        <td>Developer</td>
+                        <td>Edinburgh</td>
+                    </tr>
+                    <tr>
+                        <td>Jennifer Chang</td>
+                        <td>Regional Director</td>
+                        <td>Singapore</td>
+                    </tr>
+                    <tr>
+                        <td>Brenden Wagner</td>
+                        <td>Software Engineer</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Fiona Green</td>
+                        <td>Chief Operating Officer (COO)</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Shou Itou</td>
+                        <td>Regional Marketing</td>
+                        <td>Tokyo</td>
+                    </tr>
+                    <tr>
+                        <td>Michelle House</td>
+                        <td>Integration Specialist</td>
+                        <td>Sidney</td>
+                    </tr>
+                    <tr>
+                        <td>Suki Burks</td>
+                        <td>Developer</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Prescott Bartlett</td>
+                        <td>Technical Author</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Gavin Cortez</td>
+                        <td>Team Leader</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Martena Mccray</td>
+                        <td>Post-Sales support</td>
+                        <td>Edinburgh</td>
+                    </tr>
+                    <tr>
+                        <td>Unity Butler</td>
+                        <td>Marketing Designer</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Howard Hatfield</td>
+                        <td>Office Manager</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Hope Fuentes</td>
+                        <td>Secretary</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Vivian Harrell</td>
+                        <td>Financial Controller</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Timothy Mooney</td>
+                        <td>Office Manager</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Jackson Bradshaw</td>
+                        <td>Director</td>
+                        <td>New York</td>
+                    </tr>
+                    <tr>
+                        <td>Olivia Liang</td>
+                        <td>Support Engineer</td>
+                        <td>Singapore</td>
+                    </tr>
+                    <tr>
+                        <td>Bruno Nash</td>
+                        <td>Software Engineer</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Sakura Yamamoto</td>
+                        <td>Support Engineer</td>
+                        <td>Tokyo</td>
+                    </tr>
+                    <tr>
+                        <td>Thor Walton</td>
+                        <td>Developer</td>
+                        <td>New York</td>
+                    </tr>
+                    <tr>
+                        <td>Finn Camacho</td>
+                        <td>Support Engineer</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Serge Baldwin</td>
+                        <td>Data Coordinator</td>
+                        <td>Singapore</td>
+                    </tr>
+                    <tr>
+                        <td>Zenaida Frank</td>
+                        <td>Software Engineer</td>
+                        <td>New York</td>
+                    </tr>
+                    <tr>
+                        <td>Zorita Serrano</td>
+                        <td>Software Engineer</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Jennifer Acosta</td>
+                        <td>Junior Javascript Developer</td>
+                        <td>Edinburgh</td>
+                    </tr>
+                    <tr>
+                        <td>Cara Stevens</td>
+                        <td>Sales Assistant</td>
+                        <td>New York</td>
+                    </tr>
+                    <tr>
+                        <td>Hermione Butler</td>
+                        <td>Regional Director</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Lael Greer</td>
+                        <td>Systems Administrator</td>
+                        <td>London</td>
+                    </tr>
+                    <tr>
+                        <td>Jonas Alexander</td>
+                        <td>Developer</td>
+                        <td>San Francisco</td>
+                    </tr>
+                    <tr>
+                        <td>Shad Decker</td>
+                        <td>Regional Director</td>
+                        <td>Edinburgh</td>
+                    </tr>
+                    <tr>
+                        <td>Michael Bruce</td>
+                        <td>Javascript Developer</td>
+                        <td>Singapore</td>
+                    </tr>
+                    <tr>
+                        <td>Donna Snider</td>
+                        <td>Customer Support</td>
+                        <td>New York</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
-
 
 <div class="modal fade" id="UserAlarm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -1522,6 +2837,188 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="DeleteModal" role="dialog" style="top: 300px" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">
+                    警告
+                </h4>
+            </div>
+            <div class="modal-body">
+                您确定要删除本条记录吗？
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="DeleteBtnSure">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ChangeModal" role="dialog" style="top: 300px" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">
+                    请选择车辆
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <span class="input-group-addon">选择状态</span>
+                    <input id="PlateWayValue" type="text" class="form-control dropdown-toggle" data-toggle="dropdown"
+                           readonly data-status="all">
+                    <ul id="PlateWayList" class="dropdown-menu dropdown-menu-right"
+                        style="width: calc(100% - 80px);cursor: pointer">
+                        <li><a data-status="all">全部</a></li>
+                        <li><a data-status="1">待接受</a></li>
+                        <li><a data-status="2">进行中</a></li>
+                        <li><a data-status="3">已完成</a></li>
+                        <li><a data-status="4">已拒绝</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="ChangeBtnSure">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="DistributeModal" role="dialog" style="top: 100px;" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">
+                    填写任务详情
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="input-group" style="padding-top: 10px">
+                    <span class="input-group-addon">选择车牌</span>
+                    <input id="driverPlateValue" type="text" class="form-control dropdown-toggle" data-toggle="dropdown"
+                           readonly data-status="all">
+                    <ul id="driverPlateList" class="dropdown-menu dropdown-menu-right"
+                        style="width: calc(100% - 80px);cursor: pointer">
+                    </ul>
+                </div>
+                <div class="input-group" style="padding-top: 10px">
+                    <span class="input-group-addon">发运时间</span>
+                    <input id="StartTime" type="text" class="form-control" readonly>
+                </div>
+                <div class="input-group" style="padding-top: 10px">
+                    <span class="input-group-addon">选择货品</span>
+                    <input id="GoodsValue" type="text" class="form-control dropdown-toggle" data-toggle="dropdown"
+                           readonly data-status="all">
+                    <ul id="GoodsList" class="dropdown-menu dropdown-menu-right"
+                        style="width: calc(100% - 80px);cursor: pointer">
+                    </ul>
+                </div>
+                <div class="input-group" style="padding-top: 10px">
+                    <span class="input-group-addon">起点输入</span>
+                    <input id="StartProvince" type="text" class="form-control" style="width: 33%" placeholder="省">
+                    <input id="StartCity" type="text" class="form-control" style="width: 33%" placeholder="市">
+                    <input id="StartDistrict" type="text" class="form-control" style="width: 34%" placeholder="区/县">
+                </div>
+                <div class="input-group" style="padding-top: 10px">
+                    <span class="input-group-addon">详细地址</span>
+                    <input id="StartAddress" type="text" class="form-control" placeholder="请输入起点的详细地址">
+                </div>
+                <div class="input-group" style="padding-top: 10px">
+                    <span class="input-group-addon">终点输入</span>
+                    <input id="EndProvince" type="text" class="form-control" style="width: 33%" placeholder="省">
+                    <input id="EndCity" type="text" class="form-control" style="width: 33%" placeholder="市">
+                    <input id="EndDistrict" type="text" class="form-control" style="width: 34%" placeholder="区/县">
+                </div>
+                <div class="input-group" style="padding-top: 10px">
+                    <span class="input-group-addon">详细地址</span>
+                    <input id="EndAddress" type="text" class="form-control" placeholder="请输入终点的详细地址">
+                </div>
+                <div class="input-group" style="padding-top: 10px">
+                    <span class="input-group-addon">装货户头</span>
+                    <input id="LoadAccountValue" type="text" class="form-control dropdown-toggle" data-toggle="dropdown"
+                           readonly data-status="all">
+                    <ul id="LoadAccountList" class="dropdown-menu dropdown-menu-right"
+                        style="width: calc(100% - 80px);cursor: pointer">
+                    </ul>
+                </div>
+                <div class="input-group" style="padding-top: 10px">
+                    <span class="input-group-addon">卸货户头</span>
+                    <input id="UnloadAccountValue" type="text" class="form-control dropdown-toggle"
+                           data-toggle="dropdown"
+                           readonly data-status="all">
+                    <ul id="UnloadAccountList" class="dropdown-menu dropdown-menu-right"
+                        style="width: calc(100% - 80px);cursor: pointer">
+                    </ul>
+                </div>
+                <div class="input-group" style="padding-top: 10px">
+                    <span class="input-group-addon">预装吨位</span>
+                    <input id="PoundValue" type="text" class="form-control">
+                </div>
+                <div class="input-group" style="padding-top: 10px">
+                    <span class="input-group-addon">单价(元/吨)</span>
+                    <input id="PoundPrice" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="DistributeSure">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="DriverAgreeModal" role="dialog" style="top: 300px;" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">
+                    警告
+                </h4>
+            </div>
+            <div class="modal-body">
+                您将同意此司机用户成为内部司机之一！
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="DriverAgreeBtn">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="DriverDeleteModal" role="dialog" style="top: 300px;" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">
+                    警告
+                </h4>
+            </div>
+            <div class="modal-body">
+                您将删除此司机用户！
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="DriverDeleteBtn">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 <script type="text/javascript" src="js/index.js"></script>
 </html>

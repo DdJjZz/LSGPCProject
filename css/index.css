@@ -49,21 +49,51 @@
     background-color: rgba(0,0,0,0.2)
 }
 
-.scrollbar{
-    overflow: auto;
+/*.pc_imgBox{*/
+    /*display: block;*/
+    /*height: 310px;*/
+    /*width: 100%;*/
+    /*background-size: cover;*/
+    /*background-position:  center;*/
+    /*background-repeat: no-repeat;*/
+/*}*/
+/*.carousel-indicators{*/
+    /*background: #ccc;*/
+/*}*/
+
+/*.box{*/
+    /*width:400px;*/
+    /*height:310px;*/
+    /*display: table-cell;*/
+    /*text-align:center;*/
+    /*vertical-align:middle;*/
+/*}*/
+
+img{
+    width: auto;
+    height: auto;
+    text-align: center;
+    /*padding-left: 50%;*/
+    max-width: 100%;
+    max-height: 310px;
+    margin: auto;
 }
 
-table {
-    table-layout: fixed;
+.new-li{
+    border: 0px solid white;
 }
 
-td{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-tr{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
+/*table {*/
+    /*table-layout: fixed;*/
+/*}*/
+
+/*td{*/
+    /*white-space: nowrap;*/
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+/*}*/
+/*tr{*/
+    /*white-space: nowrap;*/
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+/*}*/

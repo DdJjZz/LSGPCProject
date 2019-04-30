@@ -15,47 +15,43 @@ switch ($key) {
     case "getUserInfoIWDP":
         $body = $payload["body"];
         $session = $body['session'];
-        if($session=="123456"){
-            $uname='admin';
-            $type="government";
-            $admin='true';
-            $info="true";
-            $status="true";
-            $msg="信息获取成功";
+        if ($session == "123456") {
+            $uname = 'admin';
+            $type = "government";
+            $admin = 'true';
+            $info = "true";
+            $status = "true";
+            $msg = "信息获取成功";
+        } else if ($session == "234567") {
+            $uname = 'admin1';
+            $type = "government";
+            $admin = 'false';
+            $info = "true";
+            $status = "true";
+            $msg = "信息获取成功";
+        } else if ($session == '345678') {
+            $uname = 'admin2';
+            $type = "company";
+            $admin = 'true';
+            $info = "true";
+            $status = "true";
+            $msg = "信息获取成功";
+        } else if ($session == '456789') {
+            $uname = 'admin3';
+            $type = "company";
+            $admin = 'false';
+            $info = "true";
+            $status = "true";
+            $msg = "信息获取成功";
+        } else {
+            $uname = '';
+            $type = "";
+            $admin = 'false';
+            $info = "false";
+            $status = "false";
+            $msg = "用户信息获取失败，请重试";
         }
-        else if($session=="234567"){
-            $uname='admin1';
-            $type="government";
-            $admin='false';
-            $info="true";
-            $status="true";
-            $msg="信息获取成功";
-        }
-        else if($session=='345678'){
-            $uname='admin2';
-            $type="company";
-            $admin='true';
-            $info="true";
-            $status="true";
-            $msg="信息获取成功";
-        }
-        else if($session=='456789'){
-            $uname='admin3';
-            $type="company";
-            $admin='false';
-            $info="true";
-            $status="true";
-            $msg="信息获取成功";
-        }
-        else{
-            $uname='';
-            $type="";
-            $admin='false';
-            $info="false";
-            $status="false";
-            $msg="用户信息获取失败，请重试";
-        }
-        $resp=array("name"=>$uname,'type'=>$type,'admin'=>$admin,'status'=>$status,'auth'=>"true",'info'=>$info);
+        $resp = array("name" => $uname, 'type' => $type, 'admin' => $admin, 'status' => $status, 'auth' => "true", 'info' => $info);
         $result = array("status" => 'true', 'data' => $resp, 'msg' => $msg);
         echo json_encode($result, JSON_UNESCAPED_UNICODE);
         break;
@@ -282,10 +278,9 @@ switch ($key) {
         $type = $body["type"];
         $city_data = array();
         $type_data = array("新增量", "消耗量");
-        if($type=="company"){
-            $title="XX公司各区县统计";
-        }
-        else{
+        if ($type == "company") {
+            $title = "XX公司各区县统计";
+        } else {
             $title = "贵州省各区县统计";
         }
         $data = array();
@@ -331,10 +326,9 @@ switch ($key) {
         $company = $body["company"];
         $startTime = $body["startTime"];
         $endTime = $body["endTime"];
-        if($type=="driver"){
+        if ($type == "driver") {
             $title = "XX司机" . $startTime . "至" . $endTime . "运单详情";
-        }
-        else{
+        } else {
             $title = "XX公司" . $startTime . "至" . $endTime . "运单详情";
         }
         $ColumnName = array();
@@ -477,7 +471,7 @@ switch ($key) {
         $session = $body["session"];
         $driver = array();
         for ($i = 0; $i < rand(10, 20); $i++) {
-            $detail = array("name" => '司机' . ($i+1), 'driverid' => "UID" . rand(10000, 99999));
+            $detail = array("name" => '司机' . ($i + 1), 'driverid' => "UID" . rand(10000, 99999));
             array_push($driver, $detail);
         }
         $result = array("status" => 'true', "auth" => "true", 'data' => $driver, 'msg' => "信息获取成功");
@@ -506,36 +500,307 @@ switch ($key) {
     case "CompanyWayBillTable":
         $body = $payload["body"];
         $session = $body["session"];
+        $status = $body["status"];
+        $driver = $body["driver"];
+        $start = $body["start"];
+        $end = $body["end"];
+        $address = $body["address"];
         $wayBillTable = array();
         $ColumnName = array();
         $TableData = array();
-        $status = array("待接受", "进行中", "已完成", "已拒绝");
-        array_push($ColumnName, "Column1");
-        array_push($ColumnName, "Column2");
-        array_push($ColumnName, "Column3");
-        array_push($ColumnName, "Column4");
-        array_push($ColumnName, "Column5");
-        array_push($ColumnName, "Column6");
-        array_push($ColumnName, "Column7");
-        array_push($ColumnName, "Column8");
-        for ($i = 0; $i < rand(100, 2000); $i++) {
+        $statusArray = array("待接受", "进行中", "已完成", "已拒绝");
+        array_push($ColumnName, "任务编码");
+        array_push($ColumnName, "车牌号");
+        array_push($ColumnName, "司机姓名");
+        array_push($ColumnName, "装货地点");
+        array_push($ColumnName, "卸货地点");
+        array_push($ColumnName, "装货户头");
+        array_push($ColumnName, "卸货户头");
+        array_push($ColumnName, "任务状态");
+        array_push($ColumnName, "操作");
+        $driver_name = "司机A";
+        for ($i = 0; $i < rand(0, 2000); $i++) {
             $UserDetail = array();
-            array_push($UserDetail, "UID" . rand(10000, 99999));
+            $status_index = rand(0, 3);
+            array_push($UserDetail, "TID" . rand(10000, 99999));
+            array_push($UserDetail, "沪A" . rand(10000, 99999));
+            if ($driver == "all") {
+                array_push($UserDetail, "司机姓名" . rand(1000, 9999));
+            } else {
+                array_push($UserDetail, $driver_name);
+            }
+            if ($address == "") {
+                array_push($UserDetail, "地址" . rand(1000, 9999));
+                array_push($UserDetail, "地址" . rand(1000, 9999));
+            } else {
+                array_push($UserDetail, $address);
+                array_push($UserDetail, $address);
+            }
             array_push($UserDetail, "Value" . rand(100, 999));
             array_push($UserDetail, "Value" . rand(100, 999));
-            array_push($UserDetail, "Value" . rand(100, 999));
-            array_push($UserDetail, "Value" . rand(100, 999));
-            array_push($UserDetail, "Value" . rand(100, 999));
-            array_push($UserDetail, "Value" . rand(100, 999));
-            array_push($UserDetail, "Value" . rand(100, 999));
-            array_push($UserDetail, "Value" . rand(100, 999));
+            if ($status == "all") {
+                array_push($UserDetail, $statusArray[$status_index]);
+            } else {
+                array_push($UserDetail, $statusArray[$status]);
+            }
+            array_push($UserDetail, $status_index + 1);
             array_push($TableData, $UserDetail);
         }
         $resp = array("ColumnName" => $ColumnName, "TableData" => $TableData);
         $result = array("status" => 'true', "auth" => "true", 'data' => $resp, 'msg' => "信息获取成功");
         echo json_encode($result, JSON_UNESCAPED_UNICODE);
         break;
+    case "DeleteTask":
+        $body = $payload["body"];
+        $session = $body["session"];
+        $taskid = $body["taskid"];
+        $result = array("status" => 'true', "auth" => "true", 'msg' => "信息获取成功");
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+        break;
 
+    case "GetPlateList":
+        $body = $payload["body"];
+        $session = $body["session"];
+        $plateList = array();
+        for ($i = 0; $i < rand(10, 20); $i++) {
+            array_push($plateList, "浙A" . rand(10000, 99999));
+        }
+        $result = array("status" => 'true', "data" => $plateList, "auth" => "true", 'msg' => "信息获取成功");
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+        break;
+    case "ReDistributeTask":
+        $body = $payload["body"];
+        $session = $body["session"];
+        $plate = $body["plate"];
+        $taskid = $body["taskid"];
+        $result = array("status" => 'true', "auth" => "true", 'msg' => "信息获取成功");
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+        break;
+    case "GetFreeDriverPage":
+        $body = $payload["body"];
+        $session = $body["session"];
+        $driver = $body["driver"];
+        $driver_list = array();
+        $TableData = array();
+        $ColumnName = array();
+        $type_array = array("内部司机", '外部司机');
+        array_push($ColumnName, "序号");
+        array_push($ColumnName, "司机编号");
+        array_push($ColumnName, "姓名");
+        array_push($ColumnName, "类型");
+        array_push($ColumnName, "驾驶证件号");
+        array_push($ColumnName, "操作");
+        for ($i = 0; $i < rand(10, 300); $i++) {
+            $UserDetail = array();
+            $DriverID = "UID" . rand(10000, 99999);
+            $type_index = rand(0, 1);
+            array_push($UserDetail, $DriverID);
+            array_push($UserDetail, $i + 1);
+            array_push($UserDetail, $DriverID);
+            if ($driver == "all") {
+                array_push($UserDetail, "司机姓名" . rand(1000, 9999));
+            } else {
+                array_push($UserDetail, $driver);
+            }
+            array_push($UserDetail, $type_array[$type_index]);
+            array_push($UserDetail, rand(1000000, 9999999) . rand(1000000, 9999999));
+            array_push($TableData, $UserDetail);
+        }
+        $resp = array("ColumnName" => $ColumnName, "TableData" => $TableData);
+        $result = array("status" => 'true', "auth" => "true", 'data' => $resp, 'msg' => "信息获取成功");
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+        break;
+    case "GetDriverDetail":
+        $driver_detail = array();
+        $body = $payload["body"];
+        $session = $body["session"];
+        $driver = $body["driver"];
+        $imgArray = array();
+        $img_type = array("身份证国徽面", "身份证人像面", "行驶证信息", "驾驶证信息");
+        $image_array = array("http://127.0.0.1/pic/9.jpg", "http://127.0.0.1/pic/12.jpg", "http://127.0.0.1/pic/123.jpg", "http://127.0.0.1/pic/1234.png");
+        $imgArray_detail = array("src" => $image_array[rand(0, 3)], "value" => "身份证国徽面");
+        array_push($imgArray, $imgArray_detail);
+        $imgArray_detail = array("src" => $image_array[rand(0, 3)], "value" => "身份证人像面");
+        array_push($imgArray, $imgArray_detail);
+        $imgArray_detail = array("src" => $image_array[rand(0, 3)], "value" => "驾驶证信息");
+        array_push($imgArray, $imgArray_detail);
+        for ($i = 0; $i < rand(1, 10); $i++) {
+            $imgArray_detail = array("src" => $image_array[rand(0, 3)], "value" => "行驶证信息");
+            array_push($imgArray, $imgArray_detail);
+        }
+        $detail = array("key" => "司机姓名", "value" => "姓名" . rand(10, 200));
+        array_push($driver_detail, $detail);
+        $detail = array("key" => "类型", "value" => "类型" . rand(10, 200));
+        array_push($driver_detail, $detail);
+        $detail = array("key" => "驾驶证件号", "value" => "驾驶证件号" . rand(10, 200));
+        array_push($driver_detail, $detail);
+        $detail = array("key" => "身份证件号", "value" => "身份证件号" . rand(10, 200));
+        array_push($driver_detail, $detail);
+        $detail = array("key" => "车头行驶证件号", "value" => "车头行驶证件号" . rand(10, 200));
+        array_push($driver_detail, $detail);
+        $detail = array("key" => "挂车行驶证件号", "value" => "挂车行驶证件号" . rand(10, 200));
+        array_push($driver_detail, $detail);
+        $resp = array("driverid" => $driver, "img" => $imgArray, "driver" => $driver_detail);
+        $result = array("status" => 'true', "auth" => "true", 'data' => $resp, 'msg' => "信息获取成功");
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+        break;
+
+    case "GetDistributeInfo":
+        $body = $payload["body"];
+        $session = $body["session"];
+        $driver = $body["driver"];
+        $info = array();
+        $plate = array();
+        $goods = array();
+        $account = array();
+        for ($i = 0; $i < rand(2, 10); $i++) {
+            array_push($plate, "沪A" . rand(10000, 99999));
+        }
+        for ($i = 0; $i < rand(2, 10); $i++) {
+            array_push($goods, "商品" . rand(10000, 99999));
+        }
+        for ($i = 0; $i < rand(2, 10); $i++) {
+            array_push($account, "户头" . rand(10000, 99999));
+        }
+        $info = array("plate" => $plate, 'goods' => $goods, 'account' => $account);
+        $result = array("status" => 'true', "auth" => "true", 'data' => $info, 'msg' => "信息获取成功");
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+        break;
+    case "DistributeTask":
+        $body = $payload["body"];
+        $session = $body["session"];
+        $Driver = $body["Driver"];
+        $Plate = $body["Plate"];
+        $StartTime = $body["StartTime"];
+        $Goods = $body["Goods"];
+        $StartProvince = $body["StartProvince"];
+        $StartCity = $body["StartCity"];
+        $StartDistrict = $body["StartDistrict"];
+        $StartAddress = $body["StartAddress"];
+        $EndProvince = $body["EndProvince"];
+        $EndCity = $body["EndCity"];
+        $EndDistrict = $body["EndDistrict"];
+        $EndAddress = $body["EndAddress"];
+        $LoadAccountValue = $body["LoadAccountValue"];
+        $UnloadAccountValue = $body["UnloadAccountValue"];
+        $PoundValue = $body["PoundValue"];
+        $PoundPrice = $body["PoundPrice"];
+        $result = array("status" => 'true', "auth" => "true", 'msg' => "信息获取成功");
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+        break;
+    case "GetFreeDriver":
+        $body = $payload["body"];
+        $session = $body["session"];
+        $driver = array();
+        for ($i = 0; $i < rand(10, 20); $i++) {
+            $driver_detail = array("longitude" => rand(12116000, 12128000) / 100000, "latitude" => rand(31053, 31653) / 1000, "driver" => "UID" . rand(10000, 99999));
+            array_push($driver, $driver_detail);
+        }
+        $result = array("status" => 'true', "auth" => "true", "data" => $driver, 'msg' => "信息获取成功");
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+        break;
+    case "AllDriver":
+        $body = $payload["body"];
+        $session = $body["session"];
+        $driver = array();
+        $ColumnName = array();
+        $TableData = array();
+        $type_array = array("内部司机", '外部司机');
+        $status_array = array("待审核", '已审核', '待注销');
+        array_push($ColumnName, "序号");
+        array_push($ColumnName, "司机姓名");
+        array_push($ColumnName, "司机类型");
+        array_push($ColumnName, "手机号");
+        array_push($ColumnName, "身份证号");
+        array_push($ColumnName, "状态");
+        array_push($ColumnName, "操作");
+        for ($i = 0; $i < rand(50, 200); $i++) {
+            $table_detail = array();
+            $type = rand(0, 1);
+            $status = rand(0, 2);
+            array_push($table_detail, 'UID' . rand(10000, 99999));
+            array_push($table_detail, $type);
+            array_push($table_detail, $status);
+            array_push($table_detail, $i + 1);
+            array_push($table_detail, '姓名' . rand(10000, 99999));
+            array_push($table_detail, $type_array[$type]);
+            array_push($table_detail, rand(158001, 158999) . rand(10000, 99999));
+            array_push($table_detail, rand(158001, 158999) . rand(10000, 99999) . rand(1510000, 1599999));
+            array_push($table_detail, $status_array[$status]);
+            array_push($TableData, $table_detail);
+        }
+        $resp = array("Column" => $ColumnName, "Table" => $TableData);
+        $result = array("status" => 'true', "auth" => "true", "data" => $resp, 'msg' => "信息获取成功");
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+        break;
+    case "AgreeDriverApply":
+        $body = $payload["body"];
+        $session = $body["session"];
+        $driver = $body["driver"];
+        $result = array("status" => 'true', "auth" => "true", 'msg' => "信息获取成功");
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+        break;
+    case "DeleteDriverApply":
+        $body = $payload["body"];
+        $session = $body["session"];
+        $driver = $body["driver"];
+        $result = array("status" => 'true', "auth" => "true", 'msg' => "信息获取成功");
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+        break;
+    case "GetManageTable":
+        $body = $payload["body"];
+        $session = $body["session"];
+        $uname = $body["uname"];
+        $ColumnName = array();
+        $TableData = array();
+        $type_array = array("app", 'pc');
+        array_push($ColumnName, "序号");
+        array_push($ColumnName, "用户编码");
+        array_push($ColumnName, "登录名");
+        array_push($ColumnName, "真实姓名");
+        array_push($ColumnName, "电话号码");
+        array_push($ColumnName, "邮箱地址");
+        array_push($ColumnName, "用户类型");
+        array_push($ColumnName, "操作");
+        for ($i = 0; $i < rand(50, 200); $i++) {
+            $type = rand(0, 1);
+            $manage_detail=array();
+            if($type==0){
+                array_push($manage_detail,$type_array[$type]);
+                array_push($manage_detail,$i+1);
+                array_push($manage_detail,"UID".rand(10000,99999));
+                array_push($manage_detail,"");
+                if($uname=="") {
+                    array_push($manage_detail, "UNAME" . rand(10000, 99999));
+                }
+                else{
+                    array_push($manage_detail, $uname);
+                }
+                array_push($manage_detail,rand(158001, 158999) . rand(10000, 99999));
+                array_push($manage_detail,"");
+                array_push($manage_detail,$type_array[$type]);
+            }
+            else{
+                array_push($manage_detail,$type_array[$type]);
+                array_push($manage_detail,$i+1);
+                array_push($manage_detail,"UID".rand(10000,99999));
+                array_push($manage_detail,"LNAME".rand(10000,99999));
+                if($uname=="") {
+                    array_push($manage_detail, "UNAME" . rand(10000, 99999));
+                }
+                else{
+                    array_push($manage_detail, $uname);
+                }
+                array_push($manage_detail,rand(158001, 158999) . rand(10000, 99999));
+                array_push($manage_detail,"UEMAIL".rand(100,999)."@163.com");
+                array_push($manage_detail,$type_array[$type]);
+            }
+            array_push($TableData,$manage_detail);
+        }
+        $resp=array("Column"=>$ColumnName,'Table'=>$TableData);
+        $result = array("status" => 'true', "auth" => "true","data"=>$resp, 'msg' => "信息获取成功");
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+        break;
     default:
         $result = array("status" => 'false', "auth" => "false", 'msg' => "非合法操作");
         echo json_encode($result, JSON_UNESCAPED_UNICODE);
