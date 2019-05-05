@@ -924,7 +924,7 @@ function get_user_table() {
                     "sLast": "尾页"
                 },
             },
-            "pageLength": 15,
+            "pageLength": 13,
             "dom": 'Bfrtip',
             "buttons": [
                 {
@@ -940,20 +940,39 @@ function get_user_table() {
 
 function manage_user_table_delete() {
     $("#UserTable tbody tr td button").on("click", function () {
-        var userid = this.dataset.uid;
-        var map = {
-            action: "ManageUserDelete",
-            body: {
-                userid: userid
-            },
-            type: "delete"
-        };
-        var delete_manage_user_table = function (res) {
-            get_user_table()
-        };
-        JQ_post(request_url, JSON.stringify(map), delete_manage_user_table)
+        $("#DeleteManageModal").modal("show");
+        $("#DeleteManageBtnSure").attr("data-userid",this.dataset.uid);
+        // var userid = this.dataset.uid;
+        // var map = {
+        //     action: "ManageUserDelete",
+        //     body: {
+        //         session:sessionid,
+        //         userid: userid
+        //     },
+        //     type: "delete"
+        // };
+        // var delete_manage_user_table = function (res) {
+        //     get_user_table()
+        // };
+        // JQ_post(request_url, JSON.stringify(map), delete_manage_user_table)
     })
 }
+
+$("#DeleteManageBtnSure").on("click",function () {
+    var userid = $("#DeleteManageBtnSure").attr("data-userid");
+    var map = {
+        action: "ManageUserDelete",
+        body: {
+            session:sessionid,
+            userid: userid
+        },
+        type: "delete"
+    };
+    var delete_manage_user_table = function (res) {
+        get_user_table()
+    };
+    JQ_post(request_url, JSON.stringify(map), delete_manage_user_table)
+});
 
 function JQ_post(url, request, callback) {
     jQuery.post(url, request, function (data) {
@@ -1758,11 +1777,11 @@ function free_driver_table_click() {
             CarouseTxt = CarouseTxt + "</ol><div class='carousel-inner' style='text-align: center'>";
             for (var i = 0; i < img.length; i++) {
                 if (i == 0) {
-                    CarouseTxt = CarouseTxt + "<div class='item active'><img src='" + img[i].src + "'>" +
+                    CarouseTxt = CarouseTxt + "<div class='item active'><img class='img' src='" + img[i].src + "'>" +
                         "<div class='carousel-caption'><h4 style='color: red'>" + img[i].value + "</h4></div></div>"
                 }
                 else {
-                    CarouseTxt = CarouseTxt + "<div class='item'><img src='" + img[i].src + "'>" +
+                    CarouseTxt = CarouseTxt + "<div class='item'><img class='img' src='" + img[i].src + "'>" +
                         "<div class='carousel-caption'><h4 style='color: red'>" + img[i].value + "</h4></div></div>"
                 }
             }
@@ -2002,11 +2021,11 @@ function free_driver_map_click(driver_id) {
         CarouseTxt = CarouseTxt + "</ol><div class='carousel-inner' style='text-align: center'>";
         for (var i = 0; i < img.length; i++) {
             if (i == 0) {
-                CarouseTxt = CarouseTxt + "<div class='item active'><img src='" + img[i].src + "'>" +
+                CarouseTxt = CarouseTxt + "<div class='item active'><img class='img' src='" + img[i].src + "'>" +
                     "<div class='carousel-caption'><h4 style='color: red'>" + img[i].value + "</h4></div></div>"
             }
             else {
-                CarouseTxt = CarouseTxt + "<div class='item'><img src='" + img[i].src + "'>" +
+                CarouseTxt = CarouseTxt + "<div class='item'><img class='img' src='" + img[i].src + "'>" +
                     "<div class='carousel-caption'><h4 style='color: red'>" + img[i].value + "</h4></div></div>"
             }
         }
@@ -2147,11 +2166,11 @@ function all_driver_table_click() {
             CarouseTxt = CarouseTxt + "</ol><div class='carousel-inner' style='text-align: center'>";
             for (var i = 0; i < img.length; i++) {
                 if (i == 0) {
-                    CarouseTxt = CarouseTxt + "<div class='item active'><img src='" + img[i].src + "'>" +
+                    CarouseTxt = CarouseTxt + "<div class='item active'><img class='img' src='" + img[i].src + "'>" +
                         "<div class='carousel-caption'><h4 style='color: red'>" + img[i].value + "</h4></div></div>"
                 }
                 else {
-                    CarouseTxt = CarouseTxt + "<div class='item'><img src='" + img[i].src + "'>" +
+                    CarouseTxt = CarouseTxt + "<div class='item'><img class='img' src='" + img[i].src + "'>" +
                         "<div class='carousel-caption'><h4 style='color: red'>" + img[i].value + "</h4></div></div>"
                 }
             }
@@ -2236,10 +2255,10 @@ function company_manage_table(uname) {
             for (var j = 1; j <= Table[i].length; j++) {
                 if (j == Table[i].length) {
                     if (type == 'app') {
-                        txt = txt + "<td><button class='btn btn-danger btn-sm'>删除</button></td>"
+                        txt = txt + "<td><button class='btn btn-danger btn-sm' data-type='delete' data-uid='"+Table[i][2]+"'>删除</button></td>"
                     }
                     else {
-                        txt = txt + "<td><button class='btn btn-primary btn-sm'>修改</button>&nbsp&nbsp<button class='btn btn-danger'>删除</button></td>"
+                        txt = txt + "<td><button class='btn btn-primary btn-sm' data-type='update' data-uid='"+Table[i][2]+"'>修改</button>&nbsp&nbsp<button class='btn btn-danger' data-type='delete' data-uid='"+Table[i][2]+"'>删除</button></td>"
                     }
                 }
                 else {
@@ -2251,6 +2270,7 @@ function company_manage_table(uname) {
         txt = txt + "</tbody>";
         $("#CompanyManegeTable").empty();
         $("#CompanyManegeTable").append(txt);
+        company_manage_table_button_click();
         $('#CompanyManegeTable').dataTable({
             "bFilter": false,
             "bLengthChange": false,
@@ -2287,4 +2307,177 @@ function company_manage_table(uname) {
 $("#SearchManageBtn").on("click", function () {
     var uname=$("#ManageName").val();
     company_manage_table(uname);
+});
+
+$("#AddManageBtn").on("click",function () {
+    add_manage_view_page_show('add',"");
+    $("#AddManageBtn").attr("data-toggle",'modal');
+    $("#AddManageBtn").attr("href",'#AddManageModal');
+});
+function company_manage_table_button_click(){
+    $("#CompanyManegeTable tbody td button").on("click",function () {
+        console.log(this.dataset.type);
+        if(this.dataset.type=='update'){
+            $("#CompanyManegeTable tbody td button").attr("data-toggle",'modal');
+            $("#CompanyManegeTable tbody td button").attr("href",'#AddManageModal');
+            add_manage_view_page_show(this.dataset.type,this.dataset.uid)
+        }
+        else{
+            $("#CompanyManegeTable tbody td button").attr("data-toggle",'modal');
+            $("#CompanyManegeTable tbody td button").attr("href",'#DeleteUserModal');
+            // add_manage_view_page_show(this.dataset.type,this.dataset.uid)
+            $("#DeleteUserBtnSure").attr('data-uid',this.dataset.uid);
+        }
+    });
+}
+
+
+function add_manage_view_page_show(type,uid) {
+    console.log(type);
+    if(type=='add'){
+        $("#AddManageBtnSure").attr("data-type",type);
+        $("#AddManageBtnSure").removeAttr("data-uid");
+        $("#AddManageBtnSure").removeAttr("data-dismiss");
+        $("#AddUserName").removeAttr("readonly");
+        $("#AddUserPassword").removeAttr("readonly");
+        $("#AddUserPass").removeAttr("readonly");
+        $("#AddUserName").val("");
+        $("#AddUserPassword").val("");
+        $("#AddUserPass").val("");
+        $("#AddUserTrue").val("");
+        $("#AddUserTelephone").val("");
+        $("#AddUserEmail").val("");
+        $("#AddUserIDNumber").val("");
+    }
+    else{
+        $("#AddManageBtnSure").attr("data-type",type);
+        $("#AddManageBtnSure").attr("data-uid",uid);
+        var map={
+            action:'GetCompanyManageInfo',
+            body:{
+                session:sessionid,
+                uid:uid
+            },
+            type:'query'
+        };
+        var draw_update_manage_view_page=function (res) {
+            var data=res.data;
+            var LoginName=data.LoginName;
+            var Password=data.Password;
+            var TrueName=data.TrueName;
+            var Email=data.Email;
+            var ID=data.ID;
+            var Telphone=data.Telphone;
+            $("#AddUserName").val(LoginName);
+            $("#AddUserName").attr("readonly",true);
+            $("#AddUserPassword").val(Password);
+            $("#AddUserPassword").attr("readonly",true);
+            $("#AddUserPass").val(Password);
+            $("#AddUserPass").attr("readonly",true);
+            $("#AddUserTrue").val(TrueName);
+            $("#AddUserTrue").attr("readonly");
+            $("#AddUserTelephone").val(Telphone);
+            $("#AddUserTelephone").attr("readonly");
+            $("#AddUserEmail").val(Email);
+            $("#AddUserEmail").attr("readonly");
+            $("#AddUserIDNumber").val(ID);
+            $("#AddUserIDNumber").attr("readonly");
+        };
+        JQ_post(request_url,JSON.stringify(map),draw_update_manage_view_page);
+    }
+}
+
+$("#AddManageBtnSure").on("click",function () {
+    // b64_sha1
+    var type=$("#AddManageBtnSure").attr('data-type');
+    console.log(type);
+    if($("#AddUserName").val()==""){
+        $("#AddUserName").focus();
+        return;
+    }
+    else if($("#AddUserPassword").val()==""){
+        $("#AddUserPassword").focus();
+        return;
+    }
+    else if($("#AddUserPass").val()==""){
+        $("#AddUserPass").focus();
+        return;
+    }
+    else if ($("#AddUserPass").val()!=$("#AddUserPassword").val()){
+        $("#AddUserPass").focus();
+        $("#AddUserPass").val("");
+        $("#AddUserPass").attr("placeholder",'确认密码应与密码保持一致');
+        return;
+    }
+    else if($("#AddUserTrue").val()==""){
+        $("#AddUserTrue").focus();
+        return;
+    }
+    else if($("#AddUserTelephone").val()==""){
+        $("#AddUserTelephone").focus();
+        return;
+    }
+    else if($("#AddUserEmail").val()==""){
+        $("#AddUserEmail").focus();
+        return;
+    }
+    else if($("#AddUserIDNumber").val()==""){
+        $("#AddUserIDNumber").focus();
+        return;
+    }
+    else{
+        $("#AddManageBtnSure").attr("data-dismiss",'modal');
+        if(type=='add'){
+            var map={
+                action:"AddNewManage",
+                body:{
+                    LoginName:$("#AddUserName").val(),
+                    Password:b64_sha1($("#AddUserPassword").val()),
+                    TrueName:$("#AddUserTrue").val(),
+                    Email:$("#AddUserEmail").val(),
+                    ID:$("#AddUserIDNumber").val(),
+                    Telephone:$("#AddUserTelephone").val(),
+                    session:sessionid,
+                },
+                type:'insert'
+            }
+        }
+        else{
+            var uid=$("#AddManageBtnSure").attr('data-uid');
+            var map={
+                action:"UpdateManage",
+                body:{
+                    session:sessionid,
+                    LoginName:$("#AddUserName").val(),
+                    Password:b64_sha1($("#AddUserPassword").val()),
+                    TrueName:$("#AddUserTrue").val(),
+                    Email:$("#AddUserEmail").val(),
+                    ID:$("#AddUserIDNumber").val(),
+                    Telephone:$("#AddUserTelephone").val(),
+                    uid:uid,
+                },
+                type:'update'
+            }
+        }
+        var draw_new_manage_table=function (res) {
+            company_manage_table("");
+        };
+        JQ_post(request_url,JSON.stringify(map),draw_new_manage_table);
+    }
+});
+
+$("#DeleteUserBtnSure").on("click",function () {
+    // console.log($("#DeleteUserBtnSure").attr("data-uid"));
+    var map={
+        action:"DeleteManage",
+        body:{
+            uid:$("#DeleteUserBtnSure").attr("data-uid"),
+            session:sessionid,
+        },
+        type:'delete'
+    };
+    var draw_new_manage_table=function (res) {
+        company_manage_table("");
+    };
+    JQ_post(request_url,JSON.stringify(map),draw_new_manage_table);
 });

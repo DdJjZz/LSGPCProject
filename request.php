@@ -759,6 +759,7 @@ switch ($key) {
         array_push($ColumnName, "登录名");
         array_push($ColumnName, "真实姓名");
         array_push($ColumnName, "电话号码");
+        array_push($ColumnName, "身份证号");
         array_push($ColumnName, "邮箱地址");
         array_push($ColumnName, "用户类型");
         array_push($ColumnName, "操作");
@@ -777,6 +778,7 @@ switch ($key) {
                     array_push($manage_detail, $uname);
                 }
                 array_push($manage_detail,rand(158001, 158999) . rand(10000, 99999));
+                array_push($manage_detail, rand(158001, 158999) . rand(10000, 99999) . rand(1510000, 1599999));
                 array_push($manage_detail,"");
                 array_push($manage_detail,$type_array[$type]);
             }
@@ -792,6 +794,7 @@ switch ($key) {
                     array_push($manage_detail, $uname);
                 }
                 array_push($manage_detail,rand(158001, 158999) . rand(10000, 99999));
+                array_push($manage_detail, rand(158001, 158999) . rand(10000, 99999) . rand(1510000, 1599999));
                 array_push($manage_detail,"UEMAIL".rand(100,999)."@163.com");
                 array_push($manage_detail,$type_array[$type]);
             }
@@ -799,6 +802,92 @@ switch ($key) {
         }
         $resp=array("Column"=>$ColumnName,'Table'=>$TableData);
         $result = array("status" => 'true', "auth" => "true","data"=>$resp, 'msg' => "信息获取成功");
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+        break;
+    case "GetCompanyManageInfo":
+        $body = $payload["body"];
+        $session = $body["session"];
+        $uid = $body["uid"];
+        $resp=array(
+            "LoginName"=>"LNAME".rand(10000,99999),
+            "Password"=>rand(10000, 99999),
+            "TrueName"=>"UNAME" . rand(10000, 99999),
+            "Email"=>"UEMAIL".rand(100,999)."@163.com",
+            "ID"=>rand(158001, 158999) . rand(10000, 99999) . rand(1510000, 1599999),
+            "Telphone"=>rand(158001, 158999) . rand(10000, 99999),
+        );
+        $result = array("status" => 'true', "auth" => "true","data"=>$resp, 'msg' => "信息获取成功");
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+        break;
+
+    case "AddNewManage":
+        $body = $payload["body"];
+        $session = $body["session"];
+        $LoginName = $body["LoginName"];
+        $Password = $body["Password"];
+        $TrueName = $body["TrueName"];
+        $Email = $body["Email"];
+        $ID = $body["ID"];
+        $Telephone = $body["Telephone"];
+        $result = array("status" => 'true', "auth" => "true",'msg' => "信息获取成功");
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+        break;
+    case "UpdateManage":
+        $body = $payload["body"];
+        $session = $body["session"];
+        $LoginName = $body["LoginName"];
+        $Password = $body["Password"];
+        $TrueName = $body["TrueName"];
+        $Email = $body["Email"];
+        $ID = $body["ID"];
+        $Telephone = $body["Telephone"];
+        $uid = $body["uid"];
+        $result = array("status" => 'true', "auth" => "true",'msg' => "信息获取成功");
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+        break;
+    case "DeleteManage":
+        $body = $payload["body"];
+        $session = $body["session"];
+        $uid = $body["uid"];
+        $result = array("status" => 'true', "auth" => "true",'msg' => "信息获取成功");
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+        break;
+    case "UserLogin":
+        $body = $payload["body"];
+        $uname = $body["uname"];
+        $password = $body["password"];
+        if($uname=="admin"){
+            $session='123456';
+            $type='government';
+            $status='true';
+            $msg='用户登录成功';
+        }
+        elseif($uname=='admin1'){
+            $session='234567';
+            $type='government';
+            $status='true';
+            $msg='用户登录成功';
+        }
+        elseif($uname=='admin2'){
+            $session='345678';
+            $type='company';
+            $status='true';
+            $msg='用户登录成功';
+        }
+        elseif($uname=='admin3'){
+            $session='456789';
+            $type='company';
+            $status='true';
+            $msg='用户登录成功';
+        }
+        else{
+            $session='';
+            $type='';
+            $status='false';
+            $msg='用户名或密码错误,请重新填写';
+        }
+        $resp=array('session'=>$session,"type"=>$type);
+        $result = array("status" => $status,'data'=>$resp, "auth" => "true",'msg' => $msg);
         echo json_encode($result, JSON_UNESCAPED_UNICODE);
         break;
     default:

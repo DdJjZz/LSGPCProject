@@ -9,26 +9,48 @@
     <script type="text/javascript" src="resource/js/jquery.min.js"></script>
     <script type="text/javascript" src="resource/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="resource/DataTables/datatables.min.js"></script>
+    <script type="text/javascript" src="js/hcu_util.js"></script>
 </head>
 <body style="background-image: url('image/back_img.png')">
-<div class="panel panel-default" style="position:absolute;width: 20%;top: 30%;left: 40%">
+<div class="panel panel-default" style="position:absolute;width: 400px;top: 30%;left: calc(50% - 200px)">
     <div class="panel-body" style="text-align: center;font-size: large">
         用户登录
     </div>
     <div class="panel-body">
         <div class="input-group">
             <span class="input-group-addon">用户名</span>
-            <input type="text" class="form-control" placeholder="请输入登录名">
+            <input type="text" class="form-control" placeholder="请输入登录名" id="UserName">
         </div>
     </div>
     <div class="panel-body">
         <div class="input-group">
             <span class="input-group-addon">密&nbsp&nbsp&nbsp码</span>
-            <input type="text" class="form-control" placeholder="请输入密码">
+            <input type="password" class="form-control" placeholder="请输入密码" id="PassWord">
         </div>
     </div>
     <div class="panel-body">
-        <button class="btn btn-primary btn-block">登录</button>
+        <button class="btn btn-primary btn-block" id="LoginBtn">登录</button>
+    </div>
+</div>
+
+<div class="modal fade" id="WarningModal" role="dialog" style="top: 300px" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">
+                    警告
+                </h4>
+            </div>
+            <div class="modal-body">
+                您确定要删除本用户吗？
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+            </div>
+        </div>
     </div>
 </div>
 </body>

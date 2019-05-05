@@ -463,6 +463,7 @@
                 </div>
             </div>
             <div style="height: 93%;width: 66%;float: left">
+                <div class="col-md-12 column" style="padding-top: 10px">
                 <table id="waybillTable" class="display" cellspacing="0" width="100%">
                     <thead>
                     <tr>
@@ -760,24 +761,11 @@
                     </tr>
                     </tbody>
                 </table>
+                </div>
             </div>
             <div style="height: 93%;width: 34%;float: left;border-left: 1px solid black;">
                 <div class="col-md-12 column">
                     <div class="panel panel-info" style="box-shadow: 4px 4px 4px 4px rgba(0,0,0,0.4)" id="TaskDetail">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">请选择任务</h3>
-                        </div>
-                        <ul class="list-group">
-                            <li class="list-group-item">请选择任务</li>
-                            <li class="list-group-item">请选择任务</li>
-                            <li class="list-group-item">请选择任务</li>
-                            <li class="list-group-item">请选择任务</li>
-                            <li class="list-group-item">请选择任务</li>
-                            <li class="list-group-item">请选择任务</li>
-                            <li class="list-group-item">请选择任务</li>
-                            <li class="list-group-item">请选择任务</li>
-                            <li class="list-group-item">请选择任务</li>
-                        </ul>
                     </div>
                     <div style="float: left;width: 100%;padding-bottom: 10px">
                         <div class="input-group">
@@ -798,7 +786,7 @@
             </div>
         </div>
         <div id="UserManagePage" style="display: none">
-            <div>
+            <div class="col-md-12 column" style="padding-top: 10px">
                 <table id="UserTable" class="display" cellspacing="0" width="100%">
                     <thead>
                     <tr>
@@ -1848,6 +1836,7 @@
                                     <button class="btn btn-primary btn-block" id="SearchFreeDriver">搜索</button>
                                 </div>
                                 <div style="float: right;width: 22.5%;padding: 10px 10px 10px 10px;">
+
                                     <div class="input-group">
                                         <span class="input-group-addon">司机名输入</span>
                                         <input id="FreeDriverName" type="text" class="form-control"
@@ -2153,33 +2142,6 @@
                                 </tbody>
                             </table>
                             <div id="DriverDetail">
-                                <div style="float: left;width: 33%;height: 310px;padding-right: 20px">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <h3 class="panel-title">
-                                                请选择司机
-                                            </h3>
-                                        </div>
-                                        <ul class="list-group">
-                                            <li class="list-group-item">请选择司机</li>
-                                            <li class="list-group-item">请选择司机</li>
-                                            <li class="list-group-item">请选择司机</li>
-                                            <li class="list-group-item">请选择司机</li>
-                                            <li class="list-group-item">请选择司机</li>
-                                            <li class="list-group-item">请选择司机</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div style="float: left;width: 33%;height: 310px;padding-right: 20px">
-                                    <ul class="list-group">
-                                        <li class="list-group-item">请选择司机</li>
-                                        <li class="list-group-item">请选择司机</li>
-                                        <li class="list-group-item">请选择司机</li>
-                                        <li class="list-group-item">请选择司机</li>
-                                        <li class="list-group-item">请选择司机</li>
-                                        <li class="list-group-item">请选择司机</li>
-                                    </ul>
-                                </div>
                             </div>
                             <div style="float: left;width: 34%;height: 310px;padding-right: 20px">
                                 <div id="myCarousel" class="carousel slide"></div>
@@ -3014,6 +2976,96 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal" id="DriverDeleteBtn">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="AddManageModal" role="dialog" style="top: 100px;" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">
+                    填写管理人员详细信息
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="input-group" style="padding-top: 10px;width: 100%">
+                    <span class="input-group-addon" style="width: 80px">用户名</span>
+                    <input id="AddUserName" type="text" class="form-control" placeholder="请输入用户名">
+                </div>
+                <div class="input-group" style="padding-top: 10px;width: 100%">
+                    <span class="input-group-addon" style="width: 80px">密码</span>
+                    <input id="AddUserPassword" type="password" class="form-control" placeholder="请输入密码">
+                </div>
+                <div class="input-group" style="padding-top: 10px;width: 100%">
+                    <span class="input-group-addon" style="width: 80px">确认密码</span>
+                    <input id="AddUserPass" type="password" class="form-control" placeholder="请输入确认密码">
+                </div>
+                <div class="input-group" style="padding-top: 10px;width: 100%">
+                    <span class="input-group-addon" style="width: 80px">真实姓名</span>
+                    <input id="AddUserTrue" type="text" class="form-control" placeholder="请输入管理员的真实姓名">
+                </div>
+                <div class="input-group" style="padding-top: 10px;width: 100%">
+                    <span class="input-group-addon" style="width: 80px">联系电话</span>
+                    <input id="AddUserTelephone" type="text" class="form-control" placeholder="请输入密码">
+                </div>
+                <div class="input-group" style="padding-top: 10px;width: 100%">
+                    <span class="input-group-addon" style="width: 80px">邮箱地址</span>
+                    <input id="AddUserEmail" type="text" class="form-control" placeholder="请输入邮箱地址">
+                </div>
+                <div class="input-group" style="padding-top: 10px;width: 100%">
+                    <span class="input-group-addon" style="width: 80px">身份证号</span>
+                    <input id="AddUserIDNumber" type="text" class="form-control" placeholder="请输入身份证号">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="AddManageBtnSure">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="DeleteUserModal" role="dialog" style="top: 300px" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">
+                    警告
+                </h4>
+            </div>
+            <div class="modal-body">
+                您确定要删除本用户吗？
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="DeleteUserBtnSure">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="DeleteManageModal" role="dialog" style="top: 300px" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">
+                    警告
+                </h4>
+            </div>
+            <div class="modal-body">
+                您确定要删除本用户吗？
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="DeleteManageBtnSure">确定</button>
             </div>
         </div>
     </div>
