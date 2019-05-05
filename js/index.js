@@ -6,7 +6,7 @@ var mapDistribute = new BMap.Map('distribute_map');
 var sessionid = getQueryString("session");
 var company_id = "";
 var driver_id = "";
-var task = new Object();
+var task = {};
 
 function getRelativeURL() {
     var url = document.location.toString();
@@ -199,10 +199,10 @@ function get_user_info() {
                 $("#Government").css("display", "block");
                 $("#Company").css("display", "none");
                 if (data.admin == "true") {
-                    $("#UserManage").css("display", "block")
+                    $("#UserManage").css("display", "block");
                 }
                 else {
-                    $("#UserManage").css("display", "none")
+                    $("#UserManage").css("display", "none");
                 }
             }
             else {
@@ -217,10 +217,10 @@ function get_user_info() {
                 $("#Government").css("display", "none");
                 $("#Company").css("display", "block");
                 if (data.admin == "true") {
-                    $("#CompanyUserManage").css("display", "block")
+                    $("#CompanyUserManage").css("display", "block");
                 }
                 else {
-                    $("#CompanyUserManage").css("display", "none")
+                    $("#CompanyUserManage").css("display", "none");
                 }
             }
         }
@@ -251,7 +251,7 @@ function timeString2TimeStamp(time) {
     date = date.substring(0, 19);
     date = date.replace(/-/g, '/');
     var timestamp = new Date(date).getTime();
-    return timestamp
+    return timestamp;
 }
 
 function get_user_loaction(map) {
@@ -262,7 +262,7 @@ function get_user_loaction(map) {
             show_map(map, r.point.lng, r.point.lat);
             company_show_map(map, r.point.lng, r.point.lat);
         }
-    }, {enableHighAccuracy: true})
+    }, {enableHighAccuracy: true});
 }
 
 function show_map(map, longitude, latitude) {
@@ -369,13 +369,13 @@ function get_city_region_data_chart() {
                     type: 'bar',
                     data: city_data[i]
                 };
-                series.push(serise_detail)
+                series.push(serise_detail);
             }
             option.series = series;
             console.log(option.series);
             myChart.setOption(option);
         };
-        JQ_post(request_url, JSON.stringify(map), draw_city_page_chart)
+        JQ_post(request_url, JSON.stringify(map), draw_city_page_chart);
     }, 1000);
 
     if (option && typeof option === "object") {
@@ -449,7 +449,7 @@ function get_company_data_chart(companyId, startTime, endTime) {
             myChart.setOption(option);
         }
 
-        JQ_post(request_url, JSON.stringify(map), draw_company_data_chart)
+        JQ_post(request_url, JSON.stringify(map), draw_company_data_chart);
     }, 1000);
     if (option && typeof option === "object") {
         myChart.setOption(option, true);
@@ -468,7 +468,7 @@ function get_all_company_name_and_companyid() {
         var data = res.data;
         var txt = '';
         for (var i = 0; i < data.length; i++) {
-            txt = txt + "<li data-id='" + data[i].companyid + "' class='company' style='cursor: pointer'>" + data[i].name + "</li>"
+            txt = txt + "<li data-id='" + data[i].companyid + "' class='company' style='cursor: pointer'>" + data[i].name + "</li>";
         }
         $("#searchCompanyName").val(data[0].name);
         // $("#searchCompanyName").attr("data-id",data[0].companyid);
@@ -481,9 +481,9 @@ function get_all_company_name_and_companyid() {
         var endTime = timeArray[1];
         company_id = data[0].companyid;
         get_company_data_chart(data[0].companyid, startTime, endTime);
-        get_comapny_waybill_table(company_id)
+        get_comapny_waybill_table(company_id);
     };
-    JQ_post(request_url, JSON.stringify(map), get_all_company_name)
+    JQ_post(request_url, JSON.stringify(map), get_all_company_name);
 }
 
 function user_select_company() {
@@ -501,7 +501,7 @@ $("#selectCompanyData").on("click", function () {
     var startTime = timeArray[0];
     var endTime = timeArray[1];
     get_company_data_chart(company_id, startTime, endTime);
-    get_comapny_waybill_table(company_id)
+    get_comapny_waybill_table(company_id);
 });
 
 function get_comapny_waybill_table(company_id) {
@@ -528,15 +528,15 @@ function get_comapny_waybill_table(company_id) {
         $("#TableTitle").html(Title);
         var txt = "<thead><tr>";
         for (var i = 0; i < ColumnName.length; i++) {
-            txt = txt + "<th>" + ColumnName[i] + "</th>"
+            txt = txt + "<th>" + ColumnName[i] + "</th>";
         }
         txt = txt + "</tr></thead><tbody style='cursor: pointer'>";
-        for (var i = 0; i < TableData.length; i++) {
-            txt = txt + "<tr data-taskid='" + TableData[i][0] + "'>";
-            for (var j = 1; j < TableData[i].length; j++) {
-                txt = txt + "<td>" + TableData[i][j] + "</td>"
+        for (var m = 0; m < TableData.length; m++) {
+            txt = txt + "<tr data-taskid='" + TableData[m][0] + "'>";
+            for (var j = 1; j < TableData[m].length; j++) {
+                txt = txt + "<td>" + TableData[m][j] + "</td>";
             }
-            txt = txt + "</tr>"
+            txt = txt + "</tr>";
         }
         txt = txt + "</tbody>";
         $("#companyTable").empty();
@@ -562,7 +562,7 @@ function get_comapny_waybill_table(company_id) {
             }
         });
         waybill_table_detail_click();
-    }
+    };
     JQ_post(request_url, JSON.stringify(map), draw_waybill_table_page);
 }
 
@@ -605,7 +605,7 @@ function waybill_table_detail_click() {
                     console.log(routes[0].marker.point);
                     for (var m = 1; m < routes.length - 1; m++) {
                         var mm = routes[m].Nm;
-                        mapGoverment.removeOverlay(mm)
+                        mapGoverment.removeOverlay(mm);
                     }
                     mapGoverment.removeOverlay(routes[0].marker); //删除起点
                     mapGoverment.removeOverlay(routes[routes.length - 1].marker); //删除起点
@@ -622,12 +622,12 @@ function waybill_table_detail_click() {
                     mapGoverment.addOverlay(markerend);
                     map_show_information_windows(routes[0].marker.point, info);
                     markerstart.addEventListener("click", function () {
-                        map_show_information_windows(markerstart.point, info)
+                        map_show_information_windows(markerstart.point, info);
                     });
                 },
             });
             driving.search(start_point, end_point, {waypoints: waypoints});//waypoints表示途经点
-        }
+        };
         JQ_post(request_url, JSON.stringify(data), draw_task_route_page);
     });
 }
@@ -671,7 +671,7 @@ function get_all_done_pound() {
 
     var draw_all_done_pound = function (res) {
         var data = res.data;
-        $("#DonePound").html(data)
+        $("#DonePound").html(data);
     };
     JQ_post(request_url, JSON.stringify(data), draw_all_done_pound);
 }
@@ -683,7 +683,7 @@ $("#SelectWayBillTable").on("click", function () {
     var time_array = time_val.split(" 至 ");
     var start_time = time_array[0];
     var end_time = time_array[1];
-    get_waybill_table(company_name, goods_name, start_time, end_time)
+    get_waybill_table(company_name, goods_name, start_time, end_time);
 });
 
 function get_waybill_table(company, goods, start, end) {
@@ -708,12 +708,12 @@ function get_waybill_table(company, goods, start, end) {
             txt = txt + "<th>" + ColumnName[i] + "</th>";
         }
         txt = txt + "</tr></thead><tbody style='cursor: pointer'>";
-        for (var i = 0; i < TableData.length; i++) {
-            txt = txt + "<tr data-id='" + TableData[i][0] + "'>";
-            for (var j = 0; j < TableData[i].length; j++) {
-                txt = txt + "<td>" + TableData[i][j] + "</td>"
+        for (var m = 0; m < TableData.length; m++) {
+            txt = txt + "<tr data-id='" + TableData[m][0] + "'>";
+            for (var j = 0; j < TableData[m].length; j++) {
+                txt = txt + "<td>" + TableData[m][j] + "</td>";
             }
-            txt = txt + "</tr>"
+            txt = txt + "</tr>";
         }
         txt = txt + "</tbody>";
         $("#waybillTable").empty();
@@ -749,7 +749,7 @@ function get_waybill_table(company, goods, start, end) {
         });
         task_table_row_click();
     };
-    JQ_post(request_url, JSON.stringify(map), draw_waybill_table)
+    JQ_post(request_url, JSON.stringify(map), draw_waybill_table);
 }
 
 function waybill_all_company_name_and_companyid() {
@@ -764,7 +764,7 @@ function waybill_all_company_name_and_companyid() {
         var data = res.data;
         var txt = "<li class='company' style='cursor: pointer'><a data-id='all'>全部</a></li>";
         for (var i = 0; i < data.length; i++) {
-            txt = txt + "<li class='company' style='cursor: pointer'><a data-id='" + data[i].companyid + "'>" + data[i].name + "</a></li>"
+            txt = txt + "<li class='company' style='cursor: pointer'><a data-id='" + data[i].companyid + "'>" + data[i].name + "</a></li>";
         }
         $("#searchWayBillCompany").val("全部");
         $("#WayBillCompany").empty();
@@ -775,9 +775,9 @@ function waybill_all_company_name_and_companyid() {
         var startTime = timeArray[0];
         var endTime = timeArray[1];
         company_id = data[0].companyid;
-        get_comapny_waybill_table(company_id)
+        get_comapny_waybill_table(company_id);
     };
-    JQ_post(request_url, JSON.stringify(map), waybill_get_all_company_name)
+    JQ_post(request_url, JSON.stringify(map), waybill_get_all_company_name);
 }
 
 function waybill_user_select_company() {
@@ -801,14 +801,14 @@ function waybill_all_goods_name() {
         var data = res.data;
         var txt = "<li style='cursor: pointer'><a data-id='all'>全部</a></li>";
         for (var i = 0; i < data.length; i++) {
-            txt = txt + "<li style='cursor: pointer'><a>" + data[i].name + "</a></li>"
+            txt = txt + "<li style='cursor: pointer'><a>" + data[i].name + "</a></li>";
         }
         $("#searchWayBillGood").val("全部");
         $("#WayBillGood").empty();
         $("#WayBillGood").append(txt);
         waybill_user_select_goods();
     };
-    JQ_post(request_url, JSON.stringify(map), waybill_get_all_goods_name)
+    JQ_post(request_url, JSON.stringify(map), waybill_get_all_goods_name);
 }
 
 function waybill_user_select_goods() {
@@ -857,23 +857,23 @@ function task_table_row_click() {
                 var video_txt = "";
                 $("#VideoName").val(video_list[0].name);
                 $("#Video").attr("src", video_list[0].src);
-                for (var i = 0; i < video_list.length; i++) {
-                    video_txt = video_txt + "<li><a data-src='" + video_list[i].src + "'>" + video_list[i].name + "</a></li>"
+                for (var j = 0; j < video_list.length; j++) {
+                    video_txt = video_txt + "<li><a data-src='" + video_list[j].src + "'>" + video_list[j].name + "</a></li>";
                 }
                 $("#VideoList").empty();
                 $("#VideoList").append(video_txt);
             }
             video_list_click_action();
         };
-        JQ_post(request_url, JSON.stringify(map), draw_task_detail_panel)
-    })
+        JQ_post(request_url, JSON.stringify(map), draw_task_detail_panel);
+    });
 }
 
 function video_list_click_action() {
     $("#VideoList li a").on("click", function () {
         $("#VideoName").val(this.innerHTML);
         $("#Video").attr("src", this.dataset.src);
-    })
+    });
 }
 
 function get_user_table() {
@@ -891,15 +891,15 @@ function get_user_table() {
         var TableData = data.TableData;
         var txt = "<thead><tr>";
         for (var i = 0; i < ColumnName.length; i++) {
-            txt = txt + "<th>" + ColumnName[i] + "</th>"
+            txt = txt + "<th>" + ColumnName[i] + "</th>";
         }
         txt = txt + "<th>操作</th></tr></thead><tbody>";
-        for (var i = 0; i < TableData.length; i++) {
+        for (i = 0; i < TableData.length; i++) {
             txt = txt + "<tr>";
             for (var j = 1; j < TableData[i].length; j++) {
-                txt = txt + "<td>" + TableData[i][j] + "</td>"
+                txt = txt + "<td>" + TableData[i][j] + "</td>";
             }
-            txt = txt + "<td><button class='btn btn-danger' data-uid='" + TableData[i][0] + "'>删除</button></td></tr>"
+            txt = txt + "<td><button class='btn btn-danger' data-uid='" + TableData[i][0] + "'>删除</button></td></tr>";
         }
         txt = txt + "</tbody>";
         $("#UserTable").empty();
@@ -935,43 +935,30 @@ function get_user_table() {
             ]
         });
     };
-    JQ_post(request_url, JSON.stringify(map), draw_manage_user_table)
+    JQ_post(request_url, JSON.stringify(map), draw_manage_user_table);
 }
 
 function manage_user_table_delete() {
     $("#UserTable tbody tr td button").on("click", function () {
         $("#DeleteManageModal").modal("show");
-        $("#DeleteManageBtnSure").attr("data-userid",this.dataset.uid);
-        // var userid = this.dataset.uid;
-        // var map = {
-        //     action: "ManageUserDelete",
-        //     body: {
-        //         session:sessionid,
-        //         userid: userid
-        //     },
-        //     type: "delete"
-        // };
-        // var delete_manage_user_table = function (res) {
-        //     get_user_table()
-        // };
-        // JQ_post(request_url, JSON.stringify(map), delete_manage_user_table)
-    })
+        $("#DeleteManageBtnSure").attr("data-userid", this.dataset.uid);
+    });
 }
 
-$("#DeleteManageBtnSure").on("click",function () {
+$("#DeleteManageBtnSure").on("click", function () {
     var userid = $("#DeleteManageBtnSure").attr("data-userid");
     var map = {
         action: "ManageUserDelete",
         body: {
-            session:sessionid,
+            session: sessionid,
             userid: userid
         },
         type: "delete"
     };
     var delete_manage_user_table = function (res) {
-        get_user_table()
+        get_user_table();
     };
-    JQ_post(request_url, JSON.stringify(map), delete_manage_user_table)
+    JQ_post(request_url, JSON.stringify(map), delete_manage_user_table);
 });
 
 function JQ_post(url, request, callback) {
@@ -1054,7 +1041,7 @@ function get_all_driver_name_and_driverid() {
         var data = res.data;
         var txt = '<li data-id="all" style="cursor: pointer"><a>全部</a></li>';
         for (var i = 0; i < data.length; i++) {
-            txt = txt + "<li style='cursor: pointer'><a data-id='" + data[i].driverid + "'>" + data[i].name + "</a></li>"
+            txt = txt + "<li style='cursor: pointer'><a data-id='" + data[i].driverid + "'>" + data[i].name + "</a></li>";
         }
         $("#searchDriverName").val("全部");
         $("#DriverName").empty();
@@ -1070,9 +1057,9 @@ function get_all_driver_name_and_driverid() {
         var endTime = timeArray[1];
         driver_id = "all";
         get_driver_data_chart(data[0].driverid, startTime, endTime);
-        get_driver_waybill_table(driver_id)
+        get_driver_waybill_table(driver_id);
     };
-    JQ_post(request_url, JSON.stringify(map), get_all_driver_name)
+    JQ_post(request_url, JSON.stringify(map), get_all_driver_name);
 }
 
 function user_select_driver() {
@@ -1088,7 +1075,7 @@ function user_select_driver() {
         var driver_name = this.innerHTML;
         $("#searchDriver").val(driver_name);
         $("#searchDriver").removeAttr("data-driverid");
-        $("#searchDriver").attr("data-driverid", driverID)
+        $("#searchDriver").attr("data-driverid", driverID);
     });
 }
 
@@ -1099,7 +1086,7 @@ function get_driver_data_chart(driverId, startTime, endTime) {
         myChart.resize();
     });
     myChart.showLoading({
-        text: '正在加载数据'
+        text: '正在加载数据',
     });  //增加提示
     var option = {
         title: {
@@ -1158,7 +1145,7 @@ function get_driver_data_chart(driverId, startTime, endTime) {
             myChart.setOption(option);
         }
 
-        JQ_post(request_url, JSON.stringify(map), draw_driver_data_chart)
+        JQ_post(request_url, JSON.stringify(map), draw_driver_data_chart);
     }, 1000);
     if (option && typeof option === "object") {
         myChart.setOption(option, true);
@@ -1189,15 +1176,15 @@ function get_driver_waybill_table(driverid) {
         $("#DriverTableTitle").html(Title);
         var txt = "<thead><tr>";
         for (var i = 0; i < ColumnName.length; i++) {
-            txt = txt + "<th>" + ColumnName[i] + "</th>"
+            txt = txt + "<th>" + ColumnName[i] + "</th>";
         }
         txt = txt + "</tr></thead><tbody style='cursor: pointer'>";
-        for (var i = 0; i < TableData.length; i++) {
+        for (i = 0; i < TableData.length; i++) {
             txt = txt + "<tr data-taskid='" + TableData[i][0] + "'>";
             for (var j = 1; j < TableData[i].length; j++) {
-                txt = txt + "<td>" + TableData[i][j] + "</td>"
+                txt = txt + "<td>" + TableData[i][j] + "</td>";
             }
-            txt = txt + "</tr>"
+            txt = txt + "</tr>";
         }
         txt = txt + "</tbody>";
         $("#DriverTable").empty();
@@ -1266,7 +1253,7 @@ function company_waybill_table_detail_click() {
                     console.log(routes[0].marker.point);
                     for (var m = 1; m < routes.length - 1; m++) {
                         var mm = routes[m].Nm;
-                        mapCompany.removeOverlay(mm)
+                        mapCompany.removeOverlay(mm);
                     }
                     mapCompany.removeOverlay(routes[0].marker); //删除起点
                     mapCompany.removeOverlay(routes[routes.length - 1].marker); //删除起点
@@ -1283,12 +1270,12 @@ function company_waybill_table_detail_click() {
                     mapCompany.addOverlay(markerend);
                     company_map_show_information_windows(routes[0].marker.point, info);
                     markerstart.addEventListener("click", function () {
-                        company_map_show_information_windows(markerstart.point, info)
+                        company_map_show_information_windows(markerstart.point, info);
                     });
                 },
             });
             driving.search(start_point, end_point, {waypoints: waypoints});//waypoints表示途经点
-        }
+        };
         JQ_post(request_url, JSON.stringify(data), draw_task_route_page);
     });
 }
@@ -1402,7 +1389,7 @@ function get_company_city_region_data_chart() {
                 type: "company"
             },
             type: "query"
-        }
+        };
         var draw_city_page_chart = function (res) {
             myChart.hideLoading();
             var data = res.data;
@@ -1420,13 +1407,13 @@ function get_company_city_region_data_chart() {
                     type: 'bar',
                     data: city_data[i]
                 };
-                series.push(serise_detail)
+                series.push(serise_detail);
             }
             option.series = series;
             console.log(option.series);
             myChart.setOption(option);
         };
-        JQ_post(request_url, JSON.stringify(map), draw_city_page_chart)
+        JQ_post(request_url, JSON.stringify(map), draw_city_page_chart);
     }, 1000);
 
     if (option && typeof option === "object") {
@@ -1481,16 +1468,16 @@ function get_company_waybill_table() {
         var TableData = data.TableData;
         var txt = "<thead><tr>";
         for (var i = 0; i < ColumnName.length; i++) {
-            txt = txt + "<th>" + ColumnName[i] + "</th>"
+            txt = txt + "<th>" + ColumnName[i] + "</th>";
         }
         txt = txt + "</tr></thead><tbody style='cursor: pointer'>";
-        for (var i = 0; i < TableData.length; i++) {
+        for (i = 0; i < TableData.length; i++) {
             txt = txt + "<tr data-taskid='" + TableData[i][0] + "'>";
             for (var j = 0; j < TableData[i].length; j++) {
                 if (j == TableData[i].length - 1) {
                     if (TableData[i][j] == 4) {
                         txt = txt + "<td><button data-toggle='modal' href='#ChangeModal' data-type='distribute' class='btn btn-primary'  data-taskid='" + TableData[i][0] + "'>派发</button>" +
-                            "&nbsp&nbsp<button data-toggle='modal' href='#DeleteModal' data-type='delete' class='btn btn-danger' data-taskid='" + TableData[i][0] + "'>删除</button></td>"
+                            "&nbsp&nbsp<button data-toggle='modal' href='#DeleteModal' data-type='delete' class='btn btn-danger' data-taskid='" + TableData[i][0] + "'>删除</button></td>";
                     }
                     else {
                         txt = txt + "<td></td>";
@@ -1500,7 +1487,7 @@ function get_company_waybill_table() {
                     txt = txt + "<td>" + TableData[i][j] + "</td>";
                 }
             }
-            txt = txt + "</tr>"
+            txt = txt + "</tr>";
         }
         txt = txt + "</tbody>";
         $("#CompanyWayTable").empty();
@@ -1536,7 +1523,7 @@ function get_company_waybill_table() {
         company_waybill_table_click();
         company_waybill_table_button_click();
     };
-    JQ_post(request_url, JSON.stringify(map), draw_waybill_table)
+    JQ_post(request_url, JSON.stringify(map), draw_waybill_table);
 }
 
 function company_waybill_table_click() {
@@ -1569,15 +1556,15 @@ function company_waybill_table_click() {
                 var video_txt = "";
                 $("#WayBillVideoName").val(video_list[0].name);
                 $("#WayBillVideo").attr("src", video_list[0].src);
-                for (var i = 0; i < video_list.length; i++) {
-                    video_txt = video_txt + "<li><a data-src='" + video_list[i].src + "'>" + video_list[i].name + "</a></li>"
+                for (i = 0; i < video_list.length; i++) {
+                    video_txt = video_txt + "<li><a data-src='" + video_list[i].src + "'>" + video_list[i].name + "</a></li>";
                 }
                 $("#WayBillList").empty();
                 $("#WayBillList").append(video_txt);
             }
             waybill_video_list_click_action();
         };
-        JQ_post(request_url, JSON.stringify(map), draw_task_detail_panel)
+        JQ_post(request_url, JSON.stringify(map), draw_task_detail_panel);
     });
 }
 
@@ -1597,7 +1584,7 @@ function company_waybill_table_button_click() {
                 $("#PlateWayValue").val(data[0]);
                 var txt = "";
                 for (var i = 0; i < data.length; i++) {
-                    txt = txt + "<li><a>" + data[i] + "</a></li>"
+                    txt = txt + "<li><a>" + data[i] + "</a></li>";
                 }
                 $("#PlateWayList").empty();
                 $("#PlateWayList").append(txt);
@@ -1605,7 +1592,7 @@ function company_waybill_table_button_click() {
                     $("#PlateWayValue").val(this.innerHTML);
                 });
             };
-            JQ_post(request_url, JSON.stringify(map), draw_plate_list_view)
+            JQ_post(request_url, JSON.stringify(map), draw_plate_list_view);
         }
     });
 }
@@ -1622,7 +1609,7 @@ $("#DeleteBtnSure").on("click", function () {
     var reflash_table_page = function () {
         get_company_waybill_table();
     };
-    JQ_post(request_url, JSON.stringify(map), reflash_table_page)
+    JQ_post(request_url, JSON.stringify(map), reflash_table_page);
 });
 
 $("#ChangeBtnSure").on("click", function () {
@@ -1638,15 +1625,15 @@ $("#ChangeBtnSure").on("click", function () {
     var reflash_table_page = function () {
         get_company_waybill_table();
     };
-    JQ_post(request_url, JSON.stringify(map), reflash_table_page)
+    JQ_post(request_url, JSON.stringify(map), reflash_table_page);
 });
 
 function waybill_video_list_click_action() {
     $("#WayBillList li a").on("click", function () {
         $("#WayBillVideoName").val(this.innerHTML);
         $("#WayBillVideo").attr("src", this.dataset.src);
-    })
-};
+    });
+}
 
 $("[href='#panel-map']").on("click", function () {
     draw_distribute_map_page();
@@ -1656,7 +1643,7 @@ $("[href='#panel-map']").on("click", function () {
             console.log("draw_distribute_map_page");
             draw_distribute_map_page();
         }
-    }, 60000)
+    }, 60000);
 });
 
 function get_free_driver_list(driver) {
@@ -1675,20 +1662,20 @@ function get_free_driver_list(driver) {
         var Column = data.ColumnName;
         var Table = data.TableData;
         for (var i = 0; i < Column.length; i++) {
-            txt = txt + "<th>" + Column[i] + "</th>"
+            txt = txt + "<th>" + Column[i] + "</th>";
         }
         txt = txt + "</tr></thead><tbody style='cursor: pointer'>";
-        for (var i = 0; i < Table.length; i++) {
+        for (i = 0; i < Table.length; i++) {
             txt = txt + "<tr data-driver='" + Table[i][0] + "'>";
             for (var j = 1; j <= Table[i].length; j++) {
                 if (j == Table[i].length) {
                     txt = txt + "<td><button class='btn btn-primary' data-toggle='modal' href='#DistributeModal' data-driver='" + Table[i][0] + "'>任务派发</button></td>";
                 }
                 else {
-                    txt = txt + "<td>" + Table[i][j] + "</td>"
+                    txt = txt + "<td>" + Table[i][j] + "</td>";
                 }
             }
-            txt = txt + "</tr>"
+            txt = txt + "</tr>";
         }
         txt = txt + "</tbody>";
         $("#FreeDriverTable").empty();
@@ -1719,7 +1706,7 @@ function get_free_driver_list(driver) {
             "pageLength": 7,
         });
     };
-    JQ_post(request_url, JSON.stringify(map), draw_free_driver_table)
+    JQ_post(request_url, JSON.stringify(map), draw_free_driver_table);
 }
 
 $("#SearchFreeDriver").on("click", function () {
@@ -1747,42 +1734,42 @@ function free_driver_table_click() {
                 txt = "<div style='float: left;width:33%;height: :310px;padding-right: 20px'>" +
                     "<div class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'>" + driverid + "</h3></div><ul class='list-group'>";
                 for (var i = 0; i < driver.length; i++) {
-                    txt = txt + "<li class='list-group-item'>" + driver[i].key + "<span class='pull-right'>" + driver[i].value + "</span></li>"
+                    txt = txt + "<li class='list-group-item'>" + driver[i].key + "<span class='pull-right'>" + driver[i].value + "</span></li>";
                 }
                 txt = txt + "</ul></div></div>";
             }
             else {
                 txt = "<div style='float: left;width:33%;height: :310px;padding-right: 20px'>" +
-                    "<div class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'>"
-                    + driverid + "</h3></div><ul class='list-group'>";
-                for (var i = 0; i < 6; i++) {
+                    "<div class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'>" +
+                    driverid + "</h3></div><ul class='list-group'>";
+                for (i = 0; i < 6; i++) {
                     txt = txt + "<li class='list-group-item'>" + driver[i].key + "<span class='pull-right'>" + driver[i].value + "</span></li>";
                 }
                 txt = txt + "</ul></div></div><div style='float: left;width: 33%;height: 310px;padding-right: 20px'><ul class='list-group'>";
-                for (var i = 6; i < driver.length; i++) {
+                for (i = 6; i < driver.length; i++) {
                     txt = txt + "<li class='list-group-item'>" + driver[i].key + "<span class='pull-right'>" + driver[i].value + "</span>";
                 }
             }
             $("#DriverDetail").empty();
             $("#DriverDetail").append(txt);
             var CarouseTxt = "<ol class='carousel-indicators'>";
-            for (var i = 0; i < img.length; i++) {
+            for (i = 0; i < img.length; i++) {
                 if (i == 0) {
-                    CarouseTxt = CarouseTxt + "<li data-target='#myCarousel' data-slide-to='" + i + "' class='active'>"
+                    CarouseTxt = CarouseTxt + "<li data-target='#myCarousel' data-slide-to='" + i + "' class='active'>";
                 }
                 else {
-                    CarouseTxt = CarouseTxt + "<li data-target='#myCarousel' data-slide-to='" + i + "'>"
+                    CarouseTxt = CarouseTxt + "<li data-target='#myCarousel' data-slide-to='" + i + "'>";
                 }
             }
             CarouseTxt = CarouseTxt + "</ol><div class='carousel-inner' style='text-align: center'>";
-            for (var i = 0; i < img.length; i++) {
+            for (i = 0; i < img.length; i++) {
                 if (i == 0) {
                     CarouseTxt = CarouseTxt + "<div class='item active'><img class='img' src='" + img[i].src + "'>" +
-                        "<div class='carousel-caption'><h4 style='color: red'>" + img[i].value + "</h4></div></div>"
+                        "<div class='carousel-caption'><h4 style='color: red'>" + img[i].value + "</h4></div></div>";
                 }
                 else {
                     CarouseTxt = CarouseTxt + "<div class='item'><img class='img' src='" + img[i].src + "'>" +
-                        "<div class='carousel-caption'><h4 style='color: red'>" + img[i].value + "</h4></div></div>"
+                        "<div class='carousel-caption'><h4 style='color: red'>" + img[i].value + "</h4></div></div>";
                 }
             }
             CarouseTxt = CarouseTxt + "<a class='left carousel-control' href='#myCarousel' role='button' data-slide='prev'>" +
@@ -1797,7 +1784,6 @@ function free_driver_table_click() {
 }
 
 function free_driver_table_button_click(driver_id) {
-    console.log(driver_id);
     $("#DistributeSure").attr("data-driver", driver_id);
     var map_plate = {
         action: "GetDistributeInfo",
@@ -1819,13 +1805,13 @@ function free_driver_table_button_click(driver_id) {
         var goodsTxt = "";
         var accountTxt = "";
         for (var i = 0; i < plate.length; i++) {
-            plateTxt = plateTxt + "<li><a>" + plate[i] + "</a></li>"
+            plateTxt = plateTxt + "<li><a>" + plate[i] + "</a></li>";
         }
-        for (var i = 0; i < goods.length; i++) {
-            goodsTxt = goodsTxt + "<li><a>" + goods[i] + "</a></li>"
+        for (i = 0; i < goods.length; i++) {
+            goodsTxt = goodsTxt + "<li><a>" + goods[i] + "</a></li>";
         }
-        for (var i = 0; i < account.length; i++) {
-            accountTxt = accountTxt + "<li><a>" + account[i] + "</a></li>"
+        for (i = 0; i < account.length; i++) {
+            accountTxt = accountTxt + "<li><a>" + account[i] + "</a></li>";
         }
         $("#driverPlateList").empty();
         $("#driverPlateList").append(plateTxt);
@@ -1836,17 +1822,17 @@ function free_driver_table_button_click(driver_id) {
         $("#UnloadAccountList").empty();
         $("#UnloadAccountList").append(accountTxt);
         $("#driverPlateList li a").on("click", function () {
-            $("#driverPlateValue").val(this.innerHTML)
+            $("#driverPlateValue").val(this.innerHTML);
         });
         $("#GoodsList li a").on("click", function () {
-            $("#GoodsValue").val(this.innerHTML)
+            $("#GoodsValue").val(this.innerHTML);
         });
         $("#LoadAccountList li a").on("click", function () {
-            $("#LoadAccountValue").val(this.innerHTML)
+            $("#LoadAccountValue").val(this.innerHTML);
         });
         $("#UnloadAccountList li a").on("click", function () {
-            $("#UnloadAccountValue").val(this.innerHTML)
-        })
+            $("#UnloadAccountValue").val(this.innerHTML);
+        });
     };
     JQ_post(request_url, JSON.stringify(map_plate), draw_plate_list_page);
 }
@@ -1862,43 +1848,43 @@ laydate.render({
 $('#DistributeSure').on("click", function () {
     if ($("#StartProvince").val() == "") {
         $("#StartProvince").focus();
-        return
+        return;
     }
     else if ($("#StartCity").val() == "") {
         $("#StartCity").focus();
-        return
+        return;
     }
     else if ($("#StartDistrict").val() == "") {
         $("#StartDistrict").focus();
-        return
+        return;
     }
     else if ($("#StartAddress").val() == "") {
         $("#StartAddress").focus();
-        return
+        return;
     }
     else if ($("#EndProvince").val() == "") {
         $("#EndProvince").focus();
-        return
+        return;
     }
     else if ($("#EndCity").val() == "") {
         $("#EndCity").focus();
-        return
+        return;
     }
     else if ($("#EndDistrict").val() == "") {
         $("#EndDistrict").focus();
-        return
+        return;
     }
     else if ($("#EndAddress").val() == "") {
         $("#EndAddress").focus();
-        return
+        return;
     }
     else if ($("#PoundValue").val() == "") {
         $("#PoundValue").focus();
-        return
+        return;
     }
     else if ($("#PoundPrice").val() == "") {
         $("#PoundPrice").focus();
-        return
+        return;
     }
     else {
         $('#DistributeSure').attr("data-dismiss", 'modal');
@@ -1958,8 +1944,8 @@ function draw_distribute_map_page() {
         var data = res.data;
         mapDistribute.clearOverlays();
         for (var i = 0; i < data.length; i++) {
-            var driver_id = data[i]['driver'];
-            var point = new BMap.Point(data[i]['longitude'], data[i]['latitude']);
+            var driver_id = data[i].driver;
+            var point = new BMap.Point(data[i].longitude, data[i].latitude);
             var opts = {
                 imageSize: new BMap.Size(30, 30)
             };
@@ -1968,14 +1954,14 @@ function draw_distribute_map_page() {
             mapDistribute.addOverlay(driver);
             var clickFunction = function (driver) {
                 return function () {
-                    free_driver_map_click(driver)
-                }
+                    free_driver_map_click(driver);
+                };
             }(driver_id, point);
             driver.addEventListener("click", clickFunction);
         }
     }
 
-    JQ_post(request_url, JSON.stringify(data), draw_all_free_driver_page)
+    JQ_post(request_url, JSON.stringify(data), draw_all_free_driver_page);
 }
 
 function free_driver_map_click(driver_id) {
@@ -1997,7 +1983,7 @@ function free_driver_map_click(driver_id) {
         var txt = "<ul class='list-group'>";
         for (var i = 0; i <= driver.length; i++) {
             if (i == driver.length) {
-                txt = txt + "<li class='list-group-item new-li'><button class='btn btn-primary btn-block' data-toggle='modal' href='#DistributeModal' data-driver='" + driverid + "'>任务派发</button></li>"
+                txt = txt + "<li class='list-group-item new-li'><button class='btn btn-primary btn-block' data-toggle='modal' href='#DistributeModal' data-driver='" + driverid + "'>任务派发</button></li>";
             }
             else {
                 txt = txt + "<li class='list-group-item new-li'>" + driver[i].key + "<span class='pull-right'>" + driver[i].value + "</span></li>";
@@ -2007,26 +1993,26 @@ function free_driver_map_click(driver_id) {
         $("#driver_detail").empty();
         $("#driver_detail").append(txt);
         $("#driver_detail ul li button").on('click', function () {
-            free_driver_table_button_click(this.dataset.driver)
+            free_driver_table_button_click(this.dataset.driver);
         });
         var CarouseTxt = "<ol class='carousel-indicators'>";
         for (var i = 0; i < img.length; i++) {
             if (i == 0) {
-                CarouseTxt = CarouseTxt + "<li data-target='#myCarouse2' data-slide-to='" + i + "' class='active'>"
+                CarouseTxt = CarouseTxt + "<li data-target='#myCarouse2' data-slide-to='" + i + "' class='active'>";
             }
             else {
-                CarouseTxt = CarouseTxt + "<li data-target='#myCarouse2' data-slide-to='" + i + "'>"
+                CarouseTxt = CarouseTxt + "<li data-target='#myCarouse2' data-slide-to='" + i + "'>";
             }
         }
         CarouseTxt = CarouseTxt + "</ol><div class='carousel-inner' style='text-align: center'>";
         for (var i = 0; i < img.length; i++) {
             if (i == 0) {
                 CarouseTxt = CarouseTxt + "<div class='item active'><img class='img' src='" + img[i].src + "'>" +
-                    "<div class='carousel-caption'><h4 style='color: red'>" + img[i].value + "</h4></div></div>"
+                    "<div class='carousel-caption'><h4 style='color: red'>" + img[i].value + "</h4></div></div>";
             }
             else {
                 CarouseTxt = CarouseTxt + "<div class='item'><img class='img' src='" + img[i].src + "'>" +
-                    "<div class='carousel-caption'><h4 style='color: red'>" + img[i].value + "</h4></div></div>"
+                    "<div class='carousel-caption'><h4 style='color: red'>" + img[i].value + "</h4></div></div>";
             }
         }
         CarouseTxt = CarouseTxt + "<a class='left carousel-control' href='#myCarouse2' role='button' data-slide='prev'>" +
@@ -2054,7 +2040,7 @@ function all_driver_table_show() {
         var Table = data.Table;
         var txt = "<thead><tr>";
         for (var i = 0; i < Column.length; i++) {
-            txt = txt + "<th>" + Column[i] + "</th>"
+            txt = txt + "<th>" + Column[i] + "</th>";
         }
         txt = txt + "</tr></thead><tbody style='cursor: pointer'>";
         for (var i = 0; i < Table.length; i++) {
@@ -2066,17 +2052,17 @@ function all_driver_table_show() {
                 if (j == Table[i].length) {
                     if (type == 0 && status != 1) {
                         txt = txt + "<td><button data-toggle='modal' href='#DriverAgreeModal' class='btn btn-primary btn-sm'  data-driver='" + uid + "' data-type='agree'>同意" +
-                            "</button>&nbsp&nbsp<button data-toggle='modal' href='#DriverDeleteModal' class='btn btn-danger btn-sm' data-driver='" + uid + "' data-type='delete'>拒绝</button></td>>"
+                            "</button>&nbsp&nbsp<button data-toggle='modal' href='#DriverDeleteModal' class='btn btn-danger btn-sm' data-driver='" + uid + "' data-type='delete'>拒绝</button></td>";
                     }
                     else {
-                        txt = txt + "<td></td>"
+                        txt = txt + "<td></td>";
                     }
                 }
                 else {
-                    txt = txt + "<td>" + Table[i][j] + "</td>"
+                    txt = txt + "<td>" + Table[i][j] + "</td>";
                 }
             }
-            txt = txt + "</tr>"
+            txt = txt + "</tr>";
         }
         txt = txt + "</tbody>";
         $("#AllDriverTable").empty();
@@ -2137,7 +2123,7 @@ function all_driver_table_click() {
             if (driver.length <= 6) {
                 txt = "<ul class='list-group' style='width: 30%;float: left'>";
                 for (var i = 0; i < driver.length; i++) {
-                    txt = txt + "<li class='list-group-item new-li'>" + driver[i].key + "<span class='pull-right'>" + driver[i].value + "</span></li>"
+                    txt = txt + "<li class='list-group-item new-li'>" + driver[i].key + "<span class='pull-right'>" + driver[i].value + "</span></li>";
                 }
                 txt = txt + "</ul>";
             }
@@ -2157,21 +2143,21 @@ function all_driver_table_click() {
             var CarouseTxt = "<ol class='carousel-indicators'>";
             for (var i = 0; i < img.length; i++) {
                 if (i == 0) {
-                    CarouseTxt = CarouseTxt + "<li data-target='#myCarouse3' data-slide-to='" + i + "' class='active'>"
+                    CarouseTxt = CarouseTxt + "<li data-target='#myCarouse3' data-slide-to='" + i + "' class='active'>";
                 }
                 else {
-                    CarouseTxt = CarouseTxt + "<li data-target='#myCarouse3' data-slide-to='" + i + "'>"
+                    CarouseTxt = CarouseTxt + "<li data-target='#myCarouse3' data-slide-to='" + i + "'>";
                 }
             }
             CarouseTxt = CarouseTxt + "</ol><div class='carousel-inner' style='text-align: center'>";
-            for (var i = 0; i < img.length; i++) {
+            for (i = 0; i < img.length; i++) {
                 if (i == 0) {
                     CarouseTxt = CarouseTxt + "<div class='item active'><img class='img' src='" + img[i].src + "'>" +
-                        "<div class='carousel-caption'><h4 style='color: red'>" + img[i].value + "</h4></div></div>"
+                        "<div class='carousel-caption'><h4 style='color: red'>" + img[i].value + "</h4></div></div>";
                 }
                 else {
                     CarouseTxt = CarouseTxt + "<div class='item'><img class='img' src='" + img[i].src + "'>" +
-                        "<div class='carousel-caption'><h4 style='color: red'>" + img[i].value + "</h4></div></div>"
+                        "<div class='carousel-caption'><h4 style='color: red'>" + img[i].value + "</h4></div></div>";
                 }
             }
             CarouseTxt = CarouseTxt + "<a class='left carousel-control' href='#myCarouse3' role='button' data-slide='prev'>" +
@@ -2210,7 +2196,7 @@ $("#DriverAgreeBtn").on("click", function () {
         $("#AllDriverDetail").empty();
         $("#myCarouse3").empty();
     };
-    JQ_post(request_url, JSON.stringify(map), agress_driver_apply)
+    JQ_post(request_url, JSON.stringify(map), agress_driver_apply);
 });
 
 $("#DriverDeleteBtn").on("click", function () {
@@ -2227,7 +2213,7 @@ $("#DriverDeleteBtn").on("click", function () {
         $("#AllDriverDetail").empty();
         $("#myCarouse3").empty();
     };
-    JQ_post(request_url, JSON.stringify(map), agress_driver_apply)
+    JQ_post(request_url, JSON.stringify(map), agress_driver_apply);
 });
 
 function company_manage_table(uname) {
@@ -2246,19 +2232,20 @@ function company_manage_table(uname) {
         var Table = data.Table;
         var txt = "<thead><tr>";
         for (var i = 0; i < Column.length; i++) {
-            txt = txt + "<th>" + Column[i] + "</th>"
+            txt = txt + "<th>" + Column[i] + "</th>";
         }
         txt = txt + "</tr></thead><tbody>";
-        for (var i = 0; i < Table.length; i++) {
+        for (i = 0; i < Table.length; i++) {
             var type = Table[i][0];
             txt = txt + "<tr>";
             for (var j = 1; j <= Table[i].length; j++) {
                 if (j == Table[i].length) {
                     if (type == 'app') {
-                        txt = txt + "<td><button class='btn btn-danger btn-sm' data-type='delete' data-uid='"+Table[i][2]+"'>删除</button></td>"
+                        txt = txt + "<td><button class='btn btn-danger btn-sm' data-type='delete' data-uid='" + Table[i][2] + "'>删除</button></td>";
                     }
                     else {
-                        txt = txt + "<td><button class='btn btn-primary btn-sm' data-type='update' data-uid='"+Table[i][2]+"'>修改</button>&nbsp&nbsp<button class='btn btn-danger' data-type='delete' data-uid='"+Table[i][2]+"'>删除</button></td>"
+                        txt = txt + "<td><button class='btn btn-primary btn-sm' data-type='update' data-uid='" + Table[i][2] + "'>修改</button>&nbsp&nbsp" +
+                            "<button class='btn btn-danger' data-type='delete' data-uid='" + Table[i][2] + "'>删除</button></td>";
                     }
                 }
                 else {
@@ -2305,37 +2292,38 @@ function company_manage_table(uname) {
 }
 
 $("#SearchManageBtn").on("click", function () {
-    var uname=$("#ManageName").val();
+    var uname = $("#ManageName").val();
     company_manage_table(uname);
 });
 
-$("#AddManageBtn").on("click",function () {
-    add_manage_view_page_show('add',"");
-    $("#AddManageBtn").attr("data-toggle",'modal');
-    $("#AddManageBtn").attr("href",'#AddManageModal');
+$("#AddManageBtn").on("click", function () {
+    add_manage_view_page_show('add', "");
+    $("#AddManageBtn").attr("data-toggle", 'modal');
+    $("#AddManageBtn").attr("href", '#AddManageModal');
 });
-function company_manage_table_button_click(){
-    $("#CompanyManegeTable tbody td button").on("click",function () {
+
+function company_manage_table_button_click() {
+    $("#CompanyManegeTable tbody td button").on("click", function () {
         console.log(this.dataset.type);
-        if(this.dataset.type=='update'){
-            $("#CompanyManegeTable tbody td button").attr("data-toggle",'modal');
-            $("#CompanyManegeTable tbody td button").attr("href",'#AddManageModal');
-            add_manage_view_page_show(this.dataset.type,this.dataset.uid)
+        if (this.dataset.type == 'update') {
+            $("#CompanyManegeTable tbody td button").attr("data-toggle", 'modal');
+            $("#CompanyManegeTable tbody td button").attr("href", '#AddManageModal');
+            add_manage_view_page_show(this.dataset.type, this.dataset.uid);
         }
-        else{
-            $("#CompanyManegeTable tbody td button").attr("data-toggle",'modal');
-            $("#CompanyManegeTable tbody td button").attr("href",'#DeleteUserModal');
+        else {
+            $("#CompanyManegeTable tbody td button").attr("data-toggle", 'modal');
+            $("#CompanyManegeTable tbody td button").attr("href", '#DeleteUserModal');
             // add_manage_view_page_show(this.dataset.type,this.dataset.uid)
-            $("#DeleteUserBtnSure").attr('data-uid',this.dataset.uid);
+            $("#DeleteUserBtnSure").attr('data-uid', this.dataset.uid);
         }
     });
 }
 
 
-function add_manage_view_page_show(type,uid) {
+function add_manage_view_page_show(type, uid) {
     console.log(type);
-    if(type=='add'){
-        $("#AddManageBtnSure").attr("data-type",type);
+    if (type == 'add') {
+        $("#AddManageBtnSure").attr("data-type", type);
         $("#AddManageBtnSure").removeAttr("data-uid");
         $("#AddManageBtnSure").removeAttr("data-dismiss");
         $("#AddUserName").removeAttr("readonly");
@@ -2349,31 +2337,31 @@ function add_manage_view_page_show(type,uid) {
         $("#AddUserEmail").val("");
         $("#AddUserIDNumber").val("");
     }
-    else{
-        $("#AddManageBtnSure").attr("data-type",type);
-        $("#AddManageBtnSure").attr("data-uid",uid);
-        var map={
-            action:'GetCompanyManageInfo',
-            body:{
-                session:sessionid,
-                uid:uid
+    else {
+        $("#AddManageBtnSure").attr("data-type", type);
+        $("#AddManageBtnSure").attr("data-uid", uid);
+        var map = {
+            action: 'GetCompanyManageInfo',
+            body: {
+                session: sessionid,
+                uid: uid
             },
-            type:'query'
+            type: 'query'
         };
-        var draw_update_manage_view_page=function (res) {
-            var data=res.data;
-            var LoginName=data.LoginName;
-            var Password=data.Password;
-            var TrueName=data.TrueName;
-            var Email=data.Email;
-            var ID=data.ID;
-            var Telphone=data.Telphone;
+        var draw_update_manage_view_page = function (res) {
+            var data = res.data;
+            var LoginName = data.LoginName;
+            var Password = data.Password;
+            var TrueName = data.TrueName;
+            var Email = data.Email;
+            var ID = data.ID;
+            var Telphone = data.Telphone;
             $("#AddUserName").val(LoginName);
-            $("#AddUserName").attr("readonly",true);
+            $("#AddUserName").attr("readonly", true);
             $("#AddUserPassword").val(Password);
-            $("#AddUserPassword").attr("readonly",true);
+            $("#AddUserPassword").attr("readonly", true);
             $("#AddUserPass").val(Password);
-            $("#AddUserPass").attr("readonly",true);
+            $("#AddUserPass").attr("readonly", true);
             $("#AddUserTrue").val(TrueName);
             $("#AddUserTrue").attr("readonly");
             $("#AddUserTelephone").val(Telphone);
@@ -2383,101 +2371,100 @@ function add_manage_view_page_show(type,uid) {
             $("#AddUserIDNumber").val(ID);
             $("#AddUserIDNumber").attr("readonly");
         };
-        JQ_post(request_url,JSON.stringify(map),draw_update_manage_view_page);
+        JQ_post(request_url, JSON.stringify(map), draw_update_manage_view_page);
     }
 }
 
-$("#AddManageBtnSure").on("click",function () {
+$("#AddManageBtnSure").on("click", function () {
     // b64_sha1
-    var type=$("#AddManageBtnSure").attr('data-type');
+    var type = $("#AddManageBtnSure").attr('data-type');
     console.log(type);
-    if($("#AddUserName").val()==""){
+    if ($("#AddUserName").val() == "") {
         $("#AddUserName").focus();
         return;
     }
-    else if($("#AddUserPassword").val()==""){
+    else if ($("#AddUserPassword").val() == "") {
         $("#AddUserPassword").focus();
         return;
     }
-    else if($("#AddUserPass").val()==""){
+    else if ($("#AddUserPass").val() == "") {
         $("#AddUserPass").focus();
         return;
     }
-    else if ($("#AddUserPass").val()!=$("#AddUserPassword").val()){
+    else if ($("#AddUserPass").val() != $("#AddUserPassword").val()) {
         $("#AddUserPass").focus();
         $("#AddUserPass").val("");
-        $("#AddUserPass").attr("placeholder",'确认密码应与密码保持一致');
+        $("#AddUserPass").attr("placeholder", '确认密码应与密码保持一致');
         return;
     }
-    else if($("#AddUserTrue").val()==""){
+    else if ($("#AddUserTrue").val() == "") {
         $("#AddUserTrue").focus();
         return;
     }
-    else if($("#AddUserTelephone").val()==""){
+    else if ($("#AddUserTelephone").val() == "") {
         $("#AddUserTelephone").focus();
         return;
     }
-    else if($("#AddUserEmail").val()==""){
+    else if ($("#AddUserEmail").val() == "") {
         $("#AddUserEmail").focus();
         return;
     }
-    else if($("#AddUserIDNumber").val()==""){
+    else if ($("#AddUserIDNumber").val() == "") {
         $("#AddUserIDNumber").focus();
         return;
     }
-    else{
-        $("#AddManageBtnSure").attr("data-dismiss",'modal');
-        if(type=='add'){
-            var map={
-                action:"AddNewManage",
-                body:{
-                    LoginName:$("#AddUserName").val(),
-                    Password:b64_sha1($("#AddUserPassword").val()),
-                    TrueName:$("#AddUserTrue").val(),
-                    Email:$("#AddUserEmail").val(),
-                    ID:$("#AddUserIDNumber").val(),
-                    Telephone:$("#AddUserTelephone").val(),
-                    session:sessionid,
+    else {
+        $("#AddManageBtnSure").attr("data-dismiss", 'modal');
+        if (type == 'add') {
+            var map = {
+                action: "AddNewManage",
+                body: {
+                    LoginName: $("#AddUserName").val(),
+                    Password: b64_sha1($("#AddUserPassword").val()),
+                    TrueName: $("#AddUserTrue").val(),
+                    Email: $("#AddUserEmail").val(),
+                    ID: $("#AddUserIDNumber").val(),
+                    Telephone: $("#AddUserTelephone").val(),
+                    session: sessionid,
                 },
-                type:'insert'
-            }
-        }
-        else{
-            var uid=$("#AddManageBtnSure").attr('data-uid');
-            var map={
-                action:"UpdateManage",
-                body:{
-                    session:sessionid,
-                    LoginName:$("#AddUserName").val(),
-                    Password:b64_sha1($("#AddUserPassword").val()),
-                    TrueName:$("#AddUserTrue").val(),
-                    Email:$("#AddUserEmail").val(),
-                    ID:$("#AddUserIDNumber").val(),
-                    Telephone:$("#AddUserTelephone").val(),
-                    uid:uid,
+                type: 'insert'
+            };
+        } else {
+            var uid = $("#AddManageBtnSure").attr('data-uid');
+            var map = {
+                action: "UpdateManage",
+                body: {
+                    session: sessionid,
+                    LoginName: $("#AddUserName").val(),
+                    Password: b64_sha1($("#AddUserPassword").val()),
+                    TrueName: $("#AddUserTrue").val(),
+                    Email: $("#AddUserEmail").val(),
+                    ID: $("#AddUserIDNumber").val(),
+                    Telephone: $("#AddUserTelephone").val(),
+                    uid: uid,
                 },
-                type:'update'
-            }
+                type: 'update'
+            };
         }
-        var draw_new_manage_table=function (res) {
+        var draw_new_manage_table = function (res) {
             company_manage_table("");
         };
-        JQ_post(request_url,JSON.stringify(map),draw_new_manage_table);
+        JQ_post(request_url, JSON.stringify(map), draw_new_manage_table);
     }
 });
 
-$("#DeleteUserBtnSure").on("click",function () {
+$("#DeleteUserBtnSure").on("click", function () {
     // console.log($("#DeleteUserBtnSure").attr("data-uid"));
-    var map={
-        action:"DeleteManage",
-        body:{
-            uid:$("#DeleteUserBtnSure").attr("data-uid"),
-            session:sessionid,
+    var map = {
+        action: "DeleteManage",
+        body: {
+            uid: $("#DeleteUserBtnSure").attr("data-uid"),
+            session: sessionid,
         },
-        type:'delete'
+        type: 'delete'
     };
-    var draw_new_manage_table=function (res) {
+    var draw_new_manage_table = function (res) {
         company_manage_table("");
     };
-    JQ_post(request_url,JSON.stringify(map),draw_new_manage_table);
+    JQ_post(request_url, JSON.stringify(map), draw_new_manage_table);
 });

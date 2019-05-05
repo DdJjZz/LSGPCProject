@@ -48,7 +48,7 @@ $("#LoginBtn").on("click", function () {
             }
             else {
                 if (resp.type == "company") {
-                    window.location.href = "index.html?session=" + resp.session
+                    window.location.href = "index.html?session=" + resp.session;
                 }
                 else {
                     window.open("map.html");

@@ -92,13 +92,13 @@ $(document).ready(function () {
     }, 6000);
 
     setInterval(function () {
-        get_the_three_regions_largest_consumption()
+        get_the_three_regions_largest_consumption();
     }, 60000);
     setInterval(function () {
-        get_today_task_number()
+        get_today_task_number();
     }, 60100);
     setInterval(function () {
-        get_new_task_table()
+        get_new_task_table();
     }, 60200);
     setInterval(function () {
         get_today_all_task_route();
@@ -153,7 +153,7 @@ function get_user_loaction() {
             show_map(map, r.point.lng, r.point.lat);
             // map.panTo(r.point);
         }
-    }, {enableHighAccuracy: true})
+    }, {enableHighAccuracy: true});
 }
 
 function show_map(map, longithde, lagitude) {
@@ -1235,7 +1235,7 @@ function HistogramForYear() {
                     name: company[i],
                     type: 'bar',
                     data: comData[i]
-                })
+                });
             }
             console.log(series);
             option.series = series;
@@ -1571,14 +1571,14 @@ function get_new_task_table() {
         for (var i = 0; i < column.length; i++) {
             thead_txt = thead_txt + "<th>" + column[i] + "</th>";
         }
-        for (var i = 0; i < task.length; i++) {
+        for (i = 0; i < task.length; i++) {
             tbody_txt = tbody_txt + "<tr data-taskid='" + task[i][0] + "'>" +
                 "<td>" + task[i][1] + "</td>" +
                 "<td>" + task[i][2] + "</td>" +
                 "<td>" + task[i][3] + "</td>" +
                 "<td>" + task[i][4] + "</td>" +
                 "<td>" + task[i][5] + "</td>" +
-                "</tr>"
+                "</tr>";
         }
         thead.empty();
         thead.append(thead_txt);
@@ -1628,7 +1628,7 @@ function get_task_detail() {
                     console.log(routes[0].marker.point);
                     for (var m = 1; m < routes.length - 1; m++) {
                         var mm = routes[m].Nm;
-                        map.removeOverlay(mm)
+                        map.removeOverlay(mm);
                     }
                     map.removeOverlay(routes[0].marker); //删除起点
                     map.removeOverlay(routes[routes.length - 1].marker); //删除起点
@@ -1645,7 +1645,7 @@ function get_task_detail() {
                     map.addOverlay(markerend);
                     map_show_information_windows(routes[0].marker.point, info);
                     markerstart.addEventListener("click", function () {
-                        map_show_information_windows(markerstart.point, info)
+                        map_show_information_windows(markerstart.point, info);
                     });
                 },
             });
@@ -1697,9 +1697,9 @@ function get_today_all_task_route() {
         var data = res.data;
         map.clearOverlays();
         for (var i = 0; i < data.length; i++) {
-            var start_point = new BMap.Point(data[i]['start']['longitude'], data[i]['start']['latitude']);
-            var end_point = new BMap.Point(data[i]['end']['longitude'], data[i]['end']['latitude']);
-            var taskid = data[i]['taskid'];
+            var start_point = new BMap.Point(data[i].start.longitude, data[i].start.latitude);
+            var end_point = new BMap.Point(data[i].end.longitude, data[i].end.latitude);
+            var taskid = data[i].taskid;
             var waypoints = [];
             var driving = new BMap.DrivingRoute(map, {
                 renderOptions: {map: map, autoViewport: true},
@@ -1724,6 +1724,5 @@ function get_today_all_task_route() {
             driving.search(start_point, end_point, {waypoints: waypoints});//waypoints表示途经点
         }
     }
-
-    JQ_post(request_url, JSON.stringify(data), draw_all_task_route_page)
+    JQ_post(request_url, JSON.stringify(data), draw_all_task_route_page);
 }
