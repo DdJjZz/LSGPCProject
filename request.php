@@ -398,28 +398,83 @@ switch ($key) {
         $taskid = $body["taskid"];
         $detail = array();
         $status = array("待接受", "进行中", "已完成", "已拒绝");
+        $state_index = rand(0, 3);
         $video_list = array();
-        array_push($detail, array("key" => "车牌号", "value" => "浙A" . rand(10000, 99999)));
-        array_push($detail, array("key" => "运输公司", "value" => "运输公司" . rand(10000, 99999)));
-        array_push($detail, array("key" => "装货户头", "value" => "装货户头" . rand(10000, 99999)));
-        array_push($detail, array("key" => "卸货户头", "value" => "卸货户头" . rand(10000, 99999)));
-        array_push($detail, array("key" => "装货时间", "value" => date("Y-m-d H:i:s", time())));
-        array_push($detail, array("key" => "卸货时间", "value" => date("Y-m-d H:i:s", time())));
-        array_push($detail, array("key" => "发货地址", "value" => "XXXXXXXXXXXXXXXXXXXXXXXXX" . rand(10000, 99999)));
-        array_push($detail, array("key" => "收货地址", "value" => "XXXXXXXXXXXXXXXXXXXXXXXXX" . rand(10000, 99999)));
-        array_push($detail, array("key" => "状态", "value" => $status[rand(0, 3)]));
-        $tail = rand(0, 1);
-        if ($tail == 0) {
-        } else {
-            for ($i = 0; $i < rand(4, 10); $i++) {
-                if (rand(0, 1) == 0) {
-                    $video = array("name" => '视频' . ($i + 1) . "(装货视频)", "src" => "http://127.0.0.1/video/123.mp4");
-                    array_push($video_list, $video);
-                } else {
-                    $video = array("name" => '视频' . ($i + 1) . "(卸货视频)", "src" => "http://127.0.0.1/video/123.mp4");
-                    array_push($video_list, $video);
+        if ($state_index == 0) {
+            array_push($detail, array("type" => 'info', "key" => "车牌号", "value" => ""));
+            array_push($detail, array("type" => 'info', "key" => "运输公司", "value" => "运输公司" . rand(10000, 99999)));
+            array_push($detail, array("type" => 'info', "key" => "装货户头", "value" => "装货户头" . rand(10000, 99999)));
+            array_push($detail, array("type" => 'info', "key" => "卸货户头", "value" => "卸货户头" . rand(10000, 99999)));
+            array_push($detail, array("type" => 'pic', "key" => "装货时间", "value" => "", 'taskid' => "", 'pictype' => ''));
+            array_push($detail, array("type" => 'pic', "key" => "卸货时间", "value" => "", 'taskid' => "", 'pictype' => ''));
+            array_push($detail, array("type" => 'info', "key" => "发货地址", "value" => "XXXXXXXXXXXXXXXXXXXXXXXXX" . rand(10000, 99999)));
+            array_push($detail, array("type" => 'info', "key" => "收货地址", "value" => "XXXXXXXXXXXXXXXXXXXXXXXXX" . rand(10000, 99999)));
+            array_push($detail, array("type" => 'info', "key" => "状态", "value" => $status[$state_index]));
+        } elseif ($state_index == 1) {
+            $s = rand(0, 2);
+            array_push($detail, array("type" => 'info', "key" => "车牌号", "value" => "浙A" . rand(10000, 99999)));
+            array_push($detail, array("type" => 'info', "key" => "运输公司", "value" => "运输公司" . rand(10000, 99999)));
+            array_push($detail, array("type" => 'info', "key" => "装货户头", "value" => "装货户头" . rand(10000, 99999)));
+            array_push($detail, array("type" => 'info', "key" => "卸货户头", "value" => "卸货户头" . rand(10000, 99999)));
+            if ($s == 0) {
+                array_push($detail, array("type" => 'pic', "key" => "装货时间", "value" => "", 'src' => ''));
+                array_push($detail, array("type" => 'pic', "key" => "卸货时间", "value" => "", 'src' => ''));
+            } elseif ($s == 1) {
+                array_push($detail, array("type" => 'pic', "key" => "装货时间", "value" => date("Y-m-d H:i:s", time()), 'taskid' => $taskid, 'pictype' => 'upload'));
+                array_push($detail, array("type" => 'pic', "key" => "卸货时间", "value" => "", 'src' => ''));
+            } else {
+                array_push($detail, array("type" => 'pic', "key" => "装货时间", "value" => date("Y-m-d H:i:s", time()), 'taskid' => $taskid, 'pictype' => 'upload'));
+                array_push($detail, array("type" => 'pic', "key" => "卸货时间", "value" => date("Y-m-d H:i:s", time()), 'taskid' => $taskid, 'pictype' => 'unload'));
+            }
+            array_push($detail, array("type" => 'info', "key" => "发货地址", "value" => "XXXXXXXXXXXXXXXXXXXXXXXXX" . rand(10000, 99999)));
+            array_push($detail, array("type" => 'info', "key" => "收货地址", "value" => "XXXXXXXXXXXXXXXXXXXXXXXXX" . rand(10000, 99999)));
+            array_push($detail, array("type" => 'info', "key" => "状态", "value" => $status[$state_index]));
+            $video_tail = rand(0, 1);
+            if ($video_tail == 0) {
+            } else {
+                for ($i = 0; $i < rand(4, 10); $i++) {
+                    if (rand(0, 1) == 0) {
+                        $video = array("type" => 'info', "name" => '视频' . ($i + 1) . "(装货视频)", "src" => "http://www.hkrob.com/video/123.mp4");
+                        array_push($video_list, $video);
+                    } else {
+                        $video = array("type" => 'info', "name" => '视频' . ($i + 1) . "(卸货视频)", "src" => "http://www.hkrob.com/video/123.mp4");
+                        array_push($video_list, $video);
+                    }
                 }
             }
+        } elseif ($state_index == 2) {
+            array_push($detail, array("type" => 'info', "key" => "车牌号", "value" => "浙A" . rand(10000, 99999)));
+            array_push($detail, array("type" => 'info', "key" => "运输公司", "value" => "运输公司" . rand(10000, 99999)));
+            array_push($detail, array("type" => 'info', "key" => "装货户头", "value" => "装货户头" . rand(10000, 99999)));
+            array_push($detail, array("type" => 'info', "key" => "卸货户头", "value" => "卸货户头" . rand(10000, 99999)));
+            array_push($detail, array("type" => 'pic', "key" => "装货时间", "value" => date("Y-m-d H:i:s", time()), 'taskid' => $taskid, 'pictype' => 'upload'));
+            array_push($detail, array("type" => 'pic', "key" => "卸货时间", "value" => date("Y-m-d H:i:s", time()), 'taskid' => $taskid, 'pictype' => 'unload'));
+            array_push($detail, array("type" => 'info', "key" => "发货地址", "value" => "XXXXXXXXXXXXXXXXXXXXXXXXX" . rand(10000, 99999)));
+            array_push($detail, array("type" => 'info', "key" => "收货地址", "value" => "XXXXXXXXXXXXXXXXXXXXXXXXX" . rand(10000, 99999)));
+            array_push($detail, array("type" => 'info', "key" => "状态", "value" => $status[$state_index]));
+            $video_tail = rand(0, 1);
+            if ($video_tail == 0) {
+            } else {
+                for ($i = 0; $i < rand(4, 10); $i++) {
+                    if (rand(0, 1) == 0) {
+                        $video = array("type" => 'info', "name" => '视频' . ($i + 1) . "(装货视频)", "src" => "http://www.hkrob.com/video/123.mp4");
+                        array_push($video_list, $video);
+                    } else {
+                        $video = array("type" => 'info', "name" => '视频' . ($i + 1) . "(卸货视频)", "src" => "http://www.hkrob.com/video/123.mp4");
+                        array_push($video_list, $video);
+                    }
+                }
+            }
+        } else {
+            array_push($detail, array("type" => 'info', "key" => "车牌号", "value" => ""));
+            array_push($detail, array("type" => 'info', "key" => "运输公司", "value" => "运输公司" . rand(10000, 99999)));
+            array_push($detail, array("type" => 'info', "key" => "装货户头", "value" => "装货户头" . rand(10000, 99999)));
+            array_push($detail, array("type" => 'info', "key" => "卸货户头", "value" => "卸货户头" . rand(10000, 99999)));
+            array_push($detail, array("type" => 'pic', "key" => "装货时间", "value" => "", 'taskid' => "", 'pictype' => ''));
+            array_push($detail, array("type" => 'pic', "key" => "卸货时间", "value" => "", 'taskid' => "", 'pictype' => ''));
+            array_push($detail, array("type" => 'info', "key" => "发货地址", "value" => "XXXXXXXXXXXXXXXXXXXXXXXXX" . rand(10000, 99999)));
+            array_push($detail, array("type" => 'info', "key" => "收货地址", "value" => "XXXXXXXXXXXXXXXXXXXXXXXXX" . rand(10000, 99999)));
+            array_push($detail, array("type" => 'info', "key" => "状态", "value" => $status[$state_index]));
         }
         $resp = array("taskid" => $taskid, "video" => $video_list, "detail" => $detail);
         $result = array("status" => 'true', "auth" => "true", 'data' => $resp, 'msg' => "信息获取成功");
@@ -617,7 +672,7 @@ switch ($key) {
         $driver = $body["driver"];
         $imgArray = array();
         $img_type = array("身份证国徽面", "身份证人像面", "行驶证信息", "驾驶证信息");
-        $image_array = array("http://127.0.0.1/pic/9.jpg", "http://127.0.0.1/pic/12.jpg", "http://127.0.0.1/pic/123.jpg", "http://127.0.0.1/pic/1234.png");
+        $image_array = array("http://www.hkrob.com/pic/9.jpg", "http://www.hkrob.com/pic/12.jpg", "http://www.hkrob.com/pic/123.jpg", "http://www.hkrob.com/pic/1234.png");
         $imgArray_detail = array("src" => $image_array[rand(0, 3)], "value" => "身份证国徽面");
         array_push($imgArray, $imgArray_detail);
         $imgArray_detail = array("src" => $image_array[rand(0, 3)], "value" => "身份证人像面");
@@ -765,58 +820,55 @@ switch ($key) {
         array_push($ColumnName, "操作");
         for ($i = 0; $i < rand(50, 200); $i++) {
             $type = rand(0, 1);
-            $manage_detail=array();
-            if($type==0){
-                array_push($manage_detail,$type_array[$type]);
-                array_push($manage_detail,$i+1);
-                array_push($manage_detail,"UID".rand(10000,99999));
-                array_push($manage_detail,"");
-                if($uname=="") {
+            $manage_detail = array();
+            if ($type == 0) {
+                array_push($manage_detail, $type_array[$type]);
+                array_push($manage_detail, $i + 1);
+                array_push($manage_detail, "UID" . rand(10000, 99999));
+                array_push($manage_detail, "");
+                if ($uname == "") {
                     array_push($manage_detail, "UNAME" . rand(10000, 99999));
-                }
-                else{
+                } else {
                     array_push($manage_detail, $uname);
                 }
-                array_push($manage_detail,rand(158001, 158999) . rand(10000, 99999));
+                array_push($manage_detail, rand(158001, 158999) . rand(10000, 99999));
                 array_push($manage_detail, rand(158001, 158999) . rand(10000, 99999) . rand(1510000, 1599999));
-                array_push($manage_detail,"");
-                array_push($manage_detail,$type_array[$type]);
-            }
-            else{
-                array_push($manage_detail,$type_array[$type]);
-                array_push($manage_detail,$i+1);
-                array_push($manage_detail,"UID".rand(10000,99999));
-                array_push($manage_detail,"LNAME".rand(10000,99999));
-                if($uname=="") {
+                array_push($manage_detail, "");
+                array_push($manage_detail, $type_array[$type]);
+            } else {
+                array_push($manage_detail, $type_array[$type]);
+                array_push($manage_detail, $i + 1);
+                array_push($manage_detail, "UID" . rand(10000, 99999));
+                array_push($manage_detail, "LNAME" . rand(10000, 99999));
+                if ($uname == "") {
                     array_push($manage_detail, "UNAME" . rand(10000, 99999));
-                }
-                else{
+                } else {
                     array_push($manage_detail, $uname);
                 }
-                array_push($manage_detail,rand(158001, 158999) . rand(10000, 99999));
+                array_push($manage_detail, rand(158001, 158999) . rand(10000, 99999));
                 array_push($manage_detail, rand(158001, 158999) . rand(10000, 99999) . rand(1510000, 1599999));
-                array_push($manage_detail,"UEMAIL".rand(100,999)."@163.com");
-                array_push($manage_detail,$type_array[$type]);
+                array_push($manage_detail, "UEMAIL" . rand(100, 999) . "@163.com");
+                array_push($manage_detail, $type_array[$type]);
             }
-            array_push($TableData,$manage_detail);
+            array_push($TableData, $manage_detail);
         }
-        $resp=array("Column"=>$ColumnName,'Table'=>$TableData);
-        $result = array("status" => 'true', "auth" => "true","data"=>$resp, 'msg' => "信息获取成功");
+        $resp = array("Column" => $ColumnName, 'Table' => $TableData);
+        $result = array("status" => 'true', "auth" => "true", "data" => $resp, 'msg' => "信息获取成功");
         echo json_encode($result, JSON_UNESCAPED_UNICODE);
         break;
     case "GetCompanyManageInfo":
         $body = $payload["body"];
         $session = $body["session"];
         $uid = $body["uid"];
-        $resp=array(
-            "LoginName"=>"LNAME".rand(10000,99999),
-            "Password"=>rand(10000, 99999),
-            "TrueName"=>"UNAME" . rand(10000, 99999),
-            "Email"=>"UEMAIL".rand(100,999)."@163.com",
-            "ID"=>rand(158001, 158999) . rand(10000, 99999) . rand(1510000, 1599999),
-            "Telphone"=>rand(158001, 158999) . rand(10000, 99999),
+        $resp = array(
+            "LoginName" => "LNAME" . rand(10000, 99999),
+            "Password" => rand(10000, 99999),
+            "TrueName" => "UNAME" . rand(10000, 99999),
+            "Email" => "UEMAIL" . rand(100, 999) . "@163.com",
+            "ID" => rand(158001, 158999) . rand(10000, 99999) . rand(1510000, 1599999),
+            "Telphone" => rand(158001, 158999) . rand(10000, 99999),
         );
-        $result = array("status" => 'true', "auth" => "true","data"=>$resp, 'msg' => "信息获取成功");
+        $result = array("status" => 'true', "auth" => "true", "data" => $resp, 'msg' => "信息获取成功");
         echo json_encode($result, JSON_UNESCAPED_UNICODE);
         break;
 
@@ -829,7 +881,7 @@ switch ($key) {
         $Email = $body["Email"];
         $ID = $body["ID"];
         $Telephone = $body["Telephone"];
-        $result = array("status" => 'true', "auth" => "true",'msg' => "信息获取成功");
+        $result = array("status" => 'true', "auth" => "true", 'msg' => "信息获取成功");
         echo json_encode($result, JSON_UNESCAPED_UNICODE);
         break;
     case "UpdateManage":
@@ -842,52 +894,89 @@ switch ($key) {
         $ID = $body["ID"];
         $Telephone = $body["Telephone"];
         $uid = $body["uid"];
-        $result = array("status" => 'true', "auth" => "true",'msg' => "信息获取成功");
+        $result = array("status" => 'true', "auth" => "true", 'msg' => "信息获取成功");
         echo json_encode($result, JSON_UNESCAPED_UNICODE);
         break;
     case "DeleteManage":
         $body = $payload["body"];
         $session = $body["session"];
         $uid = $body["uid"];
-        $result = array("status" => 'true', "auth" => "true",'msg' => "信息获取成功");
+        $result = array("status" => 'true', "auth" => "true", 'msg' => "信息获取成功");
         echo json_encode($result, JSON_UNESCAPED_UNICODE);
         break;
     case "UserLogin":
         $body = $payload["body"];
         $uname = $body["uname"];
         $password = $body["password"];
-        if($uname=="admin"){
-            $session='123456';
-            $type='government';
-            $status='true';
-            $msg='用户登录成功';
+        if ($uname == "admin") {
+            $session = '123456';
+            $type = 'government';
+            $status = 'true';
+            $msg = '用户登录成功';
+        } elseif ($uname == 'admin1') {
+            $session = '234567';
+            $type = 'government';
+            $status = 'true';
+            $msg = '用户登录成功';
+        } elseif ($uname == 'admin2') {
+            $session = '345678';
+            $type = 'company';
+            $status = 'true';
+            $msg = '用户登录成功';
+        } elseif ($uname == 'admin3') {
+            $session = '456789';
+            $type = 'company';
+            $status = 'true';
+            $msg = '用户登录成功';
+        } else {
+            $session = '';
+            $type = '';
+            $status = 'false';
+            $msg = '用户名或密码错误,请重新填写';
         }
-        elseif($uname=='admin1'){
-            $session='234567';
-            $type='government';
+        $resp = array('session' => $session, "type" => $type);
+        $result = array("status" => $status, 'data' => $resp, "auth" => "true", 'msg' => $msg);
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+        break;
+    case "getTaskPic":
+        $body = $payload["body"];
+        $taskid = $body["taskid"];
+        $type = $body["type"];
+        if($type=="upload"){
+            $title="装货图片";
+            $picArray=array();
+            for($i=0;$i<rand(1,10);$i++){
+                if(rand(0,1)==0){
+                    array_push($picArray,'http://www.hkrob.com/pic/9.jpg');
+                }
+                else{
+                    array_push($picArray,'http://www.hkrob.com/pic/1234.png');
+                }
+            }
             $status='true';
-            $msg='用户登录成功';
+            $auth='true';
         }
-        elseif($uname=='admin2'){
-            $session='345678';
-            $type='company';
+        elseif($type=="unload"){
+            $title="卸货图片";
+            $picArray=array();
+            for($i=0;$i<rand(1,10);$i++){
+                if(rand(0,1)==0){
+                    array_push($picArray,'http://www.hkrob.com/pic/9.jpg');
+                }
+                else{
+                    array_push($picArray,'http://www.hkrob.com/pic/1234.png');
+                }
+            }
             $status='true';
-            $msg='用户登录成功';
-        }
-        elseif($uname=='admin3'){
-            $session='456789';
-            $type='company';
-            $status='true';
-            $msg='用户登录成功';
+            $auth='true';
         }
         else{
-            $session='';
-            $type='';
+            $title="未知类型的图片";
+            $picArray=array();
             $status='false';
-            $msg='用户名或密码错误,请重新填写';
+            $auth='false';
         }
-        $resp=array('session'=>$session,"type"=>$type);
-        $result = array("status" => $status,'data'=>$resp, "auth" => "true",'msg' => $msg);
+        $result = array("status" => $status, "auth" => $auth,'title'=>$title,'pic'=>$picArray,'msg' => "信息获取成功");
         echo json_encode($result, JSON_UNESCAPED_UNICODE);
         break;
     default:

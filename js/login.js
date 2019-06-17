@@ -1,4 +1,5 @@
 var request_url = getRelativeURL() + "/request.php";
+// var request_url = "http://www.hkrob.com/iwdp/request.php";
 
 function getRelativeURL() {
     var url = document.location.toString();
@@ -15,12 +16,10 @@ function getRelativeURL() {
 }
 
 $("#LoginBtn").on("click", function () {
-    console.log('sssssssss');
     if ($("#UserName").val() == "") {
         $("#WarningModal .modal-body").html("用户名不可为空");
         $('#WarningModal').modal('show');
         $("#UserName").focus();
-
         return;
     }
     if ($("#PassWord").val() == "") {

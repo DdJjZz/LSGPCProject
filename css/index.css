@@ -1,4 +1,4 @@
-.title{
+.title {
     position: absolute;
     height: 60px;
     width: 100%;
@@ -11,7 +11,7 @@
     background-color: #1396db;
 }
 
-.page{
+.page {
     position: absolute;
     height: calc(100% - 50px);
     width: 100%;
@@ -21,55 +21,55 @@
     /*background-color: black;*/
 }
 
-.left-menu{
+.left-menu {
     position: absolute;
     height: 100%;
-    width:10%;
+    width: 10%;
     min-width: 150px;
     background-color: white;
 }
 
-.right-page{
+.right-page {
     position: absolute;
     height: 100%;
-    width:100%;
-    min-width:235px;
-    min-height:535px;
+    width: 100%;
+    min-width: 235px;
+    min-height: 535px;
     /*background-color: yellow;*/
 }
 
-.line-div{
-    border-bottom:1px solid #dcdcdc;
+.line-div {
+    border-bottom: 1px solid #dcdcdc;
     padding-bottom: 5px;
 }
 
-.done{
+.done {
     position: absolute;
     right: 20%;
-    background-color: rgba(0,0,0,0.2)
+    background-color: rgba(0, 0, 0, 0.2)
 }
 
 /*.pc_imgBox{*/
-    /*display: block;*/
-    /*height: 310px;*/
-    /*width: 100%;*/
-    /*background-size: cover;*/
-    /*background-position:  center;*/
-    /*background-repeat: no-repeat;*/
+/*display: block;*/
+/*height: 310px;*/
+/*width: 100%;*/
+/*background-size: cover;*/
+/*background-position:  center;*/
+/*background-repeat: no-repeat;*/
 /*}*/
 /*.carousel-indicators{*/
-    /*background: #ccc;*/
+/*background: #ccc;*/
 /*}*/
 
 /*.box{*/
-    /*width:400px;*/
-    /*height:310px;*/
-    /*display: table-cell;*/
-    /*text-align:center;*/
-    /*vertical-align:middle;*/
+/*width:400px;*/
+/*height:310px;*/
+/*display: table-cell;*/
+/*text-align:center;*/
+/*vertical-align:middle;*/
 /*}*/
 
-.img{
+.img {
     width: auto;
     height: auto;
     text-align: center;
@@ -79,21 +79,35 @@
     margin: auto;
 }
 
-.new-li{
-    border: 0px solid white;
+.new-li {
+    border: 0 solid white;
 }
 
 /*table {*/
-    /*table-layout: fixed;*/
+/*table-layout: fixed;*/
 /*}*/
 
 /*td{*/
-    /*white-space: nowrap;*/
-    /*overflow: hidden;*/
-    /*text-overflow: ellipsis;*/
+/*white-space: nowrap;*/
+/*overflow: hidden;*/
+/*text-overflow: ellipsis;*/
 /*}*/
 /*tr{*/
-    /*white-space: nowrap;*/
-    /*overflow: hidden;*/
-    /*text-overflow: ellipsis;*/
+/*white-space: nowrap;*/
+/*overflow: hidden;*/
+/*text-overflow: ellipsis;*/
 /*}*/
+
+.pic-click {
+    color: #1296DB;
+    text-decoration: underline
+}
+
+.navbar-nav > li.active > a {
+    /*background-color: rgba(28, 134, 238, 0.5);*/
+    color: black !important;
+}
+.navbar-nav > li > a {
+    /*background-color: rgba(28, 134, 238, 0.5);*/
+    color: whitesmoke !important;
+}

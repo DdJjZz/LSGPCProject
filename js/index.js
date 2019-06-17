@@ -1,4 +1,5 @@
 var request_url = getRelativeURL() + "/request.php";
+// var request_url = "http://www.hkrob.com/iwdp/request.php";
 var wait_time_short = 500;
 var mapGoverment = new BMap.Map('allmap');
 var mapCompany = new BMap.Map('allmap1');
@@ -841,10 +842,16 @@ function task_table_row_click() {
             var task_id = data.taskid;
             var detail = data.detail;
             var video_list = data.video;
-            console.log(video_list);
             var txt = "<div class='panel-heading'><h3 class='panel-title'>" + task_id + "</h3></div><ul class='list-group'>";
             for (var i = 0; i < detail.length; i++) {
-                txt = txt + "<li class='list-group-item'><span class='pull-right'>" + detail[i].value + "</span>" + detail[i].key + "</li>";
+                if (detail[i].type == "pic") {
+                    txt = txt + "<li class='list-group-item'><span class='pull-right pic-click' style='cursor: pointer' " +
+                        "data-taskid='" + detail[i].taskid + "' data-type='" + detail[i].pictype + "'>" + detail[i].value +
+                        "</span>" + detail[i].key + "</li>";
+                }
+                else {
+                    txt = txt + "<li class='list-group-item'><span class='pull-right'>" + detail[i].value + "</span>" + detail[i].key + "</li>";
+                }
             }
             $("#TaskDetail").empty();
             $("#TaskDetail").append(txt);
@@ -863,9 +870,57 @@ function task_table_row_click() {
                 $("#VideoList").empty();
                 $("#VideoList").append(video_txt);
             }
+            get_picture_detail_page();
             video_list_click_action();
         };
         JQ_post(request_url, JSON.stringify(map), draw_task_detail_panel);
+    });
+}
+
+function get_picture_detail_page() {
+    $(".pic-click").on("click", function () {
+        var map = {
+            action: 'getTaskPic',
+            body: {
+                taskid: this.dataset.taskid,
+                type: this.dataset.type,
+            },
+            type: 'query'
+        };
+        var draw_picture_detail_modal = function (res) {
+            if(res.status=="false"){
+                $("#errorBody").css("display",'block');
+                $("#myCarouse4").css("display",'none');
+                $("#TaskPictureModal").css("top",'300');
+                $("#TaskPictureModal").modal("show");
+            }
+            else{
+                $("#errorBody").css("display",'none');
+                $("#myCarouse4").css("display",'block');
+                var carouselTxt="";
+                $("#TaskPictureModal .modal-title").html(res.title);
+                $("#TaskPictureModal").removeAttr("style");
+                $("#TaskPictureModal .carousel-inner").attr("style","width: 100%;height: 600px;text-align: center");
+                carouselTxt=carouselTxt+'<div class="carousel-inner" style="width: 100%;height: 600px;text-align: center">';
+                for(var i=0;i<res.pic.length;i++){
+                    if(i==0){
+                        carouselTxt=carouselTxt+"<div class='item active' align='center'><img src='"+res.pic[i]+"'></div>";
+                    }
+                    else{
+                        carouselTxt=carouselTxt+"<div class='item' align='center'><img src='"+res.pic[i]+"'></div>";
+                    }
+                }
+                carouselTxt=carouselTxt+"</div>";
+                carouselTxt=carouselTxt+"<a class='left carousel-control' href='#myCarouse4' data-slide='prev'>" +
+                    "<span class='glyphicon glyphicon-chevron-left'></span></a>";
+                carouselTxt=carouselTxt+"<a class='right carousel-control' href='#myCarouse4' data-slide='next'>" +
+                    "<span class='glyphicon glyphicon-chevron-right'></span></a>";
+                $("#myCarouse4").empty();
+                $("#myCarouse4").append(carouselTxt);
+                $("#TaskPictureModal").modal("show");
+            }
+        };
+        JQ_post(request_url, JSON.stringify(map), draw_picture_detail_modal);
     });
 }
 
@@ -1543,14 +1598,22 @@ function company_waybill_table_click() {
             var video_list = data.video;
             var txt = "<div class='panel-heading'><h3 class='panel-title'>" + task_id + "</h3></div><ul class='list-group'>";
             for (var i = 0; i < detail.length; i++) {
-                txt = txt + "<li class='list-group-item'><span class='pull-right'>" + detail[i].value + "</span>" + detail[i].key + "</li>";
+                if (detail[i].type == "pic") {
+                    txt = txt + "<li class='list-group-item'><span class='pull-right pic-click' style='cursor: pointer' " +
+                        "data-taskid='" + detail[i].taskid + "' data-type='" + detail[i].pictype + "'>" + detail[i].value +
+                        "</span>" + detail[i].key + "</li>";
+                }
+                else {
+                    txt = txt + "<li class='list-group-item'><span class='pull-right'>" + detail[i].value + "</span>" + detail[i].key + "</li>";
+                }
             }
             $("#WayBillTaskDetail").empty();
             $("#WayBillTaskDetail").append(txt);
             if (video_list.length == 0) {
                 $("#WayBillVideoName").val("");
+                $("#WayBillList").empty();
                 $("#VideoList").empty();
-                $("#WayBillList").attr("src", "");
+                $("#WayBillVideo").attr("src", '');
             }
             else {
                 var video_txt = "";
@@ -1562,6 +1625,7 @@ function company_waybill_table_click() {
                 $("#WayBillList").empty();
                 $("#WayBillList").append(video_txt);
             }
+            get_picture_detail_page();
             waybill_video_list_click_action();
         };
         JQ_post(request_url, JSON.stringify(map), draw_task_detail_panel);
@@ -1996,7 +2060,7 @@ function free_driver_map_click(driver_id) {
             free_driver_table_button_click(this.dataset.driver);
         });
         var CarouseTxt = "<ol class='carousel-indicators'>";
-        for (var i = 0; i < img.length; i++) {
+        for (i = 0; i < img.length; i++) {
             if (i == 0) {
                 CarouseTxt = CarouseTxt + "<li data-target='#myCarouse2' data-slide-to='" + i + "' class='active'>";
             }
@@ -2005,7 +2069,7 @@ function free_driver_map_click(driver_id) {
             }
         }
         CarouseTxt = CarouseTxt + "</ol><div class='carousel-inner' style='text-align: center'>";
-        for (var i = 0; i < img.length; i++) {
+        for (i = 0; i < img.length; i++) {
             if (i == 0) {
                 CarouseTxt = CarouseTxt + "<div class='item active'><img class='img' src='" + img[i].src + "'>" +
                     "<div class='carousel-caption'><h4 style='color: red'>" + img[i].value + "</h4></div></div>";
@@ -2043,7 +2107,7 @@ function all_driver_table_show() {
             txt = txt + "<th>" + Column[i] + "</th>";
         }
         txt = txt + "</tr></thead><tbody style='cursor: pointer'>";
-        for (var i = 0; i < Table.length; i++) {
+        for (i = 0; i < Table.length; i++) {
             var uid = Table[i][0];
             var type = Table[i][1];
             var status = Table[i][2];
