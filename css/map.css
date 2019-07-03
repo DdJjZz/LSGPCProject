@@ -18,7 +18,7 @@ body, html, #allmap {
 }
 
 .shadowarea {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.6);
     color: white;
     position: relative;
     z-index: 99;
@@ -41,7 +41,7 @@ body {
     width: var(--border-anim-size);
     height: var(--border-anim-size);
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.6);
     color: white;
     /*border: 1px solid var(--border-anim-border-color);*/
 }

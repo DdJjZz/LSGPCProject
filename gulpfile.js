@@ -20,7 +20,7 @@ var replace = require('gulp-replace');
 // }
 
 // var replace_content = "C:/wamp/www/dist_1/usr_img/";
-var replace_install = "/dist_1";
+// var replace_install = "/dist_1";
 var option = {
     buildPath: "C:/wamp/www/dist_1"
 };

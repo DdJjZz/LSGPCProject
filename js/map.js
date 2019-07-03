@@ -1034,7 +1034,7 @@ function get_now_date() {
 
 function PieForPhosAll() {
     var dom = document.getElementById("PieForPhosAll");
-    var myChart = echarts.init(dom, 'infographic');
+    var myChart = echarts.init(dom, 'walden');
     window.addEventListener("resize", function () {
         myChart.resize();
     });
@@ -1143,7 +1143,7 @@ function PieForPhosAll() {
 
 function HistogramForYear() {
     var dom = document.getElementById("HistogramForYear");
-    var myChart = echarts.init(dom, 'infographic');
+    var myChart = echarts.init(dom, 'walden');
     window.addEventListener("resize", function () {
         myChart.resize();
     });
@@ -1169,6 +1169,7 @@ function HistogramForYear() {
         calculable: true,
         xAxis: [
             {
+                splitLine:{show: false},//去除网格线
                 type: 'category',
                 axisTick: {show: false},
                 axisLine: {
@@ -1181,6 +1182,7 @@ function HistogramForYear() {
         ],
         yAxis: [
             {
+                splitLine:{show: false},//去除网格线
                 type: 'value',
                 axisLine: {
                     lineStyle: {
@@ -1251,7 +1253,7 @@ function HistogramForYear() {
 
 function MixedChartForMounth() {
     var dom = document.getElementById("MixedChartForMounth");
-    var myChart = echarts.init(dom, 'infographic');
+    var myChart = echarts.init(dom, 'walden');
     window.addEventListener("resize", function () {
         myChart.resize();
     });
@@ -1259,7 +1261,7 @@ function MixedChartForMounth() {
         title: {
             left: 'left',
             top: '5px',
-            text: '磷石膏实时数据(5分钟)',
+            text: '磷石膏实时数据(1分钟)',
             textStyle: {
                 color: "#FFFFFF"
             }
@@ -1281,6 +1283,7 @@ function MixedChartForMounth() {
         },
         xAxis: [
             {
+                splitLine:{show: false},//去除网格线
                 type: 'category',
                 data: [],
                 axisLine: {
@@ -1292,6 +1295,7 @@ function MixedChartForMounth() {
         ],
         yAxis: [
             {
+                splitLine:{show: false},//去除网格线
                 type: 'value',
                 name: '车次',
                 // interval: 50,
@@ -1305,6 +1309,7 @@ function MixedChartForMounth() {
                 },
             },
             {
+                splitLine:{show: false},//去除网格线
                 type: 'value',
                 name: '吨数',
                 // interval: 5,
@@ -1372,7 +1377,7 @@ function MixedChartForMounth() {
         }
 
         JQ_post(request_url, JSON.stringify(map), draw_train_number_pound_page);
-    }, 300000);
+    }, 60000);
     if (option && typeof option === "object") {
         myChart.setOption(option, true);
     }
@@ -1380,7 +1385,7 @@ function MixedChartForMounth() {
 
 function TransverseBarChart() {
     var dom = document.getElementById("TransverseBarChart");
-    var myChart = echarts.init(dom, 'infographic');
+    var myChart = echarts.init(dom, 'walden');
     window.addEventListener("resize", function () {
         myChart.resize();
     });
@@ -1399,6 +1404,7 @@ function TransverseBarChart() {
         },
         xAxis: {
             // name: 'amount',
+            splitLine:{show: false},//去除网格线
             axisLine: {
                 lineStyle: {
                     color: "#FFFFFF"
@@ -1406,6 +1412,7 @@ function TransverseBarChart() {
             },
         },
         yAxis: {
+            splitLine:{show: false},//去除网格线
             type: 'category',
             axisLine: {
                 lineStyle: {
@@ -1418,10 +1425,10 @@ function TransverseBarChart() {
             left: 'center',
             min: 0,
             max: 100000,
-            text: ['High Score', 'Low Score'],
+            text: ['高', '低'],
             dimension: 0,
             inRange: {
-                color: ['#D7DA8B', '#E15457']
+                color: ['#c4ebad', '#3fb1e3']
             },
             itemHeight: 300,
             textStyle: {
@@ -1429,11 +1436,10 @@ function TransverseBarChart() {
             }
         },
         grid: [{
-            top: '0%',
-            left: "21%",
+            top: '3%',
+            left: "10%",
             right: "5%"
-        }
-        ],
+        }],
         series: [
             {
                 type: 'bar',
@@ -1492,6 +1498,7 @@ function TransverseBarChart() {
         myChart.setOption(option, true);
     }
 }
+
 function get_the_three_regions_largest_consumption() {
     var data = {
         action: "getThreeRegions",
@@ -1724,5 +1731,6 @@ function get_today_all_task_route() {
             driving.search(start_point, end_point, {waypoints: waypoints});//waypoints表示途经点
         }
     }
+
     JQ_post(request_url, JSON.stringify(data), draw_all_task_route_page);
 }

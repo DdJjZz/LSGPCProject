@@ -282,7 +282,7 @@ laydate.render({
 
 function get_city_region_data_chart() {
     var dom = document.getElementById("CityChart");
-    var myChart = echarts.init(dom, 'infographic');
+    var myChart = echarts.init(dom, 'walden');
     window.addEventListener("resize", function () {
         myChart.resize();
     });
@@ -305,15 +305,17 @@ function get_city_region_data_chart() {
         },
         grid: {
             left: '3%',
-            right: '4%',
+            right: '8%',
             bottom: '3%',
             containLabel: true
         },
         xAxis: {
+            splitLine:{show: false},//去除网格线
             type: 'value',
             boundaryGap: [0, 0.01]
         },
         yAxis: {
+            splitLine:{show: false},//去除网格线
             type: 'category',
             data: ['初始数据', '初始数据', '初始数据', '初始数据', '初始数据', '初始数据']
         },
@@ -321,13 +323,14 @@ function get_city_region_data_chart() {
             {
                 show: true,
                 yAxisIndex: 0,
-                // start: 0,
-                // end: 100,
+                start: 30,
+                end: 70,
                 filterMode: 'empty',
                 width: 20,
                 height: '80%',
                 showDataShadow: false,
-                left: '93%'
+                left: '93%',
+                bottom:'10'
             }
         ],
         series: [
@@ -386,7 +389,7 @@ function get_city_region_data_chart() {
 
 function get_company_data_chart(companyId, startTime, endTime) {
     var dom = document.getElementById("CompanyChart");
-    var myChart = echarts.init(dom, 'infographic');
+    var myChart = echarts.init(dom, 'walden');
     window.addEventListener("resize", function () {
         myChart.resize();
     });
@@ -405,6 +408,7 @@ function get_company_data_chart(companyId, startTime, endTime) {
             }
         },
         xAxis: {
+            splitLine:{show: false},//去除网格线
             type: 'category',
             data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
             axisLabel: {
@@ -419,6 +423,7 @@ function get_company_data_chart(companyId, startTime, endTime) {
             containLabel: true
         },
         yAxis: {
+            splitLine:{show: false},//去除网格线
             type: 'value'
         },
         series: [{
@@ -1136,7 +1141,7 @@ function user_select_driver() {
 
 function get_driver_data_chart(driverId, startTime, endTime) {
     var dom = document.getElementById("DriverChart");
-    var myChart = echarts.init(dom, 'infographic');
+    var myChart = echarts.init(dom, 'walden');
     window.addEventListener("resize", function () {
         myChart.resize();
     });
@@ -1155,6 +1160,7 @@ function get_driver_data_chart(driverId, startTime, endTime) {
             }
         },
         xAxis: {
+            splitLine:{show: false},//去除网格线
             type: 'category',
             data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
             axisLabel: {
@@ -1169,6 +1175,7 @@ function get_driver_data_chart(driverId, startTime, endTime) {
             containLabel: true
         },
         yAxis: {
+            splitLine:{show: false},//去除网格线
             type: 'value'
         },
         series: [{
@@ -1374,7 +1381,7 @@ $("#selectDriverData").on("click", function () {
 
 function get_company_city_region_data_chart() {
     var dom = document.getElementById("CompanyCityChart");
-    var myChart = echarts.init(dom, 'infographic');
+    var myChart = echarts.init(dom, 'walden');
     window.addEventListener("resize", function () {
         myChart.resize();
     });
@@ -1397,15 +1404,17 @@ function get_company_city_region_data_chart() {
         },
         grid: {
             left: '3%',
-            right: '4%',
+            right: '8%',
             bottom: '3%',
             containLabel: true
         },
         xAxis: {
+            splitLine:{show: false},//去除网格线
             type: 'value',
             boundaryGap: [0, 0.01]
         },
         yAxis: {
+            splitLine:{show: false},//去除网格线
             type: 'category',
             data: ['初始数据', '初始数据', '初始数据', '初始数据', '初始数据', '初始数据']
         },
@@ -1413,13 +1422,14 @@ function get_company_city_region_data_chart() {
             {
                 show: true,
                 yAxisIndex: 0,
-                // start: 0,
-                // end: 100,
+                start: 30,
+                end: 70,
                 filterMode: 'empty',
                 width: 20,
                 height: '80%',
                 showDataShadow: false,
-                left: '93%'
+                left: '93%',
+                bottom:'10'
             }
         ],
         series: [
@@ -1465,7 +1475,6 @@ function get_company_city_region_data_chart() {
                 series.push(serise_detail);
             }
             option.series = series;
-            console.log(option.series);
             myChart.setOption(option);
         };
         JQ_post(request_url, JSON.stringify(map), draw_city_page_chart);
