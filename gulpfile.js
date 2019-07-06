@@ -3,7 +3,7 @@
  */
 var gulp=require('gulp');
 
-var jshint = require('gulp-jshint');
+// var jshint = require('gulp-jshint');
 var minifycss = require("gulp-minify-css");
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
@@ -35,11 +35,12 @@ var option_html = {
     minifyCSS:true
 };
 
-gulp.task('lint', function() {
-    gulp.src('./js/*.js')
-        .pipe(jshint())
-        .pipe(jshint.reporter('default'));
-});
+// gulp.task('lint', function() {
+//     gulp.src('./js/*.js')
+//         .pipe(jshint())
+//         .pipe(jshint.reporter('default'));
+// });
+
 gulp.task('clean',function(){
     return gulp.src(option.buildPath,{
         read:false
@@ -98,6 +99,13 @@ gulp.task('scripts', function() {
         .pipe(rename('map.js'))
         .pipe(uglify())
         .pipe(gulp.dest(option.buildPath+"/js/"));
+    gulp.src('./js/pualink.js')
+        .pipe(concat('pualink.js'))
+        //.pipe(gulp.dest('./dist/js'))
+        .pipe(rename('pualink.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest(option.buildPath+"/js/"));
+
     gulp.src('./css/index.css')
     // .pipe(concat('scope.css'))
         .pipe(rename('index.css'))
@@ -126,6 +134,7 @@ gulp.task('scripts', function() {
         .pipe(htmlmin(option_html))
         .pipe(gulp.dest(option.buildPath));
 });
+
 gulp.task('default',['clean'], function(){
-    gulp.run('lint', 'scripts','resourcecopy');
+    gulp.run('scripts','resourcecopy');
 });

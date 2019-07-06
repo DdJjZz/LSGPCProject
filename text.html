@@ -1,85 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
     <title></title>
     <link href="./resource/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="./datetimePicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    <script type="text/javascript" src="resource/js/jquery.min.js"></script>
+    <script type="text/javascript" src="resource/jSignature/jSignature.min.js"></script>
+    <style type="text/css">
+        #signature {
+            border: 1px solid red;
+        }
+    </style>
+    <script type="text/javascript">
+        //初始化画布
+        $(document).ready(function () {
+            $("#signature").jSignature({height: 300, color: "#000", lineWidth: 4});
+        });
+
+        //重置画布
+        function clearSig() {
+            $("#signature").jSignature("clear");
+        }
+
+        //将画布内容显示到IMG
+        function importImg() {
+            var sig = $("#signature");
+            $("#img").attr("src", "data:" + sig.jSignature('getData'));
+        }
+    </script>
 </head>
 
 <body>
-<div class="container">
-    <form action="" class="form-horizontal"  role="form">
-        <fieldset>
-            <legend>Test</legend>
-            <div class="form-group">
-                <label for="dtp_input1" class="col-md-2 control-label">DateTime Picking</label>
-                <div class="input-group date form_datetime col-md-5" data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
-                    <input class="form-control" size="16" type="text" value="" readonly>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
-                </div>
-                <input type="hidden" id="dtp_input1" value="" /><br/>
-            </div>
-            <div class="form-group">
-                <label for="dtp_input2" class="col-md-2 control-label">Date Picking</label>
-                <div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                    <input class="form-control" size="16" type="text" value="" readonly>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                </div>
-                <input type="hidden" id="dtp_input2" value="" /><br/>
-            </div>
-            <div class="form-group">
-                <label for="dtp_input3" class="col-md-2 control-label">Time Picking</label>
-                <div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
-                    <input class="form-control" size="16" type="text" value="" readonly>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-                </div>
-                <input type="hidden" id="dtp_input3" value="" /><br/>
-            </div>
-        </fieldset>
-    </form>
-</div>
-
-<script type="text/javascript" src="./resource/js/jquery.min.js" charset="UTF-8"></script>
-<script type="text/javascript" src="./resource/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="./datetimePicker/js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
-<!--<script type="text/javascript" src="../js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>-->
-<script type="text/javascript" src="./datetimePicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
-<script type="text/javascript">
-    $('.form_datetime').datetimepicker({
-        //language:  'fr',
-        weekStart: 1,
-        todayBtn:  1,
-        autoclose: 1,
-        todayHighlight: 1,
-        startView: 2,
-        forceParse: 0,
-        showMeridian: 1
-    });
-    $('.form_date').datetimepicker({
-        language:  'zh-CN',
-        weekStart: 1,
-        todayBtn:  1,
-        autoclose: 1,
-        todayHighlight: 1,
-        startView: 2,
-        minView: 2,
-        forceParse: 0
-    });
-    $('.form_time').datetimepicker({
-        language:  'zh-CN',
-        weekStart: 1,
-        todayBtn:  1,
-        autoclose: 1,
-        todayHighlight: 1,
-        startView: 1,
-        minView: 0,
-        maxView: 1,
-        forceParse: 0
-    });
-</script>
-
+<button onclick="clearSig()">重置</button>
+<button onclick="importImg()">获取</button>
+<div id="signature"></div>
+<img id="img"/>
 </body>
 </html>

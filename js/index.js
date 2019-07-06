@@ -128,6 +128,7 @@ window.onload = function () {
     $("#CompanyDispatch").on('click', function () {
         window.clearInterval(done_pound);
         get_free_driver_list("all");
+        province_city_district_initialization();
         $("#FreeDriverName").val("");
         $("#CompanyRoute").removeClass("active");
         $("#CompanyWayBill").removeClass("active");
@@ -310,12 +311,12 @@ function get_city_region_data_chart() {
             containLabel: true
         },
         xAxis: {
-            splitLine:{show: false},//去除网格线
+            splitLine: {show: false},//去除网格线
             type: 'value',
             boundaryGap: [0, 0.01]
         },
         yAxis: {
-            splitLine:{show: false},//去除网格线
+            splitLine: {show: false},//去除网格线
             type: 'category',
             data: ['初始数据', '初始数据', '初始数据', '初始数据', '初始数据', '初始数据']
         },
@@ -330,7 +331,7 @@ function get_city_region_data_chart() {
                 height: '80%',
                 showDataShadow: false,
                 left: '93%',
-                bottom:'10'
+                bottom: '10'
             }
         ],
         series: [
@@ -408,7 +409,7 @@ function get_company_data_chart(companyId, startTime, endTime) {
             }
         },
         xAxis: {
-            splitLine:{show: false},//去除网格线
+            splitLine: {show: false},//去除网格线
             type: 'category',
             data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
             axisLabel: {
@@ -423,7 +424,7 @@ function get_company_data_chart(companyId, startTime, endTime) {
             containLabel: true
         },
         yAxis: {
-            splitLine:{show: false},//去除网格线
+            splitLine: {show: false},//去除网格线
             type: 'value'
         },
         series: [{
@@ -547,26 +548,27 @@ function get_comapny_waybill_table(company_id) {
         txt = txt + "</tbody>";
         $("#companyTable").empty();
         $("#companyTable").append(txt);
-        $('#companyTable').dataTable({
-            "bFilter": false,
-            "bLengthChange": false,
-            "autoWidth": false,
-            "paginationType": "simple",
-            "ordering": false,
-            "oLanguage": {
-                "sLengthMenu": "每页显示 _MENU_ 条记录",
-                "sZeroRecords": "抱歉， 没有找到",
-                "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
-                "sInfoEmpty": "没有数据",
-                "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
-                "oPaginate": {
-                    "sFirst": "首页",
-                    "sPrevious": "前一页",
-                    "sNext": "后一页",
-                    "sLast": "尾页"
-                },
-            }
-        });
+        page_table_initialization($("#companyTable"));
+        // $('#companyTable').dataTable({
+        //     "bFilter": false,
+        //     "bLengthChange": false,
+        //     "autoWidth": false,
+        //     "paginationType": "simple",
+        //     "ordering": false,
+        //     "oLanguage": {
+        //         "sLengthMenu": "每页显示 _MENU_ 条记录",
+        //         "sZeroRecords": "抱歉， 没有找到",
+        //         "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
+        //         "sInfoEmpty": "没有数据",
+        //         "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
+        //         "oPaginate": {
+        //             "sFirst": "首页",
+        //             "sPrevious": "前一页",
+        //             "sNext": "后一页",
+        //             "sLast": "尾页"
+        //         },
+        //     }
+        // });
         waybill_table_detail_click();
     };
     JQ_post(request_url, JSON.stringify(map), draw_waybill_table_page);
@@ -724,35 +726,35 @@ function get_waybill_table(company, goods, start, end) {
         txt = txt + "</tbody>";
         $("#waybillTable").empty();
         $("#waybillTable").append(txt);
-        $('#waybillTable').dataTable({
-            "bFilter": false,
-            "bLengthChange": false,
-            "autoWidth": false,
-            "paginationType": "simple",
-            // "ordering": false,
-            "oLanguage": {
-                "sLengthMenu": "每页显示 _MENU_ 条记录",
-                "sZeroRecords": "抱歉，没有找到",
-                "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
-                "sInfoEmpty": "没有数据",
-                "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
-                "oPaginate": {
-                    "sFirst": "首页",
-                    "sPrevious": "前一页",
-                    "sNext": "后一页",
-                    "sLast": "尾页"
-                },
-            },
-            "pageLength": 18,
-            "dom": 'Bfrtip',
-            "buttons": [
-                {
-                    extend: 'excel',//使用 excel扩展
-                    text: '导出为Excel',// 显示文字
-                    exportOptions: {}
-                }
-            ]
-        });
+        page_table_initialization($("#waybillTable"), 18);
+        // $('#waybillTable').dataTable({
+        //     "bFilter": false,
+        //     "bLengthChange": true,
+        //     "autoWidth": false,
+        //     "paginationType": "simple_numbers",
+        //     "oLanguage": {
+        //         "sLengthMenu": "每页显示 _MENU_ 条记录",
+        //         "sZeroRecords": "抱歉，没有找到",
+        //         "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
+        //         "sInfoEmpty": "没有数据",
+        //         "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
+        //         "oPaginate": {
+        //             "sFirst": "首页",
+        //             "sPrevious": "前一页",
+        //             "sNext": "后一页",
+        //             "sLast": "尾页",
+        //         },
+        //     },
+        //     "pageLength": 18,
+        //     "dom": 'Bfrtip',
+        //     "buttons": [
+        //         {
+        //             extend: 'excel',//使用 excel扩展
+        //             text: '导出为Excel',// 显示文字
+        //             exportOptions: {}
+        //         }
+        //     ]
+        // });
         task_table_row_click();
     };
     JQ_post(request_url, JSON.stringify(map), draw_waybill_table);
@@ -893,32 +895,32 @@ function get_picture_detail_page() {
             type: 'query'
         };
         var draw_picture_detail_modal = function (res) {
-            if(res.status=="false"){
-                $("#errorBody").css("display",'block');
-                $("#myCarouse4").css("display",'none');
-                $("#TaskPictureModal").css("top",'300');
+            if (res.status == "false") {
+                $("#errorBody").css("display", 'block');
+                $("#myCarouse4").css("display", 'none');
+                $("#TaskPictureModal").css("top", '300');
                 $("#TaskPictureModal").modal("show");
             }
-            else{
-                $("#errorBody").css("display",'none');
-                $("#myCarouse4").css("display",'block');
-                var carouselTxt="";
+            else {
+                $("#errorBody").css("display", 'none');
+                $("#myCarouse4").css("display", 'block');
+                var carouselTxt = "";
                 $("#TaskPictureModal .modal-title").html(res.title);
                 $("#TaskPictureModal").removeAttr("style");
-                $("#TaskPictureModal .carousel-inner").attr("style","width: 100%;height: 600px;text-align: center");
-                carouselTxt=carouselTxt+'<div class="carousel-inner" style="width: 100%;height: 600px;text-align: center">';
-                for(var i=0;i<res.pic.length;i++){
-                    if(i==0){
-                        carouselTxt=carouselTxt+"<div class='item active' align='center'><img src='"+res.pic[i]+"'></div>";
+                $("#TaskPictureModal .carousel-inner").attr("style", "width: 100%;height: 600px;text-align: center");
+                carouselTxt = carouselTxt + '<div class="carousel-inner" style="width: 100%;height: 600px;text-align: center">';
+                for (var i = 0; i < res.pic.length; i++) {
+                    if (i == 0) {
+                        carouselTxt = carouselTxt + "<div class='item active' align='center'><img src='" + res.pic[i] + "'></div>";
                     }
-                    else{
-                        carouselTxt=carouselTxt+"<div class='item' align='center'><img src='"+res.pic[i]+"'></div>";
+                    else {
+                        carouselTxt = carouselTxt + "<div class='item' align='center'><img src='" + res.pic[i] + "'></div>";
                     }
                 }
-                carouselTxt=carouselTxt+"</div>";
-                carouselTxt=carouselTxt+"<a class='left carousel-control' href='#myCarouse4' data-slide='prev'>" +
+                carouselTxt = carouselTxt + "</div>";
+                carouselTxt = carouselTxt + "<a class='left carousel-control' href='#myCarouse4' data-slide='prev'>" +
                     "<span class='glyphicon glyphicon-chevron-left'></span></a>";
-                carouselTxt=carouselTxt+"<a class='right carousel-control' href='#myCarouse4' data-slide='next'>" +
+                carouselTxt = carouselTxt + "<a class='right carousel-control' href='#myCarouse4' data-slide='next'>" +
                     "<span class='glyphicon glyphicon-chevron-right'></span></a>";
                 $("#myCarouse4").empty();
                 $("#myCarouse4").append(carouselTxt);
@@ -965,35 +967,36 @@ function get_user_table() {
         $("#UserTable").empty();
         $("#UserTable").append(txt);
         manage_user_table_delete();
-        $('#UserTable').dataTable({
-            "bFilter": false,
-            "bLengthChange": false,
-            "autoWidth": false,
-            "paginationType": "simple",
-            // "ordering": false,
-            "oLanguage": {
-                "sLengthMenu": "每页显示 _MENU_ 条记录",
-                "sZeroRecords": "抱歉，没有找到",
-                "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
-                "sInfoEmpty": "没有数据",
-                "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
-                "oPaginate": {
-                    "sFirst": "首页",
-                    "sPrevious": "前一页",
-                    "sNext": "后一页",
-                    "sLast": "尾页"
-                },
-            },
-            "pageLength": 13,
-            "dom": 'Bfrtip',
-            "buttons": [
-                {
-                    extend: 'excel',//使用 excel扩展
-                    text: '导出为Excel',// 显示文字
-                    exportOptions: {}
-                }
-            ]
-        });
+        page_table_initialization($("#UserTable"), 13);
+        // $('#UserTable').dataTable({
+        //     "bFilter": false,
+        //     "bLengthChange": false,
+        //     "autoWidth": false,
+        //     "paginationType": "simple",
+        //     // "ordering": false,
+        //     "oLanguage": {
+        //         "sLengthMenu": "每页显示 _MENU_ 条记录",
+        //         "sZeroRecords": "抱歉，没有找到",
+        //         "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
+        //         "sInfoEmpty": "没有数据",
+        //         "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
+        //         "oPaginate": {
+        //             "sFirst": "首页",
+        //             "sPrevious": "前一页",
+        //             "sNext": "后一页",
+        //             "sLast": "尾页"
+        //         },
+        //     },
+        //     "pageLength": 13,
+        //     "dom": 'Bfrtip',
+        //     "buttons": [
+        //         {
+        //             extend: 'excel',//使用 excel扩展
+        //             text: '导出为Excel',// 显示文字
+        //             exportOptions: {}
+        //         }
+        //     ]
+        // });
     };
     JQ_post(request_url, JSON.stringify(map), draw_manage_user_table);
 }
@@ -1160,7 +1163,7 @@ function get_driver_data_chart(driverId, startTime, endTime) {
             }
         },
         xAxis: {
-            splitLine:{show: false},//去除网格线
+            splitLine: {show: false},//去除网格线
             type: 'category',
             data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
             axisLabel: {
@@ -1175,7 +1178,7 @@ function get_driver_data_chart(driverId, startTime, endTime) {
             containLabel: true
         },
         yAxis: {
-            splitLine:{show: false},//去除网格线
+            splitLine: {show: false},//去除网格线
             type: 'value'
         },
         series: [{
@@ -1251,26 +1254,27 @@ function get_driver_waybill_table(driverid) {
         txt = txt + "</tbody>";
         $("#DriverTable").empty();
         $("#DriverTable").append(txt);
-        $('#DriverTable').dataTable({
-            "bFilter": false,
-            "bLengthChange": false,
-            "autoWidth": false,
-            "paginationType": "simple",
-            "ordering": false,
-            "oLanguage": {
-                "sLengthMenu": "每页显示 _MENU_ 条记录",
-                "sZeroRecords": "抱歉， 没有找到",
-                "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
-                "sInfoEmpty": "没有数据",
-                "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
-                "oPaginate": {
-                    "sFirst": "首页",
-                    "sPrevious": "前一页",
-                    "sNext": "后一页",
-                    "sLast": "尾页"
-                },
-            }
-        });
+        page_table_initialization($("#DriverTable"));
+        // $('#DriverTable').dataTable({
+        //     "bFilter": false,
+        //     "bLengthChange": false,
+        //     "autoWidth": false,
+        //     "paginationType": "simple",
+        //     "ordering": false,
+        //     "oLanguage": {
+        //         "sLengthMenu": "每页显示 _MENU_ 条记录",
+        //         "sZeroRecords": "抱歉， 没有找到",
+        //         "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
+        //         "sInfoEmpty": "没有数据",
+        //         "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
+        //         "oPaginate": {
+        //             "sFirst": "首页",
+        //             "sPrevious": "前一页",
+        //             "sNext": "后一页",
+        //             "sLast": "尾页"
+        //         },
+        //     }
+        // });
         company_waybill_table_detail_click();
     };
     JQ_post(request_url, JSON.stringify(map), draw_waybill_table_page);
@@ -1377,6 +1381,7 @@ $("#selectDriverData").on("click", function () {
     var startTime = timeArray[0];
     var endTime = timeArray[1];
     get_driver_data_chart(driver_id, startTime, endTime);
+
 });
 
 function get_company_city_region_data_chart() {
@@ -1409,12 +1414,12 @@ function get_company_city_region_data_chart() {
             containLabel: true
         },
         xAxis: {
-            splitLine:{show: false},//去除网格线
+            splitLine: {show: false},//去除网格线
             type: 'value',
             boundaryGap: [0, 0.01]
         },
         yAxis: {
-            splitLine:{show: false},//去除网格线
+            splitLine: {show: false},//去除网格线
             type: 'category',
             data: ['初始数据', '初始数据', '初始数据', '初始数据', '初始数据', '初始数据']
         },
@@ -1429,7 +1434,7 @@ function get_company_city_region_data_chart() {
                 height: '80%',
                 showDataShadow: false,
                 left: '93%',
-                bottom:'10'
+                bottom: '10'
             }
         ],
         series: [
@@ -1556,34 +1561,35 @@ function get_company_waybill_table() {
         txt = txt + "</tbody>";
         $("#CompanyWayTable").empty();
         $("#CompanyWayTable").append(txt);
-        $('#CompanyWayTable').dataTable({
-            "bFilter": false,
-            "bLengthChange": false,
-            "autoWidth": false,
-            "paginationType": "simple",
-            "oLanguage": {
-                "sLengthMenu": "每页显示 _MENU_ 条记录",
-                "sZeroRecords": "抱歉， 没有找到",
-                "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
-                "sInfoEmpty": "没有数据",
-                "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
-                "oPaginate": {
-                    "sFirst": "首页",
-                    "sPrevious": "前一页",
-                    "sNext": "后一页",
-                    "sLast": "尾页"
-                },
-            },
-            "pageLength": 15,
-            "dom": 'Bfrtip',
-            "buttons": [
-                {
-                    extend: 'excel',//使用 excel扩展
-                    text: '导出为Excel',// 显示文字
-                    exportOptions: {}
-                }
-            ]
-        });
+        page_table_initialization($("#CompanyWayTable"), 15);
+        // $('#CompanyWayTable').dataTable({
+        //     "bFilter": false,
+        //     "bLengthChange": false,
+        //     "autoWidth": false,
+        //     "paginationType": "simple",
+        //     "oLanguage": {
+        //         "sLengthMenu": "每页显示 _MENU_ 条记录",
+        //         "sZeroRecords": "抱歉， 没有找到",
+        //         "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
+        //         "sInfoEmpty": "没有数据",
+        //         "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
+        //         "oPaginate": {
+        //             "sFirst": "首页",
+        //             "sPrevious": "前一页",
+        //             "sNext": "后一页",
+        //             "sLast": "尾页"
+        //         },
+        //     },
+        //     "pageLength": 15,
+        //     "dom": 'Bfrtip',
+        //     "buttons": [
+        //         {
+        //             extend: 'excel',//使用 excel扩展
+        //             text: '导出为Excel',// 显示文字
+        //             exportOptions: {}
+        //         }
+        //     ]
+        // });
         company_waybill_table_click();
         company_waybill_table_button_click();
     };
@@ -1758,26 +1764,27 @@ function get_free_driver_list(driver) {
             free_driver_table_button_click(this.dataset.driver);
         });
         // free_driver_table_button_click();
-        $('#FreeDriverTable').dataTable({
-            "bFilter": false,
-            "bLengthChange": false,
-            "autoWidth": false,
-            "paginationType": "simple",
-            "oLanguage": {
-                "sLengthMenu": "每页显示 _MENU_ 条记录",
-                "sZeroRecords": "抱歉， 没有找到",
-                "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
-                "sInfoEmpty": "没有数据",
-                "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
-                "oPaginate": {
-                    "sFirst": "首页",
-                    "sPrevious": "前一页",
-                    "sNext": "后一页",
-                    "sLast": "尾页"
-                },
-            },
-            "pageLength": 7,
-        });
+        page_table_initialization($("#FreeDriverTable"), 7);
+        // $('#FreeDriverTable').dataTable({
+        //     "bFilter": false,
+        //     "bLengthChange": false,
+        //     "autoWidth": false,
+        //     "paginationType": "simple",
+        //     "oLanguage": {
+        //         "sLengthMenu": "每页显示 _MENU_ 条记录",
+        //         "sZeroRecords": "抱歉， 没有找到",
+        //         "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
+        //         "sInfoEmpty": "没有数据",
+        //         "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
+        //         "oPaginate": {
+        //             "sFirst": "首页",
+        //             "sPrevious": "前一页",
+        //             "sNext": "后一页",
+        //             "sLast": "尾页"
+        //         },
+        //     },
+        //     "pageLength": 7,
+        // });
     };
     JQ_post(request_url, JSON.stringify(map), draw_free_driver_table);
 }
@@ -2142,35 +2149,36 @@ function all_driver_table_show() {
         $("#AllDriverTable").append(txt);
         all_driver_table_click();
         all_driver_table_button_click();
-        $('#AllDriverTable').dataTable({
-            "bFilter": false,
-            "bLengthChange": false,
-            "autoWidth": false,
-            "paginationType": "simple",
-            // "ordering": false,
-            "oLanguage": {
-                "sLengthMenu": "每页显示 _MENU_ 条记录",
-                "sZeroRecords": "抱歉， 没有找到",
-                "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
-                "sInfoEmpty": "没有数据",
-                "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
-                "oPaginate": {
-                    "sFirst": "首页",
-                    "sPrevious": "前一页",
-                    "sNext": "后一页",
-                    "sLast": "尾页"
-                },
-            },
-            "pageLength": 10,
-            "dom": 'Bfrtip',
-            "buttons": [
-                {
-                    extend: 'excel',//使用 excel扩展
-                    text: '导出为Excel',// 显示文字
-                    exportOptions: {}
-                }
-            ]
-        });
+        page_table_initialization($('#AllDriverTable'), 10);
+        // $('#AllDriverTable').dataTable({
+        //     "bFilter": false,
+        //     "bLengthChange": false,
+        //     "autoWidth": false,
+        //     "paginationType": "simple",
+        //     // "ordering": false,
+        //     "oLanguage": {
+        //         "sLengthMenu": "每页显示 _MENU_ 条记录",
+        //         "sZeroRecords": "抱歉， 没有找到",
+        //         "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
+        //         "sInfoEmpty": "没有数据",
+        //         "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
+        //         "oPaginate": {
+        //             "sFirst": "首页",
+        //             "sPrevious": "前一页",
+        //             "sNext": "后一页",
+        //             "sLast": "尾页"
+        //         },
+        //     },
+        //     "pageLength": 10,
+        //     "dom": 'Bfrtip',
+        //     "buttons": [
+        //         {
+        //             extend: 'excel',//使用 excel扩展
+        //             text: '导出为Excel',// 显示文字
+        //             exportOptions: {}
+        //         }
+        //     ]
+        // });
     };
     JQ_post(request_url, JSON.stringify(map), draw_all_driver_table);
 }
@@ -2331,35 +2339,36 @@ function company_manage_table(uname) {
         $("#CompanyManegeTable").empty();
         $("#CompanyManegeTable").append(txt);
         company_manage_table_button_click();
-        $('#CompanyManegeTable').dataTable({
-            "bFilter": false,
-            "bLengthChange": false,
-            "autoWidth": false,
-            "paginationType": "simple",
-            // "ordering": false,
-            "oLanguage": {
-                "sLengthMenu": "每页显示 _MENU_ 条记录",
-                "sZeroRecords": "抱歉， 没有找到",
-                "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
-                "sInfoEmpty": "没有数据",
-                "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
-                "oPaginate": {
-                    "sFirst": "首页",
-                    "sPrevious": "前一页",
-                    "sNext": "后一页",
-                    "sLast": "尾页"
-                },
-            },
-            "pageLength": 12,
-            "dom": 'Bfrtip',
-            "buttons": [
-                {
-                    extend: 'excel',//使用 excel扩展
-                    text: '导出为Excel',// 显示文字
-                    exportOptions: {}
-                }
-            ]
-        });
+        page_table_initialization($('#CompanyManegeTable'), 12);
+        // $('#CompanyManegeTable').dataTable({
+        //     "bFilter": false,
+        //     "bLengthChange": false,
+        //     "autoWidth": false,
+        //     "paginationType": "simple",
+        //     // "ordering": false,
+        //     "oLanguage": {
+        //         "sLengthMenu": "每页显示 _MENU_ 条记录",
+        //         "sZeroRecords": "抱歉， 没有找到",
+        //         "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
+        //         "sInfoEmpty": "没有数据",
+        //         "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
+        //         "oPaginate": {
+        //             "sFirst": "首页",
+        //             "sPrevious": "前一页",
+        //             "sNext": "后一页",
+        //             "sLast": "尾页"
+        //         },
+        //     },
+        //     "pageLength": 12,
+        //     "dom": 'Bfrtip',
+        //     "buttons": [
+        //         {
+        //             extend: 'excel',//使用 excel扩展
+        //             text: '导出为Excel',// 显示文字
+        //             exportOptions: {}
+        //         }
+        //     ]
+        // });
     };
     JQ_post(request_url, JSON.stringify(map), draw_company_manage_table);
 }
@@ -2394,7 +2403,6 @@ function company_manage_table_button_click() {
 
 
 function add_manage_view_page_show(type, uid) {
-    console.log(type);
     if (type == 'add') {
         $("#AddManageBtnSure").attr("data-type", type);
         $("#AddManageBtnSure").removeAttr("data-uid");
@@ -2540,4 +2548,132 @@ $("#DeleteUserBtnSure").on("click", function () {
         company_manage_table("");
     };
     JQ_post(request_url, JSON.stringify(map), draw_new_manage_table);
+});
+
+
+function page_table_initialization(dom, length) {
+    dom.dataTable({
+        "bFilter": false,
+        "bLengthChange": true,
+        "autoWidth": false,
+        "paginationType": "simple_numbers",
+        "oLanguage": {
+            "sLengthMenu": "每页显示 _MENU_ 条记录",
+            "sZeroRecords": "抱歉，没有找到",
+            "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
+            "sInfoEmpty": "没有数据",
+            "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
+            "oPaginate": {
+                "sFirst": "首页",
+                "sPrevious": "前一页",
+                "sNext": "后一页",
+                "sLast": "尾页",
+            },
+        },
+        "pageLength": length,
+        "dom": 'Bfrtip',
+        "buttons": [
+            {
+                extend: 'excel',//使用 excel扩展
+                text: '导出为Excel',// 显示文字
+                exportOptions: {}
+            }
+        ]
+    });
+}
+
+function province_city_district_initialization() {
+    var province_array = province_city_district_change("0");
+    var city_array = province_city_district_change("0_0");
+    var district_array = province_city_district_change("0_0_0");
+    var province_txt = "";
+    var city_txt = "";
+    var district_txt = "";
+    for (var i = 0; i < province_array.length; i++) {
+        province_txt = province_txt + "<option data-index='0_" + i + "'>" + province_array[i] + "</option>";
+    }
+
+    for (i = 0; i < city_array.length; i++) {
+        city_txt = city_txt + "<option data-index='0_0_" + i + "'>" + city_array[i] + "</option>";
+    }
+
+    for (i = 0; i < district_array.length; i++) {
+        district_txt = district_txt + "<option>" + district_array[i] + "</option>";
+    }
+    $("#StartProvince").empty();
+    $("#StartProvince").append(province_txt);
+    $("#EndProvince").empty();
+    $("#EndProvince").append(province_txt);
+    $("#StartCity").empty();
+    $("#StartCity").append(city_txt);
+    $("#EndCity").empty();
+    $("#EndCity").append(city_txt);
+    $("#StartDistrict").empty();
+    $("#StartDistrict").append(district_txt);
+    $("#EndDistrict").empty();
+    $("#EndDistrict").append(district_txt);
+}
+
+$("#StartProvince").on("change", function () {
+    var option = $("#StartProvince option:selected");
+    var index = option.data("index");
+    var city_array = province_city_district_change(index);
+    var district_array = province_city_district_change(index + "_0");
+    var city_txt = "";
+    var district_txt = "";
+    for (var i = 0; i < city_array.length; i++) {
+        city_txt = city_txt + "<option data-index='" + index + "_" + i + "'>" + city_array[i] + "</option>"
+    }
+    for (i = 0; i < district_array.length; i++) {
+        district_txt = district_txt + "<option>" + district_array[i] + "</option>"
+    }
+    $("#StartCity").empty();
+    $("#StartCity").append(city_txt);
+    $("#StartDistrict").empty();
+    $("#StartDistrict").append(district_txt);
+});
+
+$("#StartCity").on("change", function () {
+    var option = $("#StartCity option:selected");
+    var index = option.data("index");
+    var district_array = province_city_district_change(index);
+    var district_txt = "";
+    for (var i = 0; i < district_array.length; i++) {
+        district_txt = district_txt + "<option>" + district_array[i] + "</option>"
+    }
+    $("#StartDistrict").empty();
+    $("#StartDistrict").append(district_txt);
+});
+
+
+$("#EndProvince").on("change", function () {
+    var option = $("#EndProvince option:selected");
+    var index = option.data("index");
+    var city_array = province_city_district_change(index);
+    var district_array = province_city_district_change(index + "_0");
+    var city_txt = "";
+    var district_txt = "";
+    for (var i = 0; i < city_array.length; i++) {
+        city_txt = city_txt + "<option data-index='" + index + "_" + i + "'>" + city_array[i] + "</option>"
+    }
+    for (i = 0; i < district_array.length; i++) {
+        district_txt = district_txt + "<option>" + district_array[i] + "</option>"
+    }
+    $("#EndCity").empty();
+    $("#EndCity").append(city_txt);
+    $("#EndDistrict").empty();
+    $("#EndDistrict").append(district_txt);
+});
+
+
+$("#EndCity").on("change", function () {
+    var option = $("#EndCity option:selected");
+    var index = option.data("index");
+    var district_array = province_city_district_change(index);
+    var district_txt = "";
+    for (var i = 0; i < district_array.length; i++) {
+        district_txt = district_txt + "<option>" + district_array[i] + "</option>"
+    }
+    $("#EndDistrict").empty();
+    $("#EndDistrict").append(district_txt);
 });

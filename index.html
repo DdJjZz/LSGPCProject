@@ -18,14 +18,12 @@
     <script type="text/javascript" src="resource/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="laydate/laydate.js"></script>
     <script type="text/javascript" src="js/echarts.min.js"></script>
-    <!--<script src="https://cdn.bootcss.com/distpicker/2.0.3/distpicker.js"></script>-->
     <script type="text/javascript" src="js/theams/macarons.js"></script>
     <script type="text/javascript" src="js/theams/shine.js"></script>
     <script type="text/javascript" src="js/theams/infographic.js"></script>
     <script type="text/javascript" src="js/theams/walden.js"></script>
     <script type="text/javascript" src="js/hcu_util.js"></script>
-    <!--<script type="text/javascript" src="resource/js/bootstrap-datetimepicker.zh-CN.js"></script>-->
-    <!--<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=vRknRFA2azlPzOpzSCNBdQXGRQEGxloc"></script>-->
+    <script type="text/javascript" src="js/pcdlink.js"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=vRknRFA2azlPzOpzSCNBdQXGRQEGxloc"></script>
 <body>
 <div>
@@ -1831,15 +1829,14 @@
                         </li>
                     </ul>
                     <div class="tab-content">
-                        <div class="tab-pane active" id="panel-driver">
-                            <div style="width: 100%;height: 5%">
-                                <div style="float: right;width: 10%;padding: 10px 10px 10px 10px">
+                        <div class="tab-pane active" id="panel-driver" style="padding-top: 10px">
+                            <div style="width: 50%;height: 5%;position: absolute;right: 10px ;z-index: 99">
+                                <div style="float: right;width: 20%;padding: 0px 10px 10px 10px">
                                     <button class="btn btn-primary btn-block" id="SearchFreeDriver">搜索</button>
                                 </div>
-                                <div style="float: right;width: 22.5%;padding: 10px 10px 10px 10px;">
-
+                                <div style="float: right;width: 45%;padding: 0px 10px 10px 10px;">
                                     <div class="input-group">
-                                        <span class="input-group-addon">司机名输入</span>
+                                        <span class="input-group-addon">司机姓名输入</span>
                                         <input id="FreeDriverName" type="text" class="form-control"
                                                placeholder="请输入司机姓名">
                                     </div>
@@ -2467,14 +2464,14 @@
         </div>
         <div id="CompanyUser1" style="display: none">
             <div class="col-md-12 column" style="padding-top: 10px">
-                <div style="width: 100%;height: 5%">
-                    <div style="float: right;width: 10%;padding: 10px 0 10px 10px">
+                <div style="width: 50%;height: 5%;position: absolute;right: 10px;z-index: 99">
+                    <div style="float: right;width: 20%;padding: 0px 0 10px 10px">
                         <button class="btn btn-primary btn-block" id="AddManageBtn">人员添加</button>
                     </div>
-                    <div style="float: right;width: 10%;padding: 10px 0 10px 10px">
+                    <div style="float: right;width: 20%;padding: 0px 0 10px 10px">
                         <button class="btn btn-primary btn-block" id="SearchManageBtn">搜索</button>
                     </div>
-                    <div style="float: right;width: 22.5%;padding: 10px 10px 10px 10px;">
+                    <div style="float: right;width: 45%;padding: 0px 10px 10px 10px;">
                         <div class="input-group">
                             <span class="input-group-addon">管理人员</span>
                             <input id="ManageName" type="text" class="form-control" placeholder="请输入管理人员姓名">
@@ -2888,19 +2885,25 @@
                 </div>
                 <div class="input-group" style="padding-top: 10px">
                     <span class="input-group-addon">起点输入</span>
-                    <input id="StartProvince" type="text" class="form-control" style="width: 33%" placeholder="省">
-                    <input id="StartCity" type="text" class="form-control" style="width: 33%" placeholder="市">
-                    <input id="StartDistrict" type="text" class="form-control" style="width: 34%" placeholder="区/县">
+                    <select class="form-control" id="StartProvince" style="width: 33%">
+                    </select>
+                    <select class="form-control" id="StartCity" style="width: 33%">
+                    </select>
+                    <select class="form-control" id="StartDistrict" style="width: 34%">
+                    </select>
                 </div>
                 <div class="input-group" style="padding-top: 10px">
                     <span class="input-group-addon">详细地址</span>
-                    <input id="StartAddress" type="text" class="form-control" placeholder="请输入起点的详细地址">
+                    <input id="StartAddress" type="text" class="form-control" placeholder="请输入起点的详细地址"/>
                 </div>
                 <div class="input-group" style="padding-top: 10px">
                     <span class="input-group-addon">终点输入</span>
-                    <input id="EndProvince" type="text" class="form-control" style="width: 33%" placeholder="省">
-                    <input id="EndCity" type="text" class="form-control" style="width: 33%" placeholder="市">
-                    <input id="EndDistrict" type="text" class="form-control" style="width: 34%" placeholder="区/县">
+                    <select class="form-control" id="EndProvince" style="width: 33%">
+                    </select>
+                    <select class="form-control" id="EndCity" style="width: 33%">
+                    </select>
+                    <select class="form-control" id="EndDistrict" style="width: 34%">
+                    </select>
                 </div>
                 <div class="input-group" style="padding-top: 10px">
                     <span class="input-group-addon">详细地址</span>
@@ -3011,7 +3014,7 @@
                 </div>
                 <div class="input-group" style="padding-top: 10px;width: 100%">
                     <span class="input-group-addon" style="width: 80px">联系电话</span>
-                    <input id="AddUserTelephone" type="text" class="form-control" placeholder="请输入密码">
+                    <input id="AddUserTelephone" type="text" class="form-control" placeholder="请输入联系电话">
                 </div>
                 <div class="input-group" style="padding-top: 10px;width: 100%">
                     <span class="input-group-addon" style="width: 80px">邮箱地址</span>

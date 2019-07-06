@@ -1517,9 +1517,9 @@ function get_the_three_regions_largest_consumption() {
             var regions_detail = three_regions_data[i].regions_data;
             txt_1 = txt_1 + '<div style="float: left;font-size: 28px;height: 100%;width: 80px;" class="text-left">' + three_regions_data[i].name + '</div>';
             for (var j = 0; j < regions_detail.length; j++) {
-                txt_1 = txt_1 + '<div style="float: left;font-size: 28px;height: 50%;width:calc(27% - 16px);color: #F17C02">' + regions_detail[j].name + '</div>';
-                txt_1 = txt_1 + '<div style="float: left;font-size: 28px;height: 50%;width:calc(37% - 16px);color: #F17C02">' + regions_detail[j].data + '</div>';
-                txt_1 = txt_1 + '<div style="float: left;font-size: 28px;height: 50%;width:calc(20% - 16px);color: #F17C02">' + regions_detail[j].percentage + '</div>';
+                txt_1 = txt_1 + '<div style="float: left;font-size: 28px;height: 50%;width:calc(27% - 16px);color: #FFFFFF">' + regions_detail[j].name + '</div>';
+                txt_1 = txt_1 + '<div style="float: left;font-size: 28px;height: 50%;width:calc(37% - 16px);color: #FFFFFF">' + regions_detail[j].data + '</div>';
+                txt_1 = txt_1 + '<div style="float: left;font-size: 28px;height: 50%;width:calc(20% - 16px);color: #FFFFFF">' + regions_detail[j].percentage + '</div>';
                 if (regions_detail[j].type == "add") {
                     txt_1 = txt_1 + '<div style="float: left;font-size: 28px;height: 50%;width:calc(10% - 16px)">' +
                         '<i class="fa fa-arrow-up" style="color: #F74500"></i></div>';
