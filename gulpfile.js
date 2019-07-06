@@ -99,10 +99,10 @@ gulp.task('scripts', function() {
         .pipe(rename('map.js'))
         .pipe(uglify())
         .pipe(gulp.dest(option.buildPath+"/js/"));
-    gulp.src('./js/pualink.js')
-        .pipe(concat('pualink.js'))
+    gulp.src('./js/pcdlink.js')
+        .pipe(concat('pcdlink.js'))
         //.pipe(gulp.dest('./dist/js'))
-        .pipe(rename('pualink.js'))
+        .pipe(rename('pcdlink.js'))
         .pipe(uglify())
         .pipe(gulp.dest(option.buildPath+"/js/"));
 
